@@ -85,10 +85,10 @@ The following were already in place and remain optimized:
 ## 🎯 SEO Best Practices Implemented
 
 ### 1. **Keyword Optimization**
-- Primary keyword: "Avinash N"
+- Primary keywords: "Avinash Neralakatte", "Avinash N"
 - Secondary keywords: Full Stack Developer, GenAI Developer, FastAPI, Next.js, PostgreSQL
-- Long-tail keywords: "Full Stack Developer Bangalore", "GenAI Developer India"
-- Location-based: Kochi, Bangalore, India
+- Long-tail keywords: "Avinash Neralakatte Full Stack Developer", "Avinash Neralakatte Bangalore", "GenAI Developer India"
+- Location-based: Kochi, Bangalore, India, Neralakatte
 
 ### 2. **Content Quality**
 - Descriptive, unique meta descriptions for each page
@@ -119,7 +119,7 @@ The following were already in place and remain optimized:
 ## 📊 Expected SEO Benefits
 
 1. **Improved Search Rankings**
-   - Better targeting for "Avinash N" searches
+   - Better targeting for "Avinash Neralakatte" and "Avinash N" searches
    - Enhanced visibility for technology-specific queries
    - Location-based search improvements
 
@@ -202,4 +202,4 @@ The website is now fully optimized for search engines while maintaining its uniq
 
 **Last Updated**: January 18, 2026
 **Optimized By**: Antigravity AI Assistant
-**Target Keywords**: Avinash N, Full Stack Developer, GenAI Developer, FastAPI, Next.js, PostgreSQL, Bangalore, India
+**Target Keywords**: Avinash Neralakatte, Avinash N, Full Stack Developer, GenAI Developer, FastAPI, Next.js, PostgreSQL, Bangalore, India
