@@ -1,120 +1,202 @@
 ---
-import personal from '../data/personal.json';
+import personal from "../data/personal.json";
 ---
 
-<section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden stars">
-  <!-- Background Orbs -->
-  <div class="orb orb-cyan w-96 h-96 -top-20 -left-20 animate-float"></div>
-  <div class="orb orb-purple w-80 h-80 top-1/2 -right-20 animate-float-slow"></div>
-  <div class="orb orb-coral w-64 h-64 bottom-20 left-1/4 animate-float-delayed"></div>
-  
-  <div class="max-w-6xl mx-auto px-6 lg:px-8 py-20 relative z-10">
-    <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-      <!-- Profile Image -->
-      <div class="relative group">
-        <div class="absolute inset-0 rounded-3xl bg-gradient-to-br from-cosmic-accent via-cosmic-purple to-cosmic-coral blur-xl opacity-50 group-hover:opacity-70 transition-opacity duration-500 animate-pulse-glow"></div>
-        <div class="relative w-48 h-64 lg:w-56 lg:h-72 rounded-3xl overflow-hidden border-2 border-white/10">
-          <img 
-            src={personal.profileImage} 
-            alt={personal.name}
-            class="w-full h-full object-cover"
-            loading="eager"
-          />
-        </div>
-        <!-- Availability Badge -->
-        <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 glass px-4 py-2 rounded-full flex items-center gap-2 whitespace-nowrap">
-          <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-          <span class="text-xs font-medium text-green-400">{personal.availability}</span>
-        </div>
+<section
+  id="home"
+  class="pt-12 pb-16 px-4 md:px-8 max-w-[1400px] mx-auto border-b-4 border-double border-ink relative bg-paper z-10"
+>
+  <!-- Masthead -->
+  <header class="text-center mb-12 relative">
+    <div class="border-b-4 border-ink pb-2 mb-2">
+      <h1
+        class="font-display text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter leading-none"
+      >
+        {personal.name}
+      </h1>
+    </div>
+
+    <div
+      class="flex flex-col md:flex-row justify-between items-center border-b-2 border-ink py-2 font-mono text-xs md:text-sm uppercase tracking-widest text-ink/80 px-2 gap-2"
+    >
+      <span>Vol. I, Issue No. 1</span>
+      <span
+        class="flex-1 text-center hidden md:block border-x border-ink/20 mx-4"
+        >Bangalore Edition • {
+          new Date().toLocaleDateString("en-US", {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })
+        }</span
+      >
+      <span>Price: Free</span>
+    </div>
+  </header>
+
+  <!-- Headline Feature -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+    <!-- Main Feature Column -->
+    <div class="lg:col-span-8 lg:border-r border-ink/20 lg:pr-8">
+      <div class="mb-6">
+        <h2
+          class="font-display text-4xl md:text-6xl font-bold leading-none uppercase mb-2"
+        >
+          Full Stack Developer <br />
+          <span
+            class="italic font-serif font-normal normal-case text-3xl md:text-4xl text-ink/80"
+            >Ready to build the next big thing</span
+          >
+        </h2>
+        <div class="h-1 w-24 bg-ink mb-1"></div>
       </div>
-      
-      <!-- Content -->
-      <div class="text-center lg:text-left flex-1">
-        <p class="text-cosmic-accent font-medium mb-4 tracking-wide uppercase text-sm">Welcome to my portfolio</p>
-        
-        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-          <span class="text-white">Hi, I'm </span>
-          <span class="gradient-text">{personal.name}</span>
-        </h1>
-        
-        <p class="text-xl md:text-2xl text-cosmic-muted mb-6 font-light">
-          {personal.role}
-        </p>
-        
-        <p class="text-cosmic-muted max-w-xl mb-8 leading-relaxed">
-          {personal.tagline}
-        </p>
-        
-        <!-- Social Links -->
-        <div class="flex flex-wrap gap-3 justify-center lg:justify-start mb-8">
-          <a 
-            href={personal.social.github} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            class="w-12 h-12 glass-light rounded-xl flex items-center justify-center hover:bg-white/10 hover:border-cosmic-accent transition-all duration-200 group"
-            aria-label="GitHub"
+
+      <div class="flex flex-col md:flex-row gap-8 mb-8">
+        <figure class="flex-shrink-0 md:w-1/2">
+          <div class="border border-ink p-1 bg-white inline-block w-full">
+            <img
+              src={personal.profileImage}
+              alt={personal.name}
+              class="w-full h-auto grayscale contrast-125 block filter sepia-[.2]"
+              loading="eager"
+            />
+          </div>
+          <figcaption
+            class="font-mono text-xs mt-2 text-ink/60 border-l-2 border-ink/30 pl-2"
           >
-            <svg class="w-5 h-5 text-cosmic-muted group-hover:text-cosmic-accent transition-colors" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            </svg>
-          </a>
-          <a 
-            href={personal.social.linkedin} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            class="w-12 h-12 glass-light rounded-xl flex items-center justify-center hover:bg-white/10 hover:border-cosmic-purple transition-all duration-200 group"
-            aria-label="LinkedIn"
-          >
-            <svg class="w-5 h-5 text-cosmic-muted group-hover:text-cosmic-purple transition-colors" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
-          </a>
-          <a 
-            href={personal.social.leetcode} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            class="w-12 h-12 glass-light rounded-xl flex items-center justify-center hover:bg-white/10 hover:border-cosmic-coral transition-all duration-200 group"
-            aria-label="LeetCode"
-          >
-            <svg class="w-5 h-5 text-cosmic-muted group-hover:text-cosmic-coral transition-colors" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M16.102 17.93l-2.697 2.607c-.466.467-1.111.662-1.823.662s-1.357-.195-1.824-.662l-4.332-4.363c-.467-.467-.702-1.15-.702-1.863s.235-1.357.702-1.824l4.319-4.38c.467-.467 1.125-.645 1.837-.645s1.357.195 1.823.662l2.697 2.606c.514.515 1.365.497 1.9-.038.535-.536.553-1.387.039-1.901l-2.609-2.636a5.055 5.055 0 0 0-2.445-1.337l2.467-2.503c.516-.514.498-1.366-.037-1.901-.535-.535-1.387-.552-1.902-.038l-10.1 10.101c-.981.982-1.494 2.337-1.494 3.835 0 1.498.513 2.895 1.494 3.875l4.347 4.361c.981.981 2.337 1.494 3.834 1.494 1.498 0 2.853-.513 3.835-1.494l2.609-2.637c.514-.514.496-1.365-.039-1.9s-1.386-.553-1.899-.039zM20.811 13.01H10.666c-.702 0-1.27.604-1.27 1.346s.568 1.346 1.27 1.346h10.145c.701 0 1.27-.604 1.27-1.346s-.569-1.346-1.27-1.346z"/>
-            </svg>
-          </a>
-          <a 
-            href={`mailto:${personal.email}`}
-            class="w-12 h-12 glass-light rounded-xl flex items-center justify-center hover:bg-white/10 hover:border-cosmic-pink transition-all duration-200 group"
-            aria-label="Email"
-          >
-            <svg class="w-5 h-5 text-cosmic-muted group-hover:text-cosmic-pink transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-            </svg>
-          </a>
-        </div>
-        
-        <!-- CTA Buttons -->
-        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-          <a href="#projects" class="btn-primary flex items-center justify-center gap-2">
-            <span>View Projects</span>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-            </svg>
-          </a>
-          <a href={personal.resume} download class="btn-secondary flex items-center justify-center gap-2">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-            </svg>
-            <span>Download Resume</span>
-          </a>
+            FIG 1.0: {personal.name}, spotted in the wild coding environment.
+          </figcaption>
+        </figure>
+
+        <div class="md:w-1/2 flex flex-col justify-between">
+          <article class="font-body text-lg leading-relaxed text-justify mb-6">
+            <span
+              class="float-left text-5xl font-display font-black leading-[0.8] mr-2 mt-1"
+              >H</span
+            >
+            <span class="font-bold uppercase tracking-wide text-sm mr-1"
+              >ELLO WORLD.</span
+            >
+            {personal.tagline}
+            <br /><br />
+            {personal.role} based in {personal.location}, specializing in the
+            MERN stack and cloud technologies. Currently focusing on building
+            scalable web applications and exploring new architectural patterns.
+          </article>
+
+          <div class="border-t border-b border-ink py-4 my-2">
+            <p
+              class="font-display font-bold text-xl uppercase mb-2 text-center"
+            >
+              In This Edition
+            </p>
+            <div class="grid grid-cols-2 gap-4 text-sm font-mono">
+              <a href="#projects" class="hover:underline">>> TOP PROJECTS</a>
+              <a href="#skills" class="hover:underline text-right"
+                >SKILLS REPORT <<</a
+              >
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    
-    <!-- Scroll Indicator -->
-    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
-      <span class="text-cosmic-muted text-xs">Scroll Down</span>
-      <svg class="w-5 h-5 text-cosmic-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-      </svg>
+
+    <!-- Side Column (Sidebar) -->
+    <div class="lg:col-span-4 flex flex-col gap-8">
+      <!-- Status Box -->
+      <div class="border border-ink p-4 bg-paper-light">
+        <h3
+          class="font-display font-bold uppercase text-xl mb-1 border-b-2 border-ink inline-block"
+        >
+          Market Status
+        </h3>
+        <div class="mt-4 flex items-center gap-3">
+          <div class="relative w-4 h-4">
+            <span
+              class="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping"
+            ></span>
+            <span class="relative inline-flex rounded-full h-4 w-4 bg-green-500"
+            ></span>
+          </div>
+          <span class="font-mono text-sm font-bold uppercase tracking-wider"
+            >{personal.availability}</span
+          >
+        </div>
+        <p class="font-body text-sm mt-2 italic text-ink/70">
+          "Open to discussing new opportunities and collaborations."
+        </p>
+      </div>
+
+      <!-- Wire Services / Socials -->
+      <div>
+        <h3
+          class="font-display font-bold uppercase text-lg mb-2 border-b border-ink/50 block"
+        >
+          Wire Services
+        </h3>
+        <ul class="flex flex-col gap-2">
+          <li>
+            <a
+              href={personal.social.github}
+              target="_blank"
+              class="flex items-center justify-between group hover:bg-ink hover:text-paper p-2 transition-colors border-b border-dotted border-ink/30 cursor-pointer"
+            >
+              <span class="font-mono text-sm font-bold">GITHUB</span>
+              <span
+                class="text-xs group-hover:translate-x-1 transition-transform"
+                >-></span
+              >
+            </a>
+          </li>
+          <li>
+            <a
+              href={personal.social.linkedin}
+              target="_blank"
+              class="flex items-center justify-between group hover:bg-ink hover:text-paper p-2 transition-colors border-b border-dotted border-ink/30 cursor-pointer"
+            >
+              <span class="font-mono text-sm font-bold">LINKEDIN</span>
+              <span
+                class="text-xs group-hover:translate-x-1 transition-transform"
+                >-></span
+              >
+            </a>
+          </li>
+          <li>
+            <a
+              href={personal.social.leetcode}
+              target="_blank"
+              class="flex items-center justify-between group hover:bg-ink hover:text-paper p-2 transition-colors border-b border-dotted border-ink/30 cursor-pointer"
+            >
+              <span class="font-mono text-sm font-bold">LEETCODE</span>
+              <span
+                class="text-xs group-hover:translate-x-1 transition-transform"
+                >-></span
+              >
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Ad / CTA -->
+      <div
+        class="border-4 border-double border-ink p-6 text-center mt-auto hover:bg-ink hover:text-paper transition-colors group cursor-pointer relative overflow-hidden"
+      >
+        <a href={personal.resume} download class="absolute inset-0 z-10"></a>
+        <p
+          class="font-display font-black text-2xl uppercase leading-none mb-1 group-hover:text-paper"
+        >
+          Extra! Extra!
+        </p>
+        <p class="font-serif italic text-lg mb-4 group-hover:text-paper">
+          Read all about it
+        </p>
+        <div
+          class="inline-block border border-ink px-4 py-1 font-mono text-xs uppercase bg-white text-black font-bold group-hover:bg-paper group-hover:text-white border-none"
+        >
+          Download Resume
+        </div>
+      </div>
     </div>
   </div>
 </section>

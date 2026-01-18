@@ -1,61 +1,74 @@
 ---
-import experience from '../data/experience.json';
+import experience from "../data/experience.json";
 ---
 
-<section id="experience" class="py-24 relative overflow-hidden">
-  <div class="orb orb-cyan w-72 h-72 -bottom-32 -left-32 opacity-20"></div>
-  
-  <div class="max-w-4xl mx-auto px-6 lg:px-8 relative z-10">
-    <div class="text-center mb-16">
-      <h2 class="section-title">
-        <span class="gradient-text">Experience</span>
-      </h2>
-      <p class="section-subtitle">Internships and professional journey</p>
+<section
+  id="experience"
+  class="py-16 px-4 md:px-8 max-w-[1400px] mx-auto bg-paper border-b-4 border-double border-ink"
+>
+  <div class="text-center mb-12 relative">
+    <h2 class="section-header inline-block">Professional Chronicles</h2>
+    <div
+      class="absolute left-0 right-0 top-1/2 h-px bg-ink -z-10 hidden md:block"
+    >
     </div>
-    
-    <div class="relative">
-      <!-- Timeline Line -->
-      <div class="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-cosmic-accent via-cosmic-purple to-transparent"></div>
-      
-      <!-- Experience Items -->
-      <div class="space-y-8">
-        {experience.map((exp, index) => (
-          <div class="relative pl-20 group">
-            <!-- Timeline Dot -->
-            <div class={`absolute left-6 top-8 w-4 h-4 rounded-full border-2 transition-all duration-300 ${exp.current ? 'bg-cosmic-accent border-cosmic-accent shadow-lg shadow-cosmic-accent/50' : 'bg-cosmic-dark border-cosmic-purple group-hover:bg-cosmic-purple'}`}>
-              {exp.current && <div class="absolute inset-0 rounded-full bg-cosmic-accent animate-ping opacity-50"></div>}
+    <p
+      class="bg-paper inline-block px-4 relative z-10 font-body italic text-ink/70"
+    >
+      A history of contributions and deployments.
+    </p>
+  </div>
+
+  <div class="space-y-12">
+    {
+      experience.map((exp, index) => (
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 relative group">
+          {/* Date Column */}
+          <div class="md:col-span-3 text-right pt-2 md:border-r md:border-ink/20 pr-6 relative">
+            <span class="font-mono text-sm uppercase tracking-widest font-bold block mb-1">
+              {exp.period}
+            </span>
+            {exp.current && (
+              <span class="inline-block bg-ink text-paper text-xs font-bold px-2 py-0.5 uppercase mb-2">
+                Active
+              </span>
+            )}
+            <div class="hidden md:block absolute top-[18px] -right-[5px] w-2.5 h-2.5 rounded-full bg-ink border-2 border-paper z-10" />
+          </div>
+
+          {/* Content Column */}
+          <div class="md:col-span-9 pl-2 md:pl-0">
+            <h3 class="font-display font-bold text-2xl uppercase mb-1">
+              {exp.title}
+            </h3>
+            <div class="mb-4 text-xl font-serif italic text-ink/80 border-b border-ink/10 pb-2 inline-block">
+              at {exp.company}
             </div>
-            
-            <!-- Content Card -->
-            <div class="glass rounded-2xl p-6 card-hover">
-              <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-4">
-                <div>
-                  <h3 class="text-xl font-bold text-white">{exp.title}</h3>
-                  <p class="text-cosmic-accent font-medium">{exp.company}</p>
-                </div>
-                <div class="flex items-center gap-2">
-                  {exp.current && (
-                    <span class="px-3 py-1 text-xs font-medium bg-green-500/10 text-green-400 rounded-full">
-                      Current
-                    </span>
-                  )}
-                  <span class="text-cosmic-muted text-sm">{exp.period}</span>
-                </div>
-              </div>
-              
-              <p class="text-cosmic-muted leading-relaxed mb-4">{exp.description}</p>
-              
-              <div class="flex flex-wrap gap-2">
-                {exp.tags.map((tag: string) => (
-                  <span class="px-3 py-1 text-xs font-medium bg-cosmic-light rounded-full text-cosmic-text">
-                    {tag}
-                  </span>
-                ))}
-              </div>
+
+            <p class="font-body text-justify leading-relaxed text-ink/80 mb-4 max-w-3xl">
+              {exp.description}
+            </p>
+
+            <div class="flex flex-wrap gap-x-4 gap-y-2 font-mono text-xs uppercase text-ink-light">
+              <span class="font-bold text-ink">Keywords:</span>
+              {exp.tags.map((tag, i) => (
+                <span>
+                  {tag}
+                  {i < exp.tags.length - 1 ? "," : ""}
+                </span>
+              ))}
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="mt-12 text-center">
+    <div
+      class="inline-block border-t border-b border-ink py-1 px-4 font-mono text-xs uppercase tracking-widest"
+    >
+      End of Section
     </div>
   </div>
 </section>

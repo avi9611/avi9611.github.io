@@ -1,6 +1,6 @@
 ---
-import '../styles/global.css';
-import personal from '../data/personal.json';
+import "../styles/global.css";
+import personal from "../data/personal.json";
 
 interface Props {
   title?: string;
@@ -8,10 +8,10 @@ interface Props {
   image?: string;
 }
 
-const { 
+const {
   title = `${personal.name} | Full-Stack Developer & Cloud Enthusiast | Bangalore`,
   description = `${personal.name} is an Entry-Level Full-Stack Developer based in ${personal.location}, specializing in MERN stack, Java Spring Boot, cloud computing (Azure, AWS), and modern web technologies. View portfolio and projects.`,
-  image = '/images/profilepic.jpg'
+  image = "/images/profilepic.jpg",
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -20,27 +20,27 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": personal.name,
-  "alternateName": personal.fullName,
-  "jobTitle": "Full-Stack Developer",
-  "url": Astro.site?.toString() || "https://avi9611.github.io",
-  "image": `${Astro.site}images/profilepic.jpg`,
-  "sameAs": [
+  name: personal.name,
+  alternateName: personal.fullName,
+  jobTitle: "Full-Stack Developer",
+  url: Astro.site?.toString() || "https://avi9611.github.io",
+  image: `${Astro.site}images/profilepic.jpg`,
+  sameAs: [
     personal.social.github,
     personal.social.linkedin,
     personal.social.leetcode,
     personal.social.hackerrank,
-    personal.social.geeksforgeeks
+    personal.social.geeksforgeeks,
   ],
-  "address": {
+  address: {
     "@type": "PostalAddress",
-    "addressLocality": "Bangalore",
-    "addressRegion": "Karnataka",
-    "addressCountry": "India"
+    addressLocality: "Bangalore",
+    addressRegion: "Karnataka",
+    addressCountry: "India",
   },
-  "email": personal.email,
-  "telephone": personal.phone,
-  "knowsAbout": [
+  email: personal.email,
+  telephone: personal.phone,
+  knowsAbout: [
     "Web Development",
     "MERN Stack",
     "React.js",
@@ -52,65 +52,86 @@ const jsonLd = {
     "AWS",
     "TypeScript",
     "MongoDB",
-    "PostgreSQL"
+    "PostgreSQL",
   ],
-  "alumniOf": {
+  alumniOf: {
     "@type": "EducationalOrganization",
-    "name": "Visvesvaraya Technological University"
-  }
+    name: "Visvesvaraya Technological University",
+  },
 };
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <!-- Primary Meta Tags -->
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <meta name="author" content={personal.name} />
-    <meta name="keywords" content="Avinash N, Avinash Poojary, Full Stack Developer, MERN Stack, React Developer, Node.js Developer, Java Developer, Cloud Engineer, Bangalore Developer, Software Developer India, Web Developer Portfolio" />
-    
+    <meta
+      name="keywords"
+      content="Avinash N, Full Stack Developer, Software Engineer, Portfolio, Newspaper Style"
+    />
+
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalURL} />
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/jpeg" href="/images/profilepic.jpg" />
     <link rel="apple-touch-icon" href="/images/profilepic.jpg" />
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={`${Astro.site}${image}`} />
-    <meta property="og:site_name" content={`${personal.name} Portfolio`} />
+    <meta property="og:site_name" content={`${personal.name} Chronicle`} />
     <meta property="og:locale" content="en_US" />
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={canonicalURL} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={`${Astro.site}${image}`} />
-    
+
     <!-- Additional SEO -->
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
-    <meta name="theme-color" content="#0a0a0f" />
-    
-    <!-- Preconnect to external resources -->
+    <meta name="theme-color" content="#121212" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
-  <body class="bg-cosmic-black text-cosmic-text antialiased">
-    <slot />
+  <body
+    class="bg-paper text-ink antialiased min-h-screen flex flex-col items-center"
+  >
+    <div
+      class="max-w-[1400px] w-full bg-paper-light min-h-screen shadow-2xl border-x border-ink-light/20 relative"
+    >
+      <!-- Top decorative line -->
+      <div class="h-1 w-full bg-ink-light/10 border-b border-ink/80"></div>
+
+      <slot />
+
+      <!-- Bottom decorative line -->
+      <div
+        class="h-4 w-full border-t-2 border-ink my-8 border-b border-ink-light/20"
+      >
+      </div>
+    </div>
   </body>
 </html>

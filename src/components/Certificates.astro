@@ -1,54 +1,45 @@
 ---
-import certificates from '../data/certificates.json';
+import certificates from "../data/certificates.json";
 ---
 
-<section id="certificates" class="py-24 relative overflow-hidden">
-  <div class="orb orb-cyan w-80 h-80 top-1/3 -right-40 opacity-20"></div>
-  
-  <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-    <div class="text-center mb-16">
-      <h2 class="section-title">
-        <span class="gradient-text">Certifications</span>
-      </h2>
-      <p class="section-subtitle">Recognitions and achievements from various platforms</p>
-    </div>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {certificates.map((cert, index) => (
-        <article class="glass rounded-2xl p-6 card-hover group flex flex-col h-full">
-          <div class="flex items-start gap-4 mb-4">
-            <!-- Certificate Icon -->
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cosmic-accent/20 to-cosmic-purple/20 flex items-center justify-center flex-shrink-0 group-hover:from-cosmic-accent/30 group-hover:to-cosmic-purple/30 transition-colors">
-              <svg class="w-6 h-6 text-cosmic-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
-              </svg>
-            </div>
-            
-            <div class="flex-1 min-w-0">
-              <h3 class="text-lg font-bold text-white line-clamp-2 group-hover:text-cosmic-accent transition-colors">
-                {cert.title}
-              </h3>
-              <p class="text-cosmic-purple font-medium text-sm mt-1">{cert.issuer}</p>
-            </div>
+<section
+  id="certificates"
+  class="py-16 px-4 md:px-8 max-w-[1400px] mx-auto bg-paper border-b-4 border-double border-ink"
+>
+  <div class="text-center mb-12">
+    <h2 class="section-header inline-block">Distinctions & Awards</h2>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {
+      certificates.map((cert) => (
+        <article class="border border-ink p-6 relative bg-paper-light">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-paper px-2 border border-ink font-mono text-xs uppercase font-bold">
+            Certified
           </div>
-          
-          <p class="text-cosmic-muted text-sm leading-relaxed flex-1 line-clamp-4">
+
+          <h3 class="font-display font-bold text-xl uppercase mb-2 text-center mt-2">
+            {cert.title}
+          </h3>
+          <p class="font-mono text-xs uppercase text-center text-ink-light mb-4 border-b border-ink/20 pb-2">
+            Issued by {cert.issuer}
+          </p>
+
+          <p class="text-justify font-body text-sm leading-relaxed text-ink/80 mb-6">
             {cert.description}
           </p>
-          
-          <a 
-            href={cert.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="mt-4 inline-flex items-center gap-2 text-cosmic-accent hover:text-cosmic-purple transition-colors font-medium text-sm group/link"
-          >
-            View Certificate
-            <svg class="w-4 h-4 transition-transform group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-            </svg>
-          </a>
+
+          <div class="text-center">
+            <a
+              href={cert.link}
+              target="_blank"
+              class="inline-block border border-ink px-4 py-2 font-mono text-xs uppercase hover:bg-ink hover:text-paper transition-colors"
+            >
+              View Credential
+            </a>
+          </div>
         </article>
-      ))}
-    </div>
+      ))
+    }
   </div>
 </section>

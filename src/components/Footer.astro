@@ -1,43 +1,61 @@
 ---
-import personal from '../data/personal.json';
+import personal from "../data/personal.json";
 
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="py-12 border-t border-white/5">
-  <div class="max-w-6xl mx-auto px-6 lg:px-8">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-      <!-- Logo & Copyright -->
-      <div class="flex items-center gap-4">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cosmic-accent to-cosmic-purple flex items-center justify-center text-white font-bold">
-          AN
-        </div>
-        <div>
-          <p class="text-white font-semibold">{personal.name}</p>
-          <p class="text-cosmic-muted text-sm">© {currentYear} All rights reserved.</p>
-        </div>
-      </div>
-      
-      <!-- Quick Links -->
-      <div class="flex gap-6 text-sm">
-        <a href="#home" class="text-cosmic-muted hover:text-cosmic-accent transition-colors">Home</a>
-        <a href="#about" class="text-cosmic-muted hover:text-cosmic-accent transition-colors">About</a>
-        <a href="#projects" class="text-cosmic-muted hover:text-cosmic-accent transition-colors">Projects</a>
-        <a href="/blog" class="text-cosmic-muted hover:text-cosmic-accent transition-colors">Blog</a>
-        <a href="#contact" class="text-cosmic-muted hover:text-cosmic-accent transition-colors">Contact</a>
-      </div>
-      
-      <!-- Made with -->
-      <p class="text-cosmic-muted text-sm flex items-center gap-2">
-        Built with
-        <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-        </svg>
-        using
-        <a href="https://astro.build" target="_blank" rel="noopener noreferrer" class="text-cosmic-accent hover:text-cosmic-purple transition-colors font-medium">
-          Astro
-        </a>
+<footer class="py-12 bg-paper text-ink border-t-8 border-ink">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <div class="mb-8">
+      <h2
+        class="font-display font-black text-3xl uppercase tracking-widest mb-2"
+      >
+        {personal.name}
+      </h2>
+      <p class="font-mono text-xs uppercase tracking-[0.2em] text-ink-light">
+        Established {currentYear}
       </p>
     </div>
+
+    <div
+      class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 font-mono text-sm border-t border-b border-ink/20 py-8"
+    >
+      <div>
+        <h4 class="font-bold uppercase mb-2">Navigation</h4>
+        <nav class="flex flex-col gap-2">
+          <a href="#home" class="hover:underline">Front Page</a>
+          <a href="#about" class="hover:underline">Editorial</a>
+          <a href="#projects" class="hover:underline">Features</a>
+        </nav>
+      </div>
+      <div>
+        <h4 class="font-bold uppercase mb-2">Connect</h4>
+        <nav class="flex flex-col gap-2">
+          <a
+            href={personal.social.github}
+            target="_blank"
+            class="hover:underline">Github</a
+          >
+          <a
+            href={personal.social.linkedin}
+            target="_blank"
+            class="hover:underline">LinkedIn</a
+          >
+          <a href={`mailto:${personal.email}`} class="hover:underline">Email</a>
+        </nav>
+      </div>
+      <div>
+        <h4 class="font-bold uppercase mb-2">Legals</h4>
+        <p class="text-ink-light">
+          © {currentYear}
+          {personal.name}.<br />All rights reserved.
+        </p>
+      </div>
+    </div>
+
+    <p class="font-serif italic text-ink/50 text-sm">
+      Built with Astro, Tailwind, and a lot of coffee. Printed in the Digital
+      Ether.
+    </p>
   </div>
 </footer>

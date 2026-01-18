@@ -1,43 +1,58 @@
 ---
-import skillsData from '../data/skills.json';
+import skillsData from "../data/skills.json";
 ---
 
-<section id="skills" class="py-24 relative overflow-hidden">
-  <div class="orb orb-purple w-96 h-96 top-1/4 -right-48 opacity-20"></div>
-  <div class="orb orb-coral w-64 h-64 bottom-20 -left-32 opacity-20"></div>
-  
-  <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-    <div class="text-center mb-16">
-      <h2 class="section-title">
-        <span class="gradient-text">Skills</span>
-      </h2>
-      <p class="section-subtitle">Technologies and tools I work with</p>
+<section
+  id="skills"
+  class="py-16 border-b-4 border-double border-ink bg-paper px-4 md:px-8 max-w-[1400px] mx-auto"
+>
+  <div class="border-b-2 border-ink mb-8 text-center md:text-left">
+    <h2
+      class="font-display font-black text-4xl uppercase tracking-tighter mb-2"
+    >
+      Market Skills & Tech
+    </h2>
+    <div
+      class="font-mono text-xs uppercase flex flex-col md:flex-row justify-between py-1 border-t border-ink/20"
+    >
+      <span>Current Valuations</span>
+      <span>High Demand Sectors</span>
     </div>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {skillsData.categories.map((category, index) => (
-        <div class="glass rounded-2xl p-6 card-hover group">
-          <h3 class="text-lg font-semibold text-white mb-6 pb-3 border-b border-white/10 group-hover:text-cosmic-accent transition-colors">
+  </div>
+
+  <div class="columns-1 md:columns-2 lg:columns-4 gap-6 space-y-6">
+    {
+      skillsData.categories.map((category, index) => (
+        <div class="break-inside-avoid border border-ink p-4 bg-white/5 relative">
+          <div class="absolute -top-3 left-4 bg-paper px-2 font-mono text-xs font-bold uppercase border border-ink text-ink-light">
+            SEC. {index + 1}00
+          </div>
+          <h3 class="font-display font-bold uppercase text-lg mb-4 border-b-2 border-ink pb-1 mt-2">
             {category.title}
           </h3>
-          
-          <div class="flex flex-wrap gap-4 justify-center">
-            {category.skills.map((skill: {name: string, icon: string}) => (
-              <div class="skill-icon flex flex-col items-center gap-2 w-16">
-                <div class="w-12 h-12 rounded-xl bg-cosmic-light flex items-center justify-center group-hover:bg-cosmic-gray transition-colors">
-                  <img 
-                    src={skill.icon} 
+          <ul class="space-y-2">
+            {category.skills.map((skill: { name: string; icon: string }) => (
+              <li class="flex items-center gap-3 font-mono text-xs uppercase tracking-wide group hover:bg-ink hover:text-paper cursor-default transition-colors p-1 border-b border-dotted border-ink/20 last:border-0">
+                <div class="w-5 h-5 flex items-center justify-center bg-white border border-ink/20 p-0.5 rounded-sm">
+                  <img
+                    src={skill.icon}
                     alt={skill.name}
-                    class="w-7 h-7 object-contain"
+                    class="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
                     loading="lazy"
                   />
                 </div>
-                <span class="text-xs text-center text-cosmic-muted leading-tight">{skill.name}</span>
-              </div>
+                <span>{skill.name}</span>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
-      ))}
-    </div>
+      ))
+    }
+  </div>
+
+  <div
+    class="mt-8 border-t border-ink pt-4 text-center font-mono text-xs italic text-ink/60"
+  >
+    * Skills are subject to rapid appreciation.
   </div>
 </section>

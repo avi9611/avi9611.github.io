@@ -1,48 +1,52 @@
 ---
-import education from '../data/education.json';
+import education from "../data/education.json";
 ---
 
-<section id="education" class="py-24 relative overflow-hidden">
-  <div class="orb orb-cyan w-80 h-80 top-0 left-1/4 opacity-20"></div>
-  
-  <div class="max-w-4xl mx-auto px-6 lg:px-8 relative z-10">
-    <div class="text-center mb-16">
-      <h2 class="section-title">
-        <span class="gradient-text">Education</span>
-      </h2>
-      <p class="section-subtitle">Academic background and qualifications</p>
-    </div>
-    
-    <div class="relative">
-      <!-- Timeline Line -->
-      <div class="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-cosmic-accent via-cosmic-purple to-transparent"></div>
-      
-      <div class="space-y-12">
-        {education.map((edu) => (
-          <div class="relative pl-20 group">
-            <!-- Timeline Dot -->
-            <div class={`absolute left-6 top-8 w-4 h-4 rounded-full border-2 transition-all duration-300 ${edu.color === 'cyan' ? 'border-cosmic-accent bg-cosmic-accent/20 group-hover:bg-cosmic-accent' : 'border-cosmic-purple bg-cosmic-purple/20 group-hover:bg-cosmic-purple'}`}></div>
-            
-            <!-- Content Card -->
-            <div class="glass rounded-2xl p-8 card-hover">
-              <span class={`text-sm font-medium ${edu.color === 'cyan' ? 'text-cosmic-accent' : 'text-cosmic-purple'}`}>
-                {edu.period}
-              </span>
-              
-              <h3 class="text-2xl font-bold text-white mt-2">{edu.degree}</h3>
-              
-              <p class="text-cosmic-muted mt-1">{edu.institution}</p>
-              <p class="text-cosmic-muted text-sm">{edu.college}</p>
-              
-              <p class="text-cosmic-text mt-4 leading-relaxed">{edu.description}</p>
-              
-              <div class={`mt-6 inline-flex px-4 py-2 rounded-xl text-sm font-semibold ${edu.color === 'cyan' ? 'bg-cosmic-accent/10 text-cosmic-accent' : 'bg-cosmic-purple/10 text-cosmic-purple'}`}>
+<section
+  id="education"
+  class="py-16 px-4 md:px-8 max-w-[1400px] mx-auto bg-paper border-b-4 border-double border-ink"
+>
+  <div class="text-center mb-12">
+    <h2 class="section-header inline-block">Background Check</h2>
+  </div>
+
+  <div class="space-y-8 max-w-4xl mx-auto">
+    {
+      education.map((edu) => (
+        <div class="border border-ink p-6 bg-paper-light relative">
+          <div class="absolute -top-3 right-4 bg-paper px-2 border border-ink font-mono text-xs uppercase font-bold text-ink-light">
+            Verified Record
+          </div>
+
+          <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-4 mb-4 border-b border-ink/10 pb-4">
+            <h3 class="font-display font-bold text-2xl uppercase">
+              {edu.degree}
+            </h3>
+            <span class="font-mono text-sm font-bold uppercase tracking-widest">
+              {edu.period}
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <h4 class="font-bold text-lg">{edu.institution}</h4>
+              <p class="text-ink-light italic">{edu.college}</p>
+            </div>
+            <div class="text-right flex flex-col items-start md:items-end justify-center">
+              <div class="font-mono text-xs uppercase mb-1">
+                Performance Index
+              </div>
+              <div class="text-xl font-bold font-display border border-ink px-3 py-1 bg-white text-black">
                 {edu.grade}
               </div>
             </div>
           </div>
-        ))}
-      </div>
-    </div>
+
+          <p class="mt-4 text-justify font-body text-sm leading-relaxed text-ink/80">
+            {edu.description}
+          </p>
+        </div>
+      ))
+    }
   </div>
 </section>
