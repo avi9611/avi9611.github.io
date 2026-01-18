@@ -10,8 +10,8 @@ interface Props {
 }
 
 const {
-  title = `${personal.name} | Full-Stack Developer & Cloud Enthusiast | Bangalore`,
-  description = `${personal.name} is an Entry-Level Full-Stack Developer based in ${personal.location}, specializing in MERN stack, Java Spring Boot, cloud computing (Azure, AWS), and modern web technologies. View portfolio and projects.`,
+  title = `Avinash Neralakatte (Avinash N) - Full Stack & GenAI Developer | FastAPI, Next.js, PostgreSQL Expert | Bangalore`,
+  description = `Avinash Neralakatte (Avinash N) is a Full Stack & Generative AI Developer specializing in FastAPI, Next.js, MERN Stack, PostgreSQL, Docker, and Cloud platforms. MCA graduate with production experience building scalable AI-driven web applications in Kochi and Bangalore, India. Explore my portfolio, projects, and technical expertise.`,
   image = "/images/avinash.jpg",
 } = Astro.props;
 
@@ -21,9 +21,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: personal.name,
-  alternateName: personal.fullName,
-  jobTitle: "Full-Stack Developer",
+  name: "Avinash Neralakatte",
+  alternateName: ["Avinash N", "Avinash N Neralakatte"],
+  additionalName: "Neralakatte",
+  jobTitle: "Full Stack & Generative AI Developer",
+  description: personal.tagline,
   url: Astro.site?.toString() || "https://avi9611.github.io",
   image: `${Astro.site}images/avinash.jpg`,
   sameAs: [
@@ -32,33 +34,85 @@ const jsonLd = {
     personal.social.leetcode,
     personal.social.hackerrank,
     personal.social.geeksforgeeks,
+    personal.social.instagram,
+    personal.social.dailydev,
   ],
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Bangalore",
-    addressRegion: "Karnataka",
-    addressCountry: "India",
+    addressLocality: "Kochi, Bangalore",
+    addressRegion: "Kerala, Karnataka",
+    addressCountry: "IN",
   },
   email: personal.email,
   telephone: personal.phone,
   knowsAbout: [
-    "Web Development",
-    "MERN Stack",
+    "Full Stack Development",
+    "Generative AI",
+    "FastAPI",
+    "Next.js",
     "React.js",
     "Node.js",
-    "Java",
-    "Spring Boot",
+    "Python",
+    "TypeScript",
+    "JavaScript",
+    "MERN Stack",
+    "PostgreSQL",
+    "MongoDB",
+    "Docker",
     "Cloud Computing",
     "Azure",
     "AWS",
-    "TypeScript",
-    "MongoDB",
-    "PostgreSQL",
+    "API Development",
+    "Backend Development",
+    "Frontend Development",
+    "Web Development",
+    "Clean Architecture",
+    "System Design",
   ],
   alumniOf: {
     "@type": "EducationalOrganization",
     name: "Visvesvaraya Technological University",
   },
+  hasOccupation: {
+    "@type": "Occupation",
+    name: "Full Stack Engineer",
+    occupationLocation: {
+      "@type": "City",
+      name: "Bangalore, India",
+    },
+    estimatedSalary: {
+      "@type": "MonetaryAmountDistribution",
+      name: "Full-time Employed",
+    },
+  },
+  worksFor: {
+    "@type": "Organization",
+    name: "Hybrid Interactive Consultancy LLP",
+  },
+};
+
+// Breadcrumb Schema for better navigation
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: Astro.site?.toString() || "https://avi9611.github.io",
+    },
+    ...(Astro.url.pathname !== "/"
+      ? [
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: title.split("|")[0].trim(),
+            item: canonicalURL.toString(),
+          },
+        ]
+      : []),
+  ],
 };
 ---
 
@@ -75,7 +129,7 @@ const jsonLd = {
     <meta name="author" content={personal.name} />
     <meta
       name="keywords"
-      content="Avinash N, Full Stack Developer, Software Engineer, Portfolio, Newspaper Style"
+      content="Avinash Neralakatte, Avinash N, Avinash N Neralakatte, Full Stack Developer, GenAI Developer, Generative AI, FastAPI, Next.js, React, Node.js, PostgreSQL, MongoDB, Docker, Python, TypeScript, JavaScript, MERN Stack, Cloud Computing, Azure, AWS, MCA Graduate, Software Engineer, Web Developer, Backend Developer, Frontend Developer, API Development, Kochi Developer, Bangalore Developer, India, Portfolio, Clean Code, Production Experience, Scalable Applications, AI-Driven Applications, Neralakatte"
     />
 
     <!-- Canonical URL -->
@@ -105,6 +159,13 @@ const jsonLd = {
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
     <meta name="theme-color" content="#121212" />
+    <meta name="language" content="English" />
+    <meta name="revisit-after" content="7 days" />
+    <meta name="rating" content="General" />
+    <meta name="geo.region" content="IN-KA" />
+    <meta name="geo.placename" content="Bangalore, Kochi" />
+    <meta name="geo.position" content="12.9716;77.5946" />
+    <meta name="ICBM" content="12.9716, 77.5946" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -116,6 +177,10 @@ const jsonLd = {
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(breadcrumbSchema)}
+    />
     <style is:global>
       /* Paper Grain Animation */
       @keyframes paper-noise {
