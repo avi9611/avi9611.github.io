@@ -1,8 +1,34 @@
 [
     {
+        "title": "Full Stack Engineer",
+        "company": "Hybrid Interactive Consultancy LLP",
+        "period": "Dec 2025 - Present",
+        "description": "Designing and developing scalable, production-ready web applications using FastAPI, Next.js, PostgreSQL, and Docker. Building secure and well-structured backend APIs with focus on performance, maintainability, and clean architecture. Collaborating with product and engineering teams in an agile environment to deliver reliable solutions. Working on cloud deployment, containerization, and system optimization.",
+        "tags": [
+            "FastAPI",
+            "Next.js",
+            "PostgreSQL",
+            "Docker"
+        ],
+        "current": true
+    },
+    {
+        "title": "Software Engineer Intern",
+        "company": "PurpleMerit",
+        "period": "Sep 2025 - Nov 2025",
+        "description": "Contributed to AI-powered software solutions, from development to deployment. Assisted in building end-to-end features using modern full-stack technologies. Supported AI model integration, testing, and optimization for production environments. Gained hands-on experience with real-world AI workflows and deployment challenges.",
+        "tags": [
+            "AI Integration",
+            "Full Stack",
+            "Optimization",
+            "Deployment"
+        ],
+        "current": false
+    },
+    {
         "title": "Software Developer Intern",
         "company": "GRID R & D",
-        "period": "May 2025 - Present",
+        "period": "May 2025 - Aug 2025",
         "description": "At GRID R & D, I am actively involved in full-stack development using the MERN stack (MongoDB, Express.js, React, Node.js). My responsibilities include developing and maintaining web applications, implementing RESTful APIs, and managing MySQL databases. I work with AWS cloud infrastructure for deployment and hosting, gaining valuable experience in cloud services. Key contributions include building responsive user interfaces, optimizing database queries, and collaborating with the team to deliver scalable solutions.",
         "tags": [
             "MERN Stack",
@@ -10,7 +36,7 @@
             "MySQL",
             "RESTful APIs"
         ],
-        "current": true
+        "current": false
     },
     {
         "title": "Java Full Stack Developer Intern",

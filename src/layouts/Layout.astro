@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import personal from "../data/personal.json";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title?: string;
@@ -115,12 +116,125 @@ const jsonLd = {
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <style is:global>
+      /* Paper Grain Animation */
+      @keyframes paper-noise {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        10% {
+          transform: translate(-5%, -5%);
+        }
+        20% {
+          transform: translate(-10%, 5%);
+        }
+        30% {
+          transform: translate(5%, -10%);
+        }
+        40% {
+          transform: translate(-5%, 15%);
+        }
+        50% {
+          transform: translate(10%, -5%);
+        }
+        60% {
+          transform: translate(15%, 0);
+        }
+        70% {
+          transform: translate(0, 10%);
+        }
+        80% {
+          transform: translate(-15%, 0);
+        }
+        90% {
+          transform: translate(10%, 5%);
+        }
+      }
+
+      .paper-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 50;
+        opacity: 0.4;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        mix-blend-mode: overlay;
+      }
+
+      /* Ink Bleed Effect for Text */
+      .ink-bleed {
+        filter: url(#ink-bleed-filter);
+      }
+
+      /* View Transition: Fade through paper color */
+      ::view-transition-old(root) {
+        animation:
+          0.4s cubic-bezier(0.4, 0, 0.2, 1) both fade-out,
+          0.4s cubic-bezier(0.4, 0, 0.2, 1) both scale-down;
+      }
+
+      ::view-transition-new(root) {
+        animation:
+          0.4s cubic-bezier(0.4, 0, 0.2, 1) both fade-in,
+          0.4s cubic-bezier(0.4, 0, 0.2, 1) both scale-up;
+      }
+
+      @keyframes fade-out {
+        to {
+          opacity: 0;
+        }
+      }
+
+      @keyframes fade-in {
+        from {
+          opacity: 0;
+        }
+      }
+
+      @keyframes scale-down {
+        to {
+          transform: scale(0.98);
+          filter: blur(2px);
+        }
+      }
+
+      @keyframes scale-up {
+        from {
+          transform: scale(1.02);
+          filter: blur(2px);
+        }
+      }
+    </style>
+    <ClientRouter />
   </head>
   <body
-    class="bg-paper text-ink antialiased min-h-screen flex flex-col items-center"
+    class="bg-paper text-ink antialiased min-h-screen flex flex-col items-center relative overflow-x-hidden selection:bg-ink selection:text-paper"
   >
+    <!-- SVG Filters for Effects -->
+    <svg style="display: none;">
+      <defs>
+        <filter id="ink-bleed-filter">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.8"
+            numOctaves="2"
+            result="noise"></feTurbulence>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5"
+          ></feDisplacementMap>
+          <feGaussianBlur stdDeviation="0.4"></feGaussianBlur>
+        </filter>
+      </defs>
+    </svg>
+
+    <!-- Grain Overlay -->
+    <div class="paper-overlay"></div>
+
     <div
-      class="max-w-[1400px] w-full bg-paper-light min-h-screen shadow-2xl border-x border-ink-light/20 relative"
+      class="max-w-[1400px] w-full bg-paper-light min-h-screen shadow-2xl border-x border-ink-light/20 relative z-10"
     >
       <!-- Top decorative line -->
       <div class="h-1 w-full bg-ink-light/10 border-b border-ink/80"></div>

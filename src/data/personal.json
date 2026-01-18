@@ -1,14 +1,14 @@
 {
     "name": "Avinash N",
-    "fullName": "Avinash Poojary",
-    "role": "Entry Level Full-Stack Developer / Tester / Cloud Enthusiast",
-    "tagline": "Building scalable cloud-based web applications with modern JavaScript frameworks",
-    "location": "Bangalore, India",
+    "fullName": "Avinash N",
+    "role": "Full Stack & Generative AI Developer | MCA Graduate | Cloud Enthusiast",
+    "tagline": "Full Stack & GenAI Developer with experience in FastAPI, Next.js, MERN, PostgreSQL, Docker, and Cloud platforms, building scalable and AI-driven web applications. MCA graduate with strong backend expertise, clean coding practices, and real-world production experience.",
+    "location": "Kochi / Bangalore, India",
     "email": "avinashpoojary651@gmail.com",
     "phone": "+91 9611670779",
-    "availability": "Available for opportunities",
-    "experience": "Fresher with 8+ Months Internship",
-    "bio": "Motivated and detail-oriented Entry-level Full Stack Developer with a solid foundation in HTML, CSS, JavaScript, and modern frameworks like React, Node.js, Express & MongoDB. I hold a Master of Computer Application (MCA) degree. I am passionate about learning new technologies and improving my coding skills. Eager to apply strong problem-solving abilities and a collaborative mindset to a dynamic development team, I aim to create seamless user experiences and contribute to innovative projects.",
+    "availability": "Full-time Employed",
+    "experience": "Full Stack Engineer at Hybrid Interactive Consultancy LLP",
+    "bio": "Results-driven Full Stack Developer with hands-on experience building and maintaining scalable, production-grade web applications across frontend and backend systems. I specialize in FastAPI, Next.js, PostgreSQL, Docker, and modern cloud-native development practices, with a strong focus on clean architecture, performance optimization, and system reliability. I have designed and delivered end-to-end solutions involving API development, database modeling, authentication, and responsive user interfaces. My background includes professional experience with the MERN stack, Java-based systems, and AI-powered platforms, enabling me to adapt quickly across technologies and problem domains. I’ve worked in agile environments, collaborating closely with cross-functional teams to ship reliable and maintainable software. I value writing clean, testable code, continuously improving system design, and leveraging modern tools to build impactful products.",
     "social": {
         "github": "https://github.com/avi9611",
         "linkedin": "https://www.linkedin.com/in/avinash-n-a99387286/",
@@ -19,6 +19,6 @@
         "dailydev": "https://app.daily.dev/avinashn"
     },
     "resume": "/avinashresume.pdf",
-    "profileImage": "/images/profilepic.jpg",
-    "secondaryImage": "/images/secpic.jpg"
+    "profileImage": "/images/image1.jpeg",
+    "secondaryImage": "/images/image2.jpeg"
 }
