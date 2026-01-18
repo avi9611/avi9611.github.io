@@ -1,0 +1,143 @@
+---
+import personal from '../data/personal.json';
+
+const navItems = [
+  { href: '#home', label: 'Home' },
+  { href: '#about', label: 'About' },
+  { href: '#experience', label: 'Experience' },
+  { href: '#skills', label: 'Skills' },
+  { href: '#education', label: 'Education' },
+  { href: '#projects', label: 'Projects' },
+  { href: '#certificates', label: 'Certificates' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+
+<nav id="navbar" class="fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-300">
+  <!-- Desktop Navigation - Floating Pill -->
+  <div class="hidden lg:flex items-center gap-1 glass rounded-full px-2 py-2 shadow-lg shadow-black/20">
+    <!-- Logo -->
+    <a href="#home" class="flex items-center gap-2 px-4 py-2 rounded-full hover:bg-white/5 transition-colors">
+      <div class="w-8 h-8 rounded-full bg-gradient-to-br from-cosmic-accent to-cosmic-purple flex items-center justify-center text-white font-bold text-sm">
+        AN
+      </div>
+      <span class="font-semibold text-white">{personal.name}</span>
+    </a>
+    
+    <!-- Nav Links -->
+    {navItems.map((item) => (
+      <a 
+        href={item.href}
+        class="nav-link px-4 py-2 text-sm font-medium text-cosmic-muted hover:text-white rounded-full hover:bg-white/5 transition-all duration-200"
+        data-section={item.href.slice(1)}
+      >
+        {item.label}
+      </a>
+    ))}
+    
+    <!-- CTA Button -->
+    <a 
+      href="#contact" 
+      class="ml-2 px-5 py-2 text-sm font-semibold rounded-full bg-gradient-to-r from-cosmic-accent to-cosmic-purple text-white hover:shadow-lg hover:shadow-cosmic-accent/20 transition-all duration-200"
+    >
+      Hire Me
+    </a>
+  </div>
+  
+  <!-- Mobile Navigation -->
+  <div class="lg:hidden flex items-center justify-between glass rounded-full px-4 py-3 min-w-[320px] shadow-lg shadow-black/20">
+    <a href="#home" class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-full bg-gradient-to-br from-cosmic-accent to-cosmic-purple flex items-center justify-center text-white font-bold text-sm">
+        AN
+      </div>
+      <span class="font-semibold text-white text-sm">{personal.name}</span>
+    </a>
+    
+    <button 
+      id="mobile-menu-btn"
+      class="p-2 rounded-full hover:bg-white/10 transition-colors"
+      aria-label="Toggle menu"
+    >
+      <svg id="menu-icon" class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <svg id="close-icon" class="w-5 h-5 text-white hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu" class="fixed inset-0 z-40 hidden">
+  <div class="absolute inset-0 bg-cosmic-black/90 backdrop-blur-xl"></div>
+  <div class="relative h-full flex flex-col items-center justify-center gap-6">
+    {navItems.map((item) => (
+      <a 
+        href={item.href}
+        class="mobile-nav-link text-2xl font-semibold text-cosmic-muted hover:text-white transition-colors"
+        data-section={item.href.slice(1)}
+      >
+        {item.label}
+      </a>
+    ))}
+    <a 
+      href="#contact" 
+      class="mt-4 px-8 py-3 text-lg font-semibold rounded-full bg-gradient-to-r from-cosmic-accent to-cosmic-purple text-white"
+    >
+      Hire Me
+    </a>
+  </div>
+</div>
+
+<script>
+  // Mobile menu toggle
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+  mobileMenuBtn?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+    menuIcon?.classList.toggle('hidden');
+    closeIcon?.classList.toggle('hidden');
+  });
+
+  mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+    });
+  });
+
+  // Active section highlighting
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '-50% 0px -50% 0px',
+    threshold: 0
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const sectionId = entry.target.id;
+        navLinks.forEach(link => {
+          if (link.getAttribute('data-section') === sectionId) {
+            link.classList.add('text-white', 'bg-white/10');
+            link.classList.remove('text-cosmic-muted');
+          } else {
+            link.classList.remove('text-white', 'bg-white/10');
+            link.classList.add('text-cosmic-muted');
+          }
+        });
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach(section => observer.observe(section));
+</script>

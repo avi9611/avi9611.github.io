@@ -1,0 +1,116 @@
+---
+import '../styles/global.css';
+import personal from '../data/personal.json';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const { 
+  title = `${personal.name} | Full-Stack Developer & Cloud Enthusiast | Bangalore`,
+  description = `${personal.name} is an Entry-Level Full-Stack Developer based in ${personal.location}, specializing in MERN stack, Java Spring Boot, cloud computing (Azure, AWS), and modern web technologies. View portfolio and projects.`,
+  image = '/images/profilepic.jpg'
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// JSON-LD Structured Data for SEO
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": personal.name,
+  "alternateName": personal.fullName,
+  "jobTitle": "Full-Stack Developer",
+  "url": Astro.site?.toString() || "https://avi9611.github.io",
+  "image": `${Astro.site}images/profilepic.jpg`,
+  "sameAs": [
+    personal.social.github,
+    personal.social.linkedin,
+    personal.social.leetcode,
+    personal.social.hackerrank,
+    personal.social.geeksforgeeks
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Bangalore",
+    "addressRegion": "Karnataka",
+    "addressCountry": "India"
+  },
+  "email": personal.email,
+  "telephone": personal.phone,
+  "knowsAbout": [
+    "Web Development",
+    "MERN Stack",
+    "React.js",
+    "Node.js",
+    "Java",
+    "Spring Boot",
+    "Cloud Computing",
+    "Azure",
+    "AWS",
+    "TypeScript",
+    "MongoDB",
+    "PostgreSQL"
+  ],
+  "alumniOf": {
+    "@type": "EducationalOrganization",
+    "name": "Visvesvaraya Technological University"
+  }
+};
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="author" content={personal.name} />
+    <meta name="keywords" content="Avinash N, Avinash Poojary, Full Stack Developer, MERN Stack, React Developer, Node.js Developer, Java Developer, Cloud Engineer, Bangalore Developer, Software Developer India, Web Developer Portfolio" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="/images/profilepic.jpg" />
+    <link rel="apple-touch-icon" href="/images/profilepic.jpg" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${Astro.site}${image}`} />
+    <meta property="og:site_name" content={`${personal.name} Portfolio`} />
+    <meta property="og:locale" content="en_US" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={`${Astro.site}${image}`} />
+    
+    <!-- Additional SEO -->
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="theme-color" content="#0a0a0f" />
+    
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body class="bg-cosmic-black text-cosmic-text antialiased">
+    <slot />
+  </body>
+</html>

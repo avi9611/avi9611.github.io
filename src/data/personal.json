@@ -1,0 +1,24 @@
+{
+    "name": "Avinash N",
+    "fullName": "Avinash Poojary",
+    "role": "Entry Level Full-Stack Developer / Tester / Cloud Enthusiast",
+    "tagline": "Building scalable cloud-based web applications with modern JavaScript frameworks",
+    "location": "Bangalore, India",
+    "email": "avinashpoojary651@gmail.com",
+    "phone": "+91 9611670779",
+    "availability": "Available for opportunities",
+    "experience": "Fresher with 8+ Months Internship",
+    "bio": "Motivated and detail-oriented Entry-level Full Stack Developer with a solid foundation in HTML, CSS, JavaScript, and modern frameworks like React, Node.js, Express & MongoDB. I hold a Master of Computer Application (MCA) degree. I am passionate about learning new technologies and improving my coding skills. Eager to apply strong problem-solving abilities and a collaborative mindset to a dynamic development team, I aim to create seamless user experiences and contribute to innovative projects.",
+    "social": {
+        "github": "https://github.com/avi9611",
+        "linkedin": "https://www.linkedin.com/in/avinash-n-a99387286/",
+        "leetcode": "https://leetcode.com/u/avinash516/",
+        "instagram": "https://www.instagram.com/_a_viii/profilecard/?igsh=aDZoNno1NjR3MHNr",
+        "hackerrank": "https://www.hackerrank.com/profile/avinashpoojary61",
+        "geeksforgeeks": "https://www.geeksforgeeks.org/user/avinashpomzls/",
+        "dailydev": "https://app.daily.dev/avinashn"
+    },
+    "resume": "/avinashresume.pdf",
+    "profileImage": "/images/profilepic.jpg",
+    "secondaryImage": "/images/secpic.jpg"
+}

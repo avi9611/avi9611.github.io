@@ -1,0 +1,53 @@
+[
+    {
+        "title": "Software Developer Intern",
+        "company": "GRID R & D",
+        "period": "May 2025 - Present",
+        "description": "At GRID R & D, I am actively involved in full-stack development using the MERN stack (MongoDB, Express.js, React, Node.js). My responsibilities include developing and maintaining web applications, implementing RESTful APIs, and managing MySQL databases. I work with AWS cloud infrastructure for deployment and hosting, gaining valuable experience in cloud services. Key contributions include building responsive user interfaces, optimizing database queries, and collaborating with the team to deliver scalable solutions.",
+        "tags": [
+            "MERN Stack",
+            "AWS",
+            "MySQL",
+            "RESTful APIs"
+        ],
+        "current": true
+    },
+    {
+        "title": "Java Full Stack Developer Intern",
+        "company": "Kodnest",
+        "period": "Jan 2024 - Apr 2024",
+        "description": "At Kodnest, I worked on developing full-stack web applications using Java, Spring Boot, Hibernate, and MySQL for backend development, along with HTML, CSS, JavaScript, and React for frontend development. My responsibilities included building RESTful APIs, implementing authentication and authorization, optimizing database queries, and ensuring responsive UI design. Additionally, I collaborated with a team to follow Agile methodologies and gained hands-on experience in the full software development lifecycle.",
+        "tags": [
+            "Java",
+            "Spring Boot",
+            "Hibernate",
+            "React"
+        ],
+        "current": false
+    },
+    {
+        "title": "MERN Stack Intern",
+        "company": "Samagra Technologies",
+        "period": "Nov 2023 - Jan 2024",
+        "description": "At Samagra Technologies, I developed and maintained full-stack web applications using MongoDB, Express.js, React, and Node.js. My responsibilities included designing and implementing RESTful APIs, developing dynamic and responsive user interfaces, integrating third-party services, and optimizing database queries for performance. I collaborated with cross-functional teams, followed Agile methodologies, and worked on debugging, testing, and deploying applications to enhance scalability and user experience.",
+        "tags": [
+            "MongoDB",
+            "Express.js",
+            "React",
+            "Node.js"
+        ],
+        "current": false
+    },
+    {
+        "title": "Open Source Contributor",
+        "company": "GitHub",
+        "period": "Ongoing",
+        "description": "Contributed to various open-source projects, focusing on bug fixes, feature implementations, and documentation improvements.",
+        "tags": [
+            "Open Source",
+            "Git",
+            "Collaboration"
+        ],
+        "current": true
+    }
+]

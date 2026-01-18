@@ -1,0 +1,85 @@
+---
+import personal from '../data/personal.json';
+---
+
+<section id="about" class="py-24 relative overflow-hidden">
+  <div class="orb orb-purple w-80 h-80 -top-40 -right-40 opacity-30"></div>
+  
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
+    <div class="text-center mb-16">
+      <h2 class="section-title">
+        <span class="gradient-text">About Me</span>
+      </h2>
+      <p class="section-subtitle">A brief introduction and professional background</p>
+    </div>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <!-- Image -->
+      <div class="relative group order-2 lg:order-1">
+        <div class="absolute inset-0 rounded-3xl bg-gradient-to-br from-cosmic-accent/20 via-cosmic-purple/20 to-cosmic-coral/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="relative glass rounded-3xl overflow-hidden p-2">
+          <img 
+            src={personal.secondaryImage}
+            alt={personal.name}
+            class="w-full aspect-square object-cover rounded-2xl"
+            loading="lazy"
+          />
+        </div>
+      </div>
+      
+      <!-- Content -->
+      <div class="order-1 lg:order-2 space-y-6">
+        <div class="glass rounded-2xl p-6">
+          <p class="text-cosmic-text leading-relaxed">
+            {personal.bio}
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-4">
+          <!-- Location Card -->
+          <div class="glass rounded-2xl p-6 card-hover">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-cosmic-accent/10 flex items-center justify-center">
+                <svg class="w-5 h-5 text-cosmic-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <h4 class="font-semibold text-white">Location</h4>
+            </div>
+            <p class="text-cosmic-muted">{personal.location}</p>
+          </div>
+          
+          <!-- Experience Card -->
+          <div class="glass rounded-2xl p-6 card-hover">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-cosmic-purple/10 flex items-center justify-center">
+                <svg class="w-5 h-5 text-cosmic-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <h4 class="font-semibold text-white">Experience</h4>
+            </div>
+            <p class="text-cosmic-muted">{personal.experience}</p>
+          </div>
+        </div>
+        
+        <!-- Quick Stats -->
+        <div class="flex flex-wrap gap-6 pt-4">
+          <div class="text-center">
+            <div class="text-3xl font-bold gradient-text">12+</div>
+            <div class="text-cosmic-muted text-sm">Projects</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold gradient-text">12+</div>
+            <div class="text-cosmic-muted text-sm">Certifications</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold gradient-text">38+</div>
+            <div class="text-cosmic-muted text-sm">Skills</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

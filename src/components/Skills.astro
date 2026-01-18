@@ -1,0 +1,43 @@
+---
+import skillsData from '../data/skills.json';
+---
+
+<section id="skills" class="py-24 relative overflow-hidden">
+  <div class="orb orb-purple w-96 h-96 top-1/4 -right-48 opacity-20"></div>
+  <div class="orb orb-coral w-64 h-64 bottom-20 -left-32 opacity-20"></div>
+  
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+    <div class="text-center mb-16">
+      <h2 class="section-title">
+        <span class="gradient-text">Skills</span>
+      </h2>
+      <p class="section-subtitle">Technologies and tools I work with</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {skillsData.categories.map((category, index) => (
+        <div class="glass rounded-2xl p-6 card-hover group">
+          <h3 class="text-lg font-semibold text-white mb-6 pb-3 border-b border-white/10 group-hover:text-cosmic-accent transition-colors">
+            {category.title}
+          </h3>
+          
+          <div class="flex flex-wrap gap-4 justify-center">
+            {category.skills.map((skill: {name: string, icon: string}) => (
+              <div class="skill-icon flex flex-col items-center gap-2 w-16">
+                <div class="w-12 h-12 rounded-xl bg-cosmic-light flex items-center justify-center group-hover:bg-cosmic-gray transition-colors">
+                  <img 
+                    src={skill.icon} 
+                    alt={skill.name}
+                    class="w-7 h-7 object-contain"
+                    loading="lazy"
+                  />
+                </div>
+                <span class="text-xs text-center text-cosmic-muted leading-tight">{skill.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
