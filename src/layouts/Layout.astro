@@ -12,7 +12,7 @@ interface Props {
 const {
   title = `${personal.name} | Full-Stack Developer & Cloud Enthusiast | Bangalore`,
   description = `${personal.name} is an Entry-Level Full-Stack Developer based in ${personal.location}, specializing in MERN stack, Java Spring Boot, cloud computing (Azure, AWS), and modern web technologies. View portfolio and projects.`,
-  image = "/images/profilepic.jpg",
+  image = "/images/avinash.jpg",
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -25,7 +25,7 @@ const jsonLd = {
   alternateName: personal.fullName,
   jobTitle: "Full-Stack Developer",
   url: Astro.site?.toString() || "https://avi9611.github.io",
-  image: `${Astro.site}images/profilepic.jpg`,
+  image: `${Astro.site}images/avinash.jpg`,
   sameAs: [
     personal.social.github,
     personal.social.linkedin,
@@ -82,8 +82,8 @@ const jsonLd = {
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/jpeg" href="/images/profilepic.jpg" />
-    <link rel="apple-touch-icon" href="/images/profilepic.jpg" />
+    <link rel="icon" type="image/jpeg" href="/images/avinash.jpg" />
+    <link rel="apple-touch-icon" href="/images/avinash.jpg" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
