@@ -4,78 +4,80 @@ import personal from "../data/personal.json";
 
 <section
   id="about"
-  class="py-16 px-4 md:px-8 max-w-[1400px] mx-auto bg-paper border-b-4 border-double border-ink"
+  class="py-18 px-4 md:px-8 max-w-[1400px] mx-auto border-b-4 border-double border-ink/70"
 >
   <div class="text-center mb-12">
-    <h2 class="section-header inline-block">Editorial</h2>
+    <h2 class="section-header inline-block">Profile</h2>
+    <p class="section-lede mt-4">
+      A concise view of how I work, where I add value, and what I am building toward.
+    </p>
   </div>
 
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start relative">
-    <div
-      class="absolute left-1/2 top-0 bottom-0 w-px bg-ink/20 -translate-x-1/2 hidden lg:block"
-    >
-    </div>
-
-    <!-- Content -->
-    <div class="space-y-6">
-      <h3 class="font-display font-bold text-3xl uppercase leading-tight">
-        The Journey So Far: <br />
-        <span class="italic font-serif normal-case opacity-80"
-          >A developer's perspective</span
-        >
-      </h3>
+  <div class="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-8 lg:gap-12 items-start">
+    <div class="paper-card p-6 md:p-8">
+      <p class="kicker mb-3">Professional Summary</p>
       <div class="font-body text-lg leading-relaxed text-justify drop-cap">
         {personal.bio}
       </div>
 
-      <div
-        class="border-t border-b border-ink py-4 grid grid-cols-3 divide-x divide-ink/20 font-mono text-center text-xs uppercase tracking-widest mt-8"
-      >
-        <div class="px-2">
-          <span class="block text-2xl font-bold font-display">12+</span>
-          <span>Projects</span>
+      <div class="grid sm:grid-cols-3 gap-4 mt-8">
+        <div class="paper-card p-4">
+          <p class="kicker mb-2">Backend</p>
+          <p class="font-display text-2xl text-ink-bold">FastAPI</p>
+          <p class="text-sm text-ink-light mt-2">Clear service structure and API design.</p>
         </div>
-        <div class="px-2">
-          <span class="block text-2xl font-bold font-display">12+</span>
-          <span>Awards</span>
+        <div class="paper-card p-4">
+          <p class="kicker mb-2">Frontend</p>
+          <p class="font-display text-2xl text-ink-bold">Next.js</p>
+          <p class="text-sm text-ink-light mt-2">Responsive interfaces with product discipline.</p>
         </div>
-        <div class="px-2">
-          <span class="block text-2xl font-bold font-display">30+</span>
-          <span>Skills</span>
+        <div class="paper-card p-4">
+          <p class="kicker mb-2">Delivery</p>
+          <p class="font-display text-2xl text-ink-bold">Docker + AI</p>
+          <p class="text-sm text-ink-light mt-2">Practical workflows for modern teams.</p>
         </div>
       </div>
     </div>
 
-    <!-- Image / Sidebar -->
-    <div class="space-y-8">
-      <figure class="border border-ink p-1 bg-white inline-block w-full">
+    <div class="space-y-6">
+      <figure class="paper-card p-3">
         <img
           src={personal.secondaryImage}
           alt={personal.name}
-          class="w-full aspect-[4/3] object-cover grayscale contrast-125 block"
+          class="w-full aspect-[4/3] object-cover grayscale-[0.15] contrast-110"
           loading="lazy"
         />
-        <figcaption
-          class="font-mono text-xs mt-1 text-ink-light p-2 border-b border-ink/10"
-        >
-          Photo: The workspace.
+        <figcaption class="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-light mt-3">
+          Focused on reliable delivery, not just shipping demos.
         </figcaption>
       </figure>
 
-      <div class="border border-ink p-6 bg-paper-light">
-        <h4 class="font-bold uppercase text-xl mb-4 border-b border-ink pb-2">
-          Vitals
-        </h4>
-        <dl class="grid grid-cols-[100px_1fr] gap-y-2 font-mono text-sm">
-          <dt class="font-bold uppercase text-ink/60">Location:</dt>
-          <dd>{personal.location}</dd>
+      <div class="paper-card p-6">
+        <p class="kicker mb-4">Where I add value</p>
+        <ul class="space-y-4">
+          {
+            personal.focusAreas.map((area) => (
+              <li class="flex gap-3 items-start border-b border-ink/10 pb-4 last:border-0 last:pb-0">
+                <span class="font-mono text-xs uppercase tracking-[0.16em] text-ink-light pt-1">01</span>
+                <span class="text-base leading-relaxed text-ink/85">{area}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
 
-          <dt class="font-bold uppercase text-ink/60">Exp:</dt>
-          <dd>{personal.experience}</dd>
-
-          <dt class="font-bold uppercase text-ink/60">Focus:</dt>
-          <dd>Full Stack Web Dev, Cloud Architecture</dd>
-        </dl>
+      <div class="paper-card p-6">
+        <p class="kicker mb-4">How I work</p>
+        <ul class="space-y-3 text-base text-ink/85">
+          {
+            personal.principles.map((principle) => (
+              <li class="flex gap-3">
+                <span class="text-ink-light">•</span>
+                <span>{principle}</span>
+              </li>
+            ))
+          }
+        </ul>
       </div>
     </div>
   </div>

@@ -5,15 +5,13 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer class="py-12 bg-paper text-ink border-t-8 border-ink">
-  <div class="max-w-4xl mx-auto px-6 text-center">
+  <div class="max-w-5xl mx-auto px-6 text-center">
     <div class="mb-8">
-      <h2
-        class="font-display font-black text-3xl uppercase tracking-widest mb-2"
-      >
-        {personal.name}
+      <h2 class="font-display font-semibold text-4xl mb-2">
+        {personal.fullName}
       </h2>
-      <p class="font-mono text-xs uppercase tracking-[0.2em] text-ink-light">
-        Established {currentYear}
+      <p class="font-mono text-[11px] uppercase tracking-[0.24em] text-ink-light">
+        Full-stack engineer • production-focused delivery
       </p>
     </div>
 
@@ -21,41 +19,42 @@ const currentYear = new Date().getFullYear();
       class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 font-mono text-sm border-t border-b border-ink/20 py-8"
     >
       <div>
-        <h4 class="font-bold uppercase mb-2">Navigation</h4>
+        <h4 class="font-semibold uppercase mb-2 tracking-[0.18em] text-xs text-ink-light">Navigation</h4>
         <nav class="flex flex-col gap-2">
-          <a href="#home" class="hover:underline">Front Page</a>
-          <a href="#about" class="hover:underline">Editorial</a>
-          <a href="#projects" class="hover:underline">Features</a>
+          <a href="#home" class="hover:underline">Overview</a>
+          <a href="#experience" class="hover:underline">Experience</a>
+          <a href="#projects" class="hover:underline">Selected Work</a>
         </nav>
       </div>
       <div>
-        <h4 class="font-bold uppercase mb-2">Connect</h4>
+        <h4 class="font-semibold uppercase mb-2 tracking-[0.18em] text-xs text-ink-light">Connect</h4>
         <nav class="flex flex-col gap-2">
           <a
             href={personal.social.github}
             target="_blank"
+            rel="noopener noreferrer"
             class="hover:underline">Github</a
           >
           <a
             href={personal.social.linkedin}
             target="_blank"
+            rel="noopener noreferrer"
             class="hover:underline">LinkedIn</a
           >
           <a href={`mailto:${personal.email}`} class="hover:underline">Email</a>
         </nav>
       </div>
       <div>
-        <h4 class="font-bold uppercase mb-2">Legals</h4>
+        <h4 class="font-semibold uppercase mb-2 tracking-[0.18em] text-xs text-ink-light">Status</h4>
         <p class="text-ink-light">
-          © {currentYear}
-          {personal.name}.<br />All rights reserved.
+          © {currentYear} {personal.name}.<br />
+          Built with Astro and Tailwind CSS.
         </p>
       </div>
     </div>
 
-    <p class="font-serif italic text-ink/50 text-sm">
-      Built with Astro, Tailwind, and a lot of coffee. Printed in the Digital
-      Ether.
+    <p class="text-sm text-ink-light">
+      Designed to reflect engineering clarity, product maturity, and modern delivery practice.
     </p>
   </div>
 </footer>

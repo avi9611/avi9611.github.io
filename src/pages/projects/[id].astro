@@ -16,6 +16,9 @@ interface Project {
   title: string;
   subtitle: string;
   description: string;
+  role?: string;
+  outcome?: string;
+  highlights?: string[];
   tags: string[];
   github: string;
   images: string[];
@@ -26,18 +29,17 @@ const { project } = Astro.props as { project: Project };
 ---
 
 <Layout
-  title={`${project.title} - ${project.subtitle} | Avinash Neralakatte Portfolio`}
-  description={`${project.description} Built by Avinash Neralakatte (Avinash N) using ${project.tags.slice(0, 5).join(", ")}. View project details, source code, and technical implementation.`}
+  title={`${project.title} | Project Case Study | Avinash Neralakatte`}
+  description={`${project.description} Explore the stack, engineering focus, and case-study details behind this project by Avinash Neralakatte.`}
   image={project.images[0]}
 >
   <Navigation />
 
-  <main class="pt-32 pb-24 min-h-screen">
-    <div class="max-w-4xl mx-auto px-6 lg:px-8">
-      <!-- Back Link -->
+  <main class="pt-24 pb-24 min-h-screen">
+    <div class="max-w-[1200px] mx-auto px-4 md:px-8">
       <a
         href="/projects"
-        class="inline-flex items-center gap-2 text-cosmic-muted hover:text-cosmic-accent transition-colors mb-8"
+        class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-ink-light hover:text-ink mb-8"
       >
         <svg
           class="w-4 h-4"
@@ -51,28 +53,29 @@ const { project } = Astro.props as { project: Project };
             stroke-width="2"
             d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
         </svg>
-        Back to Projects
+        Back to project archive
       </a>
 
-      <!-- Project Header -->
       <header class="mb-12">
-        <div class="flex items-start gap-4">
+        <div class="flex flex-wrap items-center gap-3 mb-4">
           {
             project.featured && (
-              <span class="px-3 py-1 text-xs font-semibold bg-cosmic-accent text-cosmic-black rounded-full">
+              <span class="tag-chip">
                 Featured
               </span>
             )
           }
+          <span class="kicker">{project.subtitle}</span>
         </div>
-        <h1 class="text-4xl md:text-5xl font-bold text-white mt-4 mb-3">
+        <h1 class="text-5xl md:text-7xl font-semibold text-ink-bold leading-[0.95] mb-4">
           {project.title}
         </h1>
-        <p class="text-cosmic-accent text-xl font-medium">{project.subtitle}</p>
+        <p class="text-xl md:text-2xl text-ink/80 max-w-4xl leading-relaxed">
+          {project.description}
+        </p>
       </header>
 
-      <!-- Project Images -->
-      <div class="glass rounded-2xl overflow-hidden mb-12">
+      <div class="paper-card overflow-hidden mb-12 p-3">
         <div
           class={`grid ${project.images.length > 1 ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"} gap-2`}
         >
@@ -81,7 +84,7 @@ const { project } = Astro.props as { project: Project };
               <img
                 src={img}
                 alt={`${project.title} screenshot ${index + 1}`}
-                class="w-full h-64 md:h-80 object-cover"
+                class="w-full h-64 md:h-[25rem] object-cover"
                 loading={index === 0 ? "eager" : "lazy"}
               />
             ))
@@ -89,59 +92,100 @@ const { project } = Astro.props as { project: Project };
         </div>
       </div>
 
-      <!-- Project Content -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div class="lg:col-span-2">
-          <h2 class="text-2xl font-bold text-white mb-4">About This Project</h2>
-          <div class="glass rounded-2xl p-6">
-            <p class="text-cosmic-text leading-relaxed">
-              {project.description}
+      <div class="grid grid-cols-1 lg:grid-cols-[1.4fr_0.6fr] gap-8">
+        <div class="space-y-6">
+          <section class="paper-card p-6 md:p-8">
+            <p class="kicker mb-3">Project Overview</p>
+            <h2 class="font-display text-4xl font-semibold mb-4">What this project demonstrates</h2>
+            <p class="text-lg text-ink/85 leading-relaxed">
+              {project.outcome || project.description}
             </p>
-          </div>
+          </section>
+
+          {project.highlights && project.highlights.length > 0 && (
+            <section class="paper-card p-6 md:p-8">
+              <p class="kicker mb-3">Engineering Highlights</p>
+              <ul class="space-y-4">
+                {project.highlights.map((highlight) => (
+                  <li class="flex gap-3 items-start">
+                    <span class="font-mono text-xs uppercase tracking-[0.16em] text-ink-light pt-1">
+                      +
+                    </span>
+                    <span class="text-base md:text-lg text-ink/80 leading-relaxed">{highlight}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          <section class="paper-card p-6 md:p-8">
+            <p class="kicker mb-3">Why it matters</p>
+            <p class="text-lg text-ink/85 leading-relaxed">
+              I use projects like this to sharpen the same skills I rely on in production work: clear workflows, maintainable implementation, thoughtful UI, and backend choices that can grow with the product.
+            </p>
+          </section>
         </div>
 
         <div class="space-y-6">
-          <!-- Technologies -->
-          <div class="glass rounded-2xl p-6">
-            <h3 class="text-lg font-semibold text-white mb-4">
-              Technologies Used
+          <aside class="paper-card p-6">
+            <p class="kicker mb-3">Role</p>
+            <h3 class="font-display text-3xl font-semibold mb-3">
+              Implementation scope
+            </h3>
+            <p class="text-base text-ink/80 leading-relaxed">
+              {project.role || "Full-stack product implementation"}
+            </p>
+          </aside>
+
+          <aside class="paper-card p-6">
+            <p class="kicker mb-3">Stack</p>
+            <h3 class="font-display text-3xl font-semibold mb-4">
+              Technologies used
             </h3>
             <div class="flex flex-wrap gap-2">
               {
                 project.tags.map((tag: string) => (
-                  <span class="px-3 py-1 text-sm font-medium bg-cosmic-light rounded-full text-cosmic-text">
+                  <span class="tag-chip">
                     {tag}
                   </span>
                 ))
               }
             </div>
-          </div>
+          </aside>
 
-          <!-- Links -->
-          <div class="glass rounded-2xl p-6">
-            <h3 class="text-lg font-semibold text-white mb-4">Links</h3>
+          <aside class="paper-card p-6">
+            <p class="kicker mb-3">Links</p>
+            <h3 class="font-display text-3xl font-semibold mb-4">Source and archive</h3>
             <div class="space-y-3">
               <a
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="flex items-center gap-3 text-cosmic-muted hover:text-cosmic-accent transition-colors"
+                class="flex items-center gap-3 text-ink-light hover:text-[var(--color-accent)] transition-colors"
               >
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                   <path
                     d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
                   ></path>
                 </svg>
-                View on GitHub
+                View source on GitHub
+              </a>
+              <a
+                href="/projects"
+                class="flex items-center gap-3 text-ink-light hover:text-[var(--color-accent)] transition-colors"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m7-7l-7 7 7 7" />
+                </svg>
+                Back to archive
               </a>
             </div>
-          </div>
+          </aside>
         </div>
       </div>
 
-      <!-- Other Projects -->
       <div class="mt-16">
-        <h2 class="text-2xl font-bold text-white mb-6">Other Projects</h2>
+        <h2 class="font-display text-4xl font-semibold mb-6">More projects</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           {
             projects
@@ -150,19 +194,19 @@ const { project } = Astro.props as { project: Project };
               .map((p: Project) => (
                 <a
                   href={`/projects/${p.id}`}
-                  class="glass rounded-xl p-4 card-hover flex gap-4 items-center"
+                  class="paper-card p-4 flex gap-4 items-center hover:bg-white/55"
                 >
                   <img
                     src={p.images[0]}
                     alt={p.title}
-                    class="w-20 h-20 rounded-lg object-cover flex-shrink-0"
+                    class="w-20 h-20 object-cover flex-shrink-0 border border-ink/10"
                     loading="lazy"
                   />
                   <div>
-                    <h3 class="font-semibold text-white line-clamp-1">
+                    <h3 class="font-display text-2xl font-semibold">
                       {p.title}
                     </h3>
-                    <p class="text-cosmic-muted text-sm line-clamp-2">
+                    <p class="text-ink-light text-sm">
                       {p.subtitle}
                     </p>
                   </div>

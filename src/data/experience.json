@@ -1,79 +1,77 @@
 [
-    {
-        "title": "Full Stack Engineer",
-        "company": "Hybrid Interactive Consultancy LLP",
-        "period": "Dec 2025 - Present",
-        "description": "Designing and developing scalable, production-ready web applications using FastAPI, Next.js, PostgreSQL, and Docker. Building secure and well-structured backend APIs with focus on performance, maintainability, and clean architecture. Collaborating with product and engineering teams in an agile environment to deliver reliable solutions. Working on cloud deployment, containerization, and system optimization.",
-        "tags": [
-            "FastAPI",
-            "Next.js",
-            "PostgreSQL",
-            "Docker"
-        ],
-        "current": true
-    },
-    {
-        "title": "Software Engineer Intern",
-        "company": "PurpleMerit",
-        "period": "Sep 2025 - Nov 2025",
-        "description": "Contributed to AI-powered software solutions, from development to deployment. Assisted in building end-to-end features using modern full-stack technologies. Supported AI model integration, testing, and optimization for production environments. Gained hands-on experience with real-world AI workflows and deployment challenges.",
-        "tags": [
-            "AI Integration",
-            "Full Stack",
-            "Optimization",
-            "Deployment"
-        ],
-        "current": false
-    },
-    {
-        "title": "Software Developer Intern",
-        "company": "GRID R & D",
-        "period": "May 2025 - Aug 2025",
-        "description": "At GRID R & D, I am actively involved in full-stack development using the MERN stack (MongoDB, Express.js, React, Node.js). My responsibilities include developing and maintaining web applications, implementing RESTful APIs, and managing MySQL databases. I work with AWS cloud infrastructure for deployment and hosting, gaining valuable experience in cloud services. Key contributions include building responsive user interfaces, optimizing database queries, and collaborating with the team to deliver scalable solutions.",
-        "tags": [
-            "MERN Stack",
-            "AWS",
-            "MySQL",
-            "RESTful APIs"
-        ],
-        "current": false
-    },
-    {
-        "title": "Java Full Stack Developer Intern",
-        "company": "Kodnest",
-        "period": "Jan 2024 - Apr 2024",
-        "description": "At Kodnest, I worked on developing full-stack web applications using Java, Spring Boot, Hibernate, and MySQL for backend development, along with HTML, CSS, JavaScript, and React for frontend development. My responsibilities included building RESTful APIs, implementing authentication and authorization, optimizing database queries, and ensuring responsive UI design. Additionally, I collaborated with a team to follow Agile methodologies and gained hands-on experience in the full software development lifecycle.",
-        "tags": [
-            "Java",
-            "Spring Boot",
-            "Hibernate",
-            "React"
-        ],
-        "current": false
-    },
-    {
-        "title": "MERN Stack Intern",
-        "company": "Samagra Technologies",
-        "period": "Nov 2023 - Jan 2024",
-        "description": "At Samagra Technologies, I developed and maintained full-stack web applications using MongoDB, Express.js, React, and Node.js. My responsibilities included designing and implementing RESTful APIs, developing dynamic and responsive user interfaces, integrating third-party services, and optimizing database queries for performance. I collaborated with cross-functional teams, followed Agile methodologies, and worked on debugging, testing, and deploying applications to enhance scalability and user experience.",
-        "tags": [
-            "MongoDB",
-            "Express.js",
-            "React",
-            "Node.js"
-        ],
-        "current": false
-    },
-    {
-        "title": "Open Source Contributor",
-        "company": "GitHub",
-        "period": "Ongoing",
-        "description": "Contributed to various open-source projects, focusing on bug fixes, feature implementations, and documentation improvements.",
-        "tags": [
-            "Open Source",
-            "Git",
-            "Collaboration"
-        ],
-        "current": true
-    }
+  {
+    "title": "Full-Stack Engineer",
+    "company": "Hybrid Interactive Consultancy LLP",
+    "period": "Dec 2025 - Present",
+    "description": "Working as one of the leading developers on delivery teams building websites and CRM products for medium-scale companies. I contribute across backend architecture, frontend implementation, infrastructure decisions, and production readiness with a strong focus on maintainability and execution speed.",
+    "highlights": [
+      "Design FastAPI services, data models, and API contracts that stay clear as products grow.",
+      "Build Next.js interfaces and collaborate on implementations recognized by clients for design quality and usability.",
+      "Integrate Docker workflows, caching strategies, Celery workers, and AI-powered features into real product delivery.",
+      "Own features from implementation through review, fixes, and deployment preparation."
+    ],
+    "tags": [
+      "FastAPI",
+      "Next.js",
+      "PostgreSQL",
+      "Docker",
+      "Celery",
+      "LLM Integration"
+    ],
+    "current": true
+  },
+  {
+    "title": "Software Engineer Intern",
+    "company": "PurpleMerit",
+    "period": "Sep 2025 - Nov 2025",
+    "description": "Contributed to AI-oriented product development and deployment work, supporting end-to-end feature delivery across web applications and model-assisted workflows.",
+    "highlights": [
+      "Implemented full-stack features for AI-powered software products.",
+      "Supported model integration, testing, and iteration for production-facing use cases.",
+      "Gained practical experience with deployment challenges around AI-enabled products."
+    ],
+    "tags": [
+      "AI Products",
+      "Full Stack",
+      "Deployment",
+      "Optimization"
+    ],
+    "current": false
+  },
+  {
+    "title": "Software Developer Intern",
+    "company": "GRID R & D",
+    "period": "May 2025 - Aug 2025",
+    "description": "Worked on full-stack product delivery using the MERN stack, MySQL, and AWS-backed deployment workflows, building a solid foundation in shipping scalable application features.",
+    "highlights": [
+      "Built responsive interfaces and REST API functionality across product modules.",
+      "Improved database usage and query efficiency for application workflows.",
+      "Collaborated on cloud-based deployment and day-to-day feature delivery."
+    ],
+    "tags": [
+      "MERN Stack",
+      "AWS",
+      "MySQL",
+      "REST APIs"
+    ],
+    "current": false
+  },
+  {
+    "title": "Java Full-Stack Developer Intern",
+    "company": "Kodnest",
+    "period": "Jan 2024 - Apr 2024",
+    "description": "Built core engineering discipline through hands-on work with Java, Spring Boot, Hibernate, MySQL, and frontend implementation in a structured full-stack training environment.",
+    "highlights": [
+      "Implemented REST APIs, authentication flows, and database-backed features.",
+      "Strengthened understanding of layered backend architecture and object modeling.",
+      "Practiced shipping features in an Agile team workflow."
+    ],
+    "tags": [
+      "Java",
+      "Spring Boot",
+      "Hibernate",
+      "React"
+    ],
+    "current": false
+  }
 ]

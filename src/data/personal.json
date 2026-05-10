@@ -1,24 +1,43 @@
 {
-    "name": "Avinash N",
-    "fullName": "Avinash N",
-    "role": "Full Stack & Generative AI Developer | MCA Graduate | Cloud Enthusiast",
-    "tagline": "Full Stack & GenAI Developer with experience in FastAPI, Next.js, MERN, PostgreSQL, Docker, and Cloud platforms, building scalable and AI-driven web applications. MCA graduate with strong backend expertise, clean coding practices, and real-world production experience.",
-    "location": "Kochi / Bangalore, India",
-    "email": "avinashpoojary651@gmail.com",
-    "phone": "+91 9611670779",
-    "availability": "Full-time Employed",
-    "experience": "Full Stack Engineer at Hybrid Interactive Consultancy LLP",
-    "bio": "Results-driven Full Stack Developer with hands-on experience building and maintaining scalable, production-grade web applications across frontend and backend systems. I specialize in FastAPI, Next.js, PostgreSQL, Docker, and modern cloud-native development practices, with a strong focus on clean architecture, performance optimization, and system reliability. I have designed and delivered end-to-end solutions involving API development, database modeling, authentication, and responsive user interfaces. My background includes professional experience with the MERN stack, Java-based systems, and AI-powered platforms, enabling me to adapt quickly across technologies and problem domains. I’ve worked in agile environments, collaborating closely with cross-functional teams to ship reliable and maintainable software. I value writing clean, testable code, continuously improving system design, and leveraging modern tools to build impactful products.",
-    "social": {
-        "github": "https://github.com/avi9611",
-        "linkedin": "https://www.linkedin.com/in/avinash-n-a99387286/",
-        "leetcode": "https://leetcode.com/u/avinash516/",
-        "instagram": "https://www.instagram.com/_a_viii/profilecard/?igsh=aDZoNno1NjR3MHNr",
-        "hackerrank": "https://www.hackerrank.com/profile/avinashpoojary61",
-        "geeksforgeeks": "https://www.geeksforgeeks.org/user/avinashpomzls/",
-        "dailydev": "https://app.daily.dev/avinashn"
-    },
-    "resume": "/avinashresume.pdf",
-    "profileImage": "/images/image1.jpeg",
-    "secondaryImage": "/images/image2.jpeg"
+  "name": "Avinash N",
+  "fullName": "Avinash Neralakatte",
+  "role": "Full-Stack Engineer",
+  "headline": "Building production FastAPI and Next.js systems for real businesses.",
+  "tagline": "I design and ship reliable web products across backend architecture, frontend delivery, Dockerized deployment, asynchronous workloads, caching strategies, and AI-powered features.",
+  "location": "Bangalore / Kochi, India",
+  "email": "avinashpoojary651@gmail.com",
+  "phone": "+91 9611670779",
+  "availability": "Open to select collaborations",
+  "experience": "5+ months in a production delivery role",
+  "currentCompany": "Hybrid Interactive Consultancy LLP",
+  "bio": "I am a full-stack engineer currently working as one of the leading developers at Hybrid Interactive Consultancy LLP. My work spans FastAPI backends, Next.js frontends, PostgreSQL, Docker, caching strategies, Celery workers, and LLM-powered product features. I have helped build websites and CRM products for medium-scale companies, with delivery recognized for design quality, implementation efficiency, and shipping on time. I care about clear architecture, maintainable code, and turning business requirements into production-ready systems that teams can extend with confidence.",
+  "focusAreas": [
+    "FastAPI architecture and API design",
+    "Next.js product interfaces and frontend delivery",
+    "Dockerized deployment, caching, and async workers",
+    "LLM integration and AI-assisted product workflows"
+  ],
+  "proofPoints": [
+    "Production CRM products and business websites",
+    "Full-stack ownership from schema design to UI delivery",
+    "Client-focused execution with clean architecture",
+    "Daily use of Claude Code, Codex, and GitHub Copilot"
+  ],
+  "principles": [
+    "Build for maintainability before novelty.",
+    "Keep performance and reliability visible from the start.",
+    "Use AI tooling to increase velocity without lowering engineering standards."
+  ],
+  "social": {
+    "github": "https://github.com/avi9611",
+    "linkedin": "https://www.linkedin.com/in/avinash-n-a99387286/",
+    "leetcode": "https://leetcode.com/u/avinash516/",
+    "instagram": "https://www.instagram.com/_a_viii/profilecard/?igsh=aDZoNno1NjR3MHNr",
+    "hackerrank": "https://www.hackerrank.com/profile/avinashpoojary61",
+    "geeksforgeeks": "https://www.geeksforgeeks.org/user/avinashpomzls/",
+    "dailydev": "https://app.daily.dev/avinashn"
+  },
+  "resume": "/avinashresume.pdf",
+  "profileImage": "/images/image1.jpeg",
+  "secondaryImage": "/images/image2.jpeg"
 }

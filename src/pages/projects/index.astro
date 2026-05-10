@@ -6,100 +6,84 @@ import projects from '../../data/projects.json';
 ---
 
 <Layout 
-  title="Projects Portfolio - Avinash Neralakatte (Avinash N) | Full Stack & GenAI Web Applications"
-  description="Explore Avinash Neralakatte's complete portfolio of full-stack development projects including AI-powered applications, MERN stack solutions, Next.js web apps, FastAPI backends, and production-grade software. View live demos, source code, and technical implementations."
+  title="Project Archive - Avinash Neralakatte | Full-Stack Engineer"
+  description="Explore selected projects by Avinash Neralakatte across product interfaces, backend-heavy builds, AI-assisted workflows, and client-facing web delivery."
 >
   <Navigation />
   
-  <main class="pt-32 pb-24 min-h-screen">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-      <!-- Page Header -->
-      <div class="text-center mb-16">
-        <a href="/" class="inline-flex items-center gap-2 text-cosmic-muted hover:text-cosmic-accent transition-colors mb-6">
+  <main class="pt-24 pb-24 min-h-screen">
+    <div class="max-w-[1400px] mx-auto px-4 md:px-8">
+      <div class="text-center mb-14">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-ink-light hover:text-ink mb-6"
+        >
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
           </svg>
-          Back to Home
+          Back to portfolio
         </a>
-        <h1 class="text-4xl md:text-5xl font-bold mb-4">
-          <span class="gradient-text">All Projects</span>
-        </h1>
-        <p class="text-cosmic-muted max-w-2xl mx-auto">
-          A comprehensive showcase of my development work, featuring modern tech stacks and innovative solutions.
+        <h1 class="section-header inline-block">Project Archive</h1>
+        <p class="section-lede mt-4">
+          A broader view of the projects that shaped my product thinking, implementation style, and technical range.
         </p>
       </div>
       
-      <!-- Projects Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {projects.map((project) => (
-          <article class="glass rounded-2xl overflow-hidden card-hover group">
-            <!-- Image Container -->
-            <div class="relative h-48 bg-cosmic-gray overflow-hidden">
-              <img 
+          <article class="paper-card overflow-hidden">
+            <div class="grid md:grid-cols-[220px_1fr] gap-0 h-full">
+              <div class="p-3 border-b md:border-b-0 md:border-r border-ink/15">
+                <div class="h-full min-h-52 overflow-hidden bg-[rgba(111,99,86,0.08)]">
+                  <img 
                 src={project.images[0]}
                 alt={project.title}
-                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    class="w-full h-full object-cover grayscale-[0.12] contrast-110 hover:scale-[1.02]"
                 loading="lazy"
               />
-              {project.images.length > 1 && (
-                <img 
-                  src={project.images[1]}
-                  alt={`${project.title} secondary`}
-                  class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  loading="lazy"
-                />
-              )}
-              
-              {project.featured && (
-                <div class="absolute top-3 left-3">
-                  <span class="px-3 py-1 text-xs font-semibold bg-cosmic-accent text-cosmic-black rounded-full">
-                    Featured
-                  </span>
                 </div>
-              )}
-              
-              <!-- Overlay with links -->
-              <div class="absolute inset-0 bg-gradient-to-t from-cosmic-black/90 via-cosmic-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-4">
-                <a 
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="flex items-center gap-2 px-4 py-2 glass rounded-lg text-sm font-medium text-white hover:bg-white/20 transition-colors"
-                >
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                  </svg>
-                  GitHub
-                </a>
-                <a 
-                  href={`/projects/${project.id}`}
-                  class="flex items-center gap-2 px-4 py-2 bg-cosmic-accent text-cosmic-black rounded-lg text-sm font-semibold hover:bg-cosmic-accent/90 transition-colors"
-                >
-                  Details
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-                  </svg>
-                </a>
               </div>
-            </div>
-            
-            <!-- Content -->
-            <div class="p-6">
-              <h3 class="text-lg font-bold text-white mb-1 line-clamp-2">{project.title}</h3>
-              <p class="text-cosmic-accent text-sm font-medium mb-3">{project.subtitle}</p>
-              <p class="text-cosmic-muted text-sm line-clamp-3 mb-4">{project.description}</p>
               
-              <div class="flex flex-wrap gap-2">
-                {project.tags.slice(0, 4).map((tag: string) => (
-                  <span class="px-2 py-1 text-xs font-medium bg-cosmic-light rounded-full text-cosmic-text">
+              <div class="p-6 md:p-7 flex flex-col">
+                <div class="flex items-center justify-between gap-4 mb-3">
+                  <p class="kicker">{project.subtitle}</p>
+                  {project.featured && <span class="tag-chip">Featured</span>}
+                </div>
+
+                <h2 class="font-display text-3xl font-semibold leading-tight mb-3">
+                  <a href={`/projects/${project.id}`} class="hover:text-[var(--color-accent)]">
+                    {project.title}
+                  </a>
+                </h2>
+
+                <p class="text-base text-ink/80 leading-relaxed mb-4">{project.description}</p>
+
+                <p class="text-sm text-ink-light mb-5">{project.role}</p>
+
+                <div class="flex flex-wrap gap-2 mb-6">
+                  {project.tags.slice(0, 5).map((tag: string) => (
+                    <span class="tag-chip">
                     {tag}
                   </span>
                 ))}
-                {project.tags.length > 4 && (
-                  <span class="px-2 py-1 text-xs font-medium bg-cosmic-light rounded-full text-cosmic-muted">
-                    +{project.tags.length - 4}
-                  </span>
-                )}
+                </div>
+
+                <div class="mt-auto flex flex-wrap gap-5 font-mono text-xs uppercase tracking-[0.18em]">
+                  <a
+                    href={`/projects/${project.id}`}
+                    class="border-b border-ink/30 pb-1 hover:text-[var(--color-accent)] hover:border-[var(--color-accent)]"
+                  >
+                    View case study
+                  </a>
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="border-b border-ink/30 pb-1 hover:text-[var(--color-accent)] hover:border-[var(--color-accent)]"
+                  >
+                    View source
+                  </a>
+                </div>
               </div>
             </div>
           </article>

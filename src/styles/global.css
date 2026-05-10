@@ -1,24 +1,21 @@
 @import "tailwindcss";
 
-/* Newspaper Theme Variables */
+/* Editorial Theme Variables */
 @theme {
-  --color-paper: #0a0a0a;  /* Deep Matte Black - Page Background */
-  --color-paper-light: #111111; /* Slightly lighter for the 'sheet' */
-  
-  --color-ink: #d4d4d4; /* Off-white text */
-  --color-ink-bold: #ffffff; /* Headings */
-  --color-ink-light: #888888; /* Muted/Metadata */
-  
-  /* Stele / Steel Tones */
-  --color-stele: #2d3748; /* Dark Steel Blue/Gray */
-  --color-stele-light: #4a5568; /* Lighter Steel */
-  
-  --color-b-border: #333333; /* Standard border */
-  --color-b-strong: #e5e5e5; /* Strong border (separators) */
-  
-  --font-display: 'Playfair Display', serif;
-  --font-body: 'Lora', serif;
-  --font-mono: 'Fira Code', monospace;
+  --color-paper: #d8cebf;
+  --color-paper-light: #f4ede1;
+  --color-ink: #2a211a;
+  --color-ink-bold: #17120e;
+  --color-ink-light: #776b5e;
+  --color-stele: #8e7d6b;
+  --color-stele-light: #b19b84;
+  --color-b-border: #c5b9aa;
+  --color-b-strong: #6f6356;
+  --color-accent: #7a4d37;
+  --color-accent-soft: #a86a4b;
+  --font-display: "Cormorant Garamond", serif;
+  --font-body: "Source Sans 3", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
 }
 
 /* Base Styles */
@@ -29,16 +26,26 @@ html {
 
 body {
   font-family: var(--font-body);
-  background-color: var(--color-paper);
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.35), transparent 42%),
+    linear-gradient(180deg, #d9d0c2 0%, #d5cab9 100%);
   color: var(--color-ink);
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   color: var(--color-ink-bold);
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+}
+
+a {
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
 /* Typography Utilities */
@@ -46,38 +53,52 @@ h1, h2, h3, h4, h5, h6 {
 .font-body { font-family: var(--font-body); }
 .font-mono { font-family: var(--font-mono); }
 
-/* Newspaper Layout Utilities */
-
-/* The Masthead Title */
-.masthead-title {
-  font-family: var(--font-display);
-  font-weight: 900;
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  letter-spacing: -2px;
-  line-height: 0.9;
-  text-shadow: 2px 2px 0px #333;
+  color: var(--color-ink-light);
 }
 
-/* Section Header - The "Department" Label */
 .section-header {
   font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: 700;
   border-top: 1px solid var(--color-b-strong);
-  border-bottom: 2px solid var(--color-b-strong);
-  padding: 0.5rem 0;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--color-b-strong);
+  padding: 0.45rem 0 0.55rem;
+  text-transform: none;
+  letter-spacing: -0.02em;
 }
 
-/* Article Title */
-.article-title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 1.1;
-  margin-bottom: 0.5rem;
+.section-lede {
+  font-size: 1.05rem;
+  color: var(--color-ink-light);
+  max-width: 44rem;
+  margin: 0 auto;
+}
+
+.paper-card {
+  background: rgba(255, 255, 255, 0.32);
+  border: 1px solid rgba(111, 99, 86, 0.24);
+  box-shadow: 0 18px 40px rgba(65, 48, 32, 0.06);
+}
+
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid rgba(111, 99, 86, 0.26);
+  background: rgba(255, 255, 255, 0.45);
+  padding: 0.4rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ink);
 }
 
 /* Borders */
@@ -108,7 +129,7 @@ h1, h2, h3, h4, h5, h6 {
 .drop-cap::first-letter {
   float: left;
   font-family: var(--font-display);
-  font-size: 3.5rem;
+  font-size: 4.2rem;
   line-height: 0.8;
   font-weight: 700;
   margin-right: 0.5rem;
@@ -116,31 +137,40 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-ink-bold);
 }
 
-/* Buttons (Coupon / Action Style) */
 .btn-news {
   display: inline-block;
   font-family: var(--font-mono);
   font-weight: 600;
   text-transform: uppercase;
-  border: 1px solid var(--color-ink);
-  color: var(--color-ink);
-  padding: 0.5rem 1rem;
-  background: transparent;
+  border: 1px solid var(--color-ink-bold);
+  color: var(--color-paper-light);
+  padding: 0.85rem 1.2rem;
+  background: var(--color-ink-bold);
   transition: all 0.2s ease;
   cursor: pointer;
-  letter-spacing: 1px;
+  letter-spacing: 0.14em;
 }
 
 .btn-news:hover {
-  background: var(--color-ink);
-  color: var(--color-paper);
+  background: transparent;
+  color: var(--color-ink-bold);
   border-color: var(--color-ink);
+}
+
+.btn-news-secondary {
+  background: transparent;
+  color: var(--color-ink-bold);
+}
+
+.btn-news-secondary:hover {
+  background: var(--color-ink-bold);
+  color: var(--color-paper-light);
 }
 
 /* Highlight / Selection */
 ::selection {
   background: var(--color-ink-bold);
-  color: var(--color-paper);
+  color: var(--color-paper-light);
 }
 
 /* Scrollbar */
@@ -149,11 +179,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 ::-webkit-scrollbar-track {
   background: var(--color-paper);
-  border-left: 1px solid var(--color-b-border);
+  border-left: 1px solid rgba(111, 99, 86, 0.2);
 }
 ::-webkit-scrollbar-thumb {
   background: var(--color-stele);
-  border: 1px solid var(--color-paper);
+  border: 1px solid var(--color-paper-light);
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-stele-light);

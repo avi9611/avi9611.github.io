@@ -7,50 +7,49 @@ import Footer from "../../components/Footer.astro";
 const blogPosts = [
   {
     id: "getting-started-with-astro",
-    title: "Getting Started with Astro.js",
+    title: "Designing fast marketing sites with Astro",
     excerpt:
-      "Learn how to build lightning-fast websites with Astro.js, the modern static site generator that ships zero JavaScript by default.",
+      "A practical walkthrough of how I think about performance, content structure, and maintainable front-end delivery for fast websites.",
     date: "2025-01-15",
-    category: "Web Development",
+    category: "Frontend Delivery",
     readTime: "5 min read",
-    image: "/images/imagesA.jpg",
+    image: "/images/project-placeholder.jpg",
   },
   {
     id: "mern-stack-best-practices",
-    title: "MERN Stack Best Practices in 2025",
+    title: "What makes a backend feel production ready",
     excerpt:
-      "Discover the latest best practices for building scalable MERN stack applications, from project structure to deployment strategies.",
+      "Notes on API contracts, maintainable service boundaries, deployment workflows, and the small decisions that improve reliability over time.",
     date: "2025-01-10",
-    category: "Full Stack",
+    category: "Backend Systems",
     readTime: "8 min read",
-    image: "/images/imagesA.jpg",
+    image: "/images/project-placeholder.jpg",
   },
   {
     id: "azure-fundamentals-guide",
-    title: "Azure Fundamentals: A Complete Guide",
+    title: "Using AI tooling without lowering code quality",
     excerpt:
-      "Everything you need to know to get started with Microsoft Azure, from basic concepts to getting certified.",
+      "How tools like Claude Code, Codex, and Copilot can speed up delivery while still keeping engineering standards high.",
     date: "2025-01-05",
-    category: "Cloud Computing",
+    category: "AI Workflow",
     readTime: "10 min read",
-    image: "/images/imagesA.jpg",
+    image: "/images/project-placeholder.jpg",
   },
 ];
 ---
 
 <Layout
-  title="Tech Blog - Avinash Neralakatte (Avinash N) | Web Development, Cloud Computing & AI"
-  description="Read technical articles and tutorials by Avinash Neralakatte on full-stack development, generative AI, cloud computing (Azure, AWS), FastAPI, Next.js, MERN stack, and software engineering best practices. Learn from real-world production experience."
+  title="Writing Desk - Avinash Neralakatte"
+  description="Notes and upcoming writing from Avinash Neralakatte on backend systems, frontend delivery, AI-assisted engineering workflows, and product implementation."
 >
   <Navigation />
 
-  <main class="pt-32 pb-24 min-h-screen">
-    <div class="max-w-6xl mx-auto px-6 lg:px-8">
-      <!-- Page Header -->
+  <main class="pt-24 pb-24 min-h-screen">
+    <div class="max-w-[1400px] mx-auto px-4 md:px-8">
       <div class="text-center mb-16">
         <a
           href="/"
-          class="inline-flex items-center gap-2 text-cosmic-muted hover:text-cosmic-accent transition-colors mb-6"
+          class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-ink-light hover:text-ink mb-6"
         >
           <svg
             class="w-4 h-4"
@@ -64,24 +63,18 @@ const blogPosts = [
               stroke-width="2"
               d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
           </svg>
-          Back to Home
+          Back to portfolio
         </a>
-        <h1 class="text-4xl md:text-5xl font-bold mb-4">
-          <span class="gradient-text">Blog</span>
-        </h1>
-        <p class="text-cosmic-muted max-w-2xl mx-auto">
-          Thoughts, tutorials, and insights on web development, cloud computing,
-          and software engineering.
+        <h1 class="section-header inline-block">Writing Desk</h1>
+        <p class="section-lede mt-4">
+          A place for architecture notes, build lessons, and practical thoughts from shipping real software.
         </p>
       </div>
 
-      <!-- Coming Soon Notice -->
-      <div class="glass rounded-2xl p-8 text-center mb-12">
-        <div
-          class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-cosmic-accent/10 flex items-center justify-center"
-        >
+      <div class="paper-card p-8 md:p-10 text-center mb-12">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-full border border-ink/20 bg-white/45 flex items-center justify-center">
           <svg
-            class="w-8 h-8 text-cosmic-accent"
+            class="w-8 h-8 text-ink-light"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -94,37 +87,33 @@ const blogPosts = [
             ></path>
           </svg>
         </div>
-        <h2 class="text-2xl font-bold text-white mb-2">Coming Soon!</h2>
-        <p class="text-cosmic-muted max-w-md mx-auto">
-          I'm working on creating helpful content about web development, cloud
-          technologies, and my learning journey. Stay tuned!
+        <h2 class="font-display text-4xl font-semibold mb-3">Writing is on the way</h2>
+        <p class="text-lg text-ink/75 max-w-2xl mx-auto leading-relaxed">
+          I’m shaping this section around production backend work, implementation patterns, performance decisions, and the practical use of AI in engineering delivery.
         </p>
       </div>
 
-      <!-- Preview Blog Posts -->
-      <h2 class="text-2xl font-bold text-white mb-6">
-        Preview: Upcoming Articles
-      </h2>
+      <h2 class="font-display text-4xl font-semibold mb-6">Upcoming topics</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {
           blogPosts.map((post) => (
-            <article class="glass rounded-2xl overflow-hidden card-hover group opacity-60">
-              <div class="relative h-48 bg-cosmic-gray overflow-hidden">
+            <article class="paper-card overflow-hidden group">
+              <div class="relative h-48 overflow-hidden border-b border-ink/10">
                 <img
                   src={post.image}
                   alt={post.title}
-                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  class="w-full h-full object-cover grayscale-[0.1] contrast-105 transition-transform duration-500 group-hover:scale-[1.02]"
                   loading="lazy"
                 />
                 <div class="absolute top-3 left-3">
-                  <span class="px-3 py-1 text-xs font-medium bg-cosmic-purple/80 text-white rounded-full">
+                  <span class="tag-chip">
                     {post.category}
                   </span>
                 </div>
               </div>
 
               <div class="p-6">
-                <div class="flex items-center gap-3 text-cosmic-muted text-sm mb-3">
+                <div class="flex items-center gap-3 text-ink-light text-sm mb-3">
                   <span>
                     {new Date(post.date).toLocaleDateString("en-US", {
                       month: "short",
@@ -136,11 +125,11 @@ const blogPosts = [
                   <span>{post.readTime}</span>
                 </div>
 
-                <h3 class="text-lg font-bold text-white mb-2 line-clamp-2 group-hover:text-cosmic-accent transition-colors">
+                <h3 class="font-display text-3xl font-semibold mb-3 leading-tight group-hover:text-[var(--color-accent)] transition-colors">
                   {post.title}
                 </h3>
 
-                <p class="text-cosmic-muted text-sm line-clamp-3">
+                <p class="text-base text-ink/75 leading-relaxed">
                   {post.excerpt}
                 </p>
               </div>
@@ -149,19 +138,17 @@ const blogPosts = [
         }
       </div>
 
-      <!-- Newsletter Signup -->
-      <div class="mt-16 glass rounded-2xl p-8 text-center">
-        <h2 class="text-2xl font-bold text-white mb-2">Get Notified</h2>
-        <p class="text-cosmic-muted mb-6 max-w-md mx-auto">
-          Want to know when new articles are published? Connect with me on
-          social media or check back soon!
+      <div class="mt-16 paper-card p-8 md:p-10 text-center">
+        <h2 class="font-display text-4xl font-semibold mb-3">Follow along</h2>
+        <p class="text-lg text-ink/75 mb-6 max-w-2xl mx-auto leading-relaxed">
+          Until writing goes live here, LinkedIn and GitHub are the best places to follow new work and updates.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href="https://www.linkedin.com/in/avinash-n-a99387286/"
             target="_blank"
             rel="noopener noreferrer"
-            class="btn-primary inline-flex items-center justify-center gap-2"
+            class="btn-news inline-flex items-center justify-center gap-2"
           >
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
               <path
@@ -174,7 +161,7 @@ const blogPosts = [
             href="https://github.com/avi9611"
             target="_blank"
             rel="noopener noreferrer"
-            class="btn-secondary inline-flex items-center justify-center gap-2"
+            class="btn-news btn-news-secondary inline-flex items-center justify-center gap-2"
           >
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
               <path

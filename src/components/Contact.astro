@@ -4,57 +4,57 @@ import personal from "../data/personal.json";
 
 <section
   id="contact"
-  class="py-16 px-4 md:px-8 max-w-[1400px] mx-auto bg-paper"
+  class="py-18 px-4 md:px-8 max-w-[1400px] mx-auto"
 >
   <div
-    class="border-4 border-double border-ink p-8 md:p-12 text-center max-w-4xl mx-auto"
+    class="paper-card border-4 border-double border-ink/70 p-8 md:p-12 max-w-5xl mx-auto"
   >
-    <h2 class="font-display font-black text-4xl md:text-5xl uppercase mb-4">
-      Inquire Within
-    </h2>
-    <p class="font-serif italic text-xl text-ink/70 mb-8">
-      Open for commissions, employment, and technical correspondence.
-    </p>
+    <div class="text-center">
+      <h2 class="section-header inline-block">Contact</h2>
+      <p class="section-lede mt-4 mb-8">
+        If you are building a product that needs reliable backend architecture, polished frontend delivery, or practical AI integration, let’s talk.
+      </p>
+    </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
       <a
         href={`mailto:${personal.email}`}
-        class="group border border-ink p-6 hover:bg-ink hover:text-paper transition-colors"
+        class="paper-card p-6 hover:bg-white/60"
       >
-        <h3 class="font-bold uppercase font-mono text-lg mb-2">
-          Electronic Mail
-        </h3>
-        <p class="text-sm break-all">{personal.email}</p>
+        <p class="kicker mb-3">Email</p>
+        <h3 class="font-display text-2xl mb-2">Primary contact</h3>
+        <p class="text-base break-all text-ink/80">{personal.email}</p>
       </a>
       <a
         href={`tel:${personal.phone}`}
-        class="group border border-ink p-6 hover:bg-ink hover:text-paper transition-colors"
+        class="paper-card p-6 hover:bg-white/60"
       >
-        <h3 class="font-bold uppercase font-mono text-lg mb-2">Telephone</h3>
-        <p class="text-sm">{personal.phone}</p>
+        <p class="kicker mb-3">Phone</p>
+        <h3 class="font-display text-2xl mb-2">Direct line</h3>
+        <p class="text-base text-ink/80">{personal.phone}</p>
       </a>
-      <div
-        class="group border border-ink p-6 hover:bg-ink hover:text-paper transition-colors cursor-default"
-      >
-        <h3 class="font-bold uppercase font-mono text-lg mb-2">Office</h3>
-        <p class="text-sm">{personal.location}</p>
+      <div class="paper-card p-6">
+        <p class="kicker mb-3">Location</p>
+        <h3 class="font-display text-2xl mb-2">Working across</h3>
+        <p class="text-base text-ink/80">{personal.location}</p>
       </div>
     </div>
 
-    <div class="border-t-2 border-dashed border-ink pt-8">
-      <h3 class="font-display font-bold uppercase text-xl mb-6">
-        Or Send a Wire
-      </h3>
-      <div class="flex flex-wrap justify-center gap-4">
-        <a href={personal.social.github} target="_blank" class="btn-news px-8"
-          >Github</a
-        >
-        <a href={personal.social.linkedin} target="_blank" class="btn-news px-8"
-          >LinkedIn</a
-        >
-        <a href={personal.social.leetcode} target="_blank" class="btn-news px-8"
-          >LeetCode</a
-        >
+    <div class="border-t border-ink/15 pt-8 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+      <div>
+        <p class="kicker mb-2">Preferred conversations</p>
+        <p class="text-lg text-ink/80 max-w-2xl">
+          Product development, backend-heavy builds, CRM workflows, performance improvements, and AI-enabled features.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap gap-3">
+        <a href={personal.social.linkedin} target="_blank" rel="noopener noreferrer" class="btn-news">
+          LinkedIn
+        </a>
+        <a href={personal.social.github} target="_blank" rel="noopener noreferrer" class="btn-news btn-news-secondary">
+          GitHub
+        </a>
       </div>
     </div>
   </div>

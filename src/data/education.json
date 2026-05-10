@@ -1,20 +1,20 @@
 [
-    {
-        "degree": "Master of Computer Application",
-        "institution": "Visvesvaraya Technological University",
-        "college": "Srinivas Institute of Technology, Mangalore",
-        "period": "Oct 2022 - Sep 2024",
-        "grade": "CGPA: 8.85",
-        "description": "Completed MCA gaining expertise in software engineering, web development, cloud computing, and algorithms. Proficient in Java, Python, and modern frameworks.",
-        "color": "cyan"
-    },
-    {
-        "degree": "Bachelor of Science",
-        "institution": "Mangalore University",
-        "college": "Bhandarkars Arts and Science College, Kundapura",
-        "period": "Feb 2017 - Jul 2019",
-        "grade": "Percentage: 68.24%",
-        "description": "Completed B.Sc. in Mathematics, developing strong analytical skills through coursework in mathematics, forming a solid foundation for problem-solving in technology.",
-        "color": "purple"
-    }
+  {
+    "degree": "Master of Computer Applications",
+    "institution": "Visvesvaraya Technological University",
+    "college": "Srinivas Institute of Technology, Mangalore",
+    "period": "Oct 2022 - Sep 2024",
+    "grade": "CGPA 8.85",
+    "description": "Strengthened my software engineering foundation across web development, system design thinking, cloud concepts, and applied programming.",
+    "color": "stone"
+  },
+  {
+    "degree": "Bachelor of Science in Mathematics",
+    "institution": "Mangalore University",
+    "college": "Bhandarkars Arts and Science College, Kundapura",
+    "period": "Feb 2017 - Jul 2019",
+    "grade": "68.24%",
+    "description": "Built analytical discipline and structured problem-solving habits that continue to shape my engineering approach.",
+    "color": "stone"
+  }
 ]

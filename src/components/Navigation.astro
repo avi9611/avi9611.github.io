@@ -2,38 +2,45 @@
 import personal from "../data/personal.json";
 
 const navItems = [
-  { href: "#home", label: "Front Page" },
-  { href: "#about", label: "Editorial" },
-  { href: "#experience", label: "Chronicles" },
-  { href: "#skills", label: "Classifieds" },
-  { href: "#projects", label: "Features" },
-  { href: "#contact", label: "Letters" },
+  { href: "#home", label: "Overview" },
+  { href: "#about", label: "Profile" },
+  { href: "#experience", label: "Experience" },
+  { href: "#projects", label: "Work" },
+  { href: "#skills", label: "Capabilities" },
+  { href: "#contact", label: "Contact" },
 ];
 ---
 
 <nav
   id="navbar"
-  class="sticky top-0 z-50 bg-paper border-b-2 border-b-ink border-t border-t-ink/20 py-2 w-full"
+  class="sticky top-0 z-50 bg-paper-light/95 backdrop-blur border-y border-ink/20 w-full"
 >
-  <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
+  <div class="max-w-[1400px] mx-auto px-4 md:px-8 py-3 flex justify-between items-center gap-4">
+    <a
+      href="#home"
+      class="font-mono text-[11px] md:text-xs uppercase tracking-[0.28em] text-ink-light hover:text-ink"
+    >
+      {personal.name} / Portfolio
+    </a>
+
     <!-- Mobile Menu Button -->
     <button
       id="mobile-menu-btn"
-      class="lg:hidden p-2 text-ink border border-ink"
+      class="lg:hidden px-3 py-2 text-ink border border-ink/30 font-mono text-xs uppercase tracking-[0.2em]"
       aria-label="Menu"
     >
-      <span class="block font-display text-sm uppercase">Menu</span>
+      <span class="block">Menu</span>
     </button>
 
     <!-- Desktop Navigation -->
     <div
-      class="hidden lg:flex w-full justify-center items-center divide-x divide-ink/20"
+      class="hidden lg:flex items-center gap-2"
     >
       {
         navItems.map((item) => (
           <a
             href={item.href}
-            class="px-6 font-display font-bold uppercase tracking-widest text-sm hover:text-ink-bold hover:underline decoration-2 underline-offset-4 transition-all"
+            class="px-4 py-2 font-mono text-xs uppercase tracking-[0.22em] text-ink-light hover:text-ink hover:bg-white/40"
           >
             {item.label}
           </a>
@@ -44,13 +51,13 @@ const navItems = [
     <!-- Mobile Menu Overlay -->
     <div
       id="mobile-menu"
-      class="absolute top-full left-0 w-full bg-paper border-b-2 border-ink hidden flex-col border-t border-ink"
+      class="absolute top-full left-0 w-full bg-paper-light border-b border-ink/20 hidden flex-col"
     >
       {
         navItems.map((item) => (
           <a
             href={item.href}
-            class="block py-4 text-center font-display font-bold uppercase tracking-widest border-b border-ink/10 hover:bg-ink hover:text-paper transition-colors"
+            class="block py-4 px-6 text-left font-mono text-xs uppercase tracking-[0.22em] border-b border-ink/10 hover:bg-white/40"
           >
             {item.label}
           </a>
