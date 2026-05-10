@@ -21,6 +21,7 @@ interface Project {
   highlights?: string[];
   tags: string[];
   github: string;
+  website?: string;
   images: string[];
   featured: boolean;
 }
@@ -157,6 +158,20 @@ const { project } = Astro.props as { project: Project };
             <p class="kicker mb-3">Links</p>
             <h3 class="font-display text-3xl font-semibold mb-4">Source and archive</h3>
             <div class="space-y-3">
+              {project.website && (
+                <a
+                  href={project.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-3 text-ink-light hover:text-[var(--color-accent)] transition-colors"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 3h7m0 0v7m0-7L10 14" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5v14h14" />
+                  </svg>
+                  Visit live site
+                </a>
+              )}
               <a
                 href={project.github}
                 target="_blank"

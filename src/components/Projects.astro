@@ -84,6 +84,16 @@ const featuredProjects = projects.filter((project) => project.featured).slice(0,
               >
                 View case study
               </a>
+              {project.website && (
+                <a
+                  href={project.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="border-b border-ink/30 pb-1 hover:text-[var(--color-accent)] hover:border-[var(--color-accent)]"
+                >
+                  Live site
+                </a>
+              )}
               <a
                 href={project.github}
                 target="_blank"

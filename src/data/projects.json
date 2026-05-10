@@ -1,25 +1,30 @@
 [
   {
-    "id": "chemcoach",
-    "title": "ChemCoach Solutions",
-    "subtitle": "Client-Facing Marketing Website",
-    "description": "A polished Next.js website built to clearly present services, improve credibility, and create a smoother path for prospective students to understand the offering.",
-    "role": "Frontend delivery, interface structure, implementation polish",
-    "outcome": "Shows how I approach client-facing web delivery with clarity, responsiveness, and clean presentation.",
+    "id": "nadisa-solutions",
+    "title": "Nadisa Solutions",
+    "subtitle": "Chemistry Career Guidance Platform",
+    "description": "A modern Next.js platform for chemistry professionals and students, combining career guidance services, dynamic content, job discovery, contact workflows, and a secure admin dashboard in one production-ready product.",
+    "role": "Full-stack implementation across product UI, Firebase services, admin workflows, performance tuning, and SEO delivery",
+    "outcome": "Represents end-to-end product delivery on a real business platform, with dynamic content systems, measurable performance work, mobile-aware interaction design, and infrastructure that supports day-to-day operations.",
     "highlights": [
-      "Built a responsive marketing experience with TypeScript and Tailwind CSS.",
-      "Focused on service communication, page clarity, and fast implementation.",
-      "Used a practical component structure to keep the site easy to maintain."
+      "Built a Next.js 16 and React 19 experience with App Router, TypeScript, Tailwind CSS 4, Framer Motion, and Radix UI for a polished and accessible front end.",
+      "Integrated Firebase Firestore, Authentication, and Storage to power blogs, jobs, contact submissions, and a secure admin dashboard for content operations.",
+      "Optimized for production with SEO metadata, JSON-LD, sitemap generation, PWA readiness, mobile-first animation fallbacks, Vercel Analytics, and Core Web Vitals monitoring."
     ],
     "tags": [
-      "Next.js",
+      "Next.js 16",
+      "React 19",
       "TypeScript",
-      "Tailwind CSS",
-      "Responsive UI"
+      "Tailwind CSS 4",
+      "Firebase",
+      "Framer Motion",
+      "Radix UI",
+      "Vercel Analytics"
     ],
-    "github": "https://github.com/avi9611/chemcoach-solutions",
+    "github": "https://github.com/avi9611/nadisa-solutions",
+    "website": "https://www.nadisasolutions.com/",
     "images": [
-      "/images/nadibettu.png"
+      "/images/nadisa.png"
     ],
     "featured": true
   },
