@@ -60,6 +60,10 @@ import projects from '../../data/projects.json';
 
                 <p class="text-sm text-ink-light mb-5">{project.role}</p>
 
+                {project.engagement && (
+                  <p class="text-sm text-ink-light mb-5 leading-relaxed">{project.engagement}</p>
+                )}
+
                 <div class="flex flex-wrap gap-2 mb-6">
                   {project.tags.slice(0, 5).map((tag: string) => (
                     <span class="tag-chip">
@@ -85,14 +89,16 @@ import projects from '../../data/projects.json';
                       Live site
                     </a>
                   )}
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="border-b border-ink/30 pb-1 hover:text-[var(--color-accent)] hover:border-[var(--color-accent)]"
-                  >
-                    View source
-                  </a>
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="border-b border-ink/30 pb-1 hover:text-[var(--color-accent)] hover:border-[var(--color-accent)]"
+                    >
+                      View source
+                    </a>
+                  )}
                 </div>
               </div>
             </div>

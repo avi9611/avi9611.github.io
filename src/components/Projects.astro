@@ -2,7 +2,7 @@
 import projects from '../data/projects.json';
 
 // Show featured projects on homepage
-const featuredProjects = projects.filter((project) => project.featured).slice(0, 4);
+const featuredProjects = projects.filter((project) => project.featured).slice(0, 5);
 ---
 
 <section
@@ -60,6 +60,12 @@ const featuredProjects = projects.filter((project) => project.featured).slice(0,
               </div>
             </div>
 
+            {project.engagement && (
+              <p class="text-sm text-ink-light leading-relaxed mb-5">
+                {project.engagement}
+              </p>
+            )}
+
             <ul class="space-y-3 mb-6">
               {project.highlights.slice(0, 2).map((highlight: string) => (
                 <li class="flex gap-3 items-start">
@@ -94,14 +100,16 @@ const featuredProjects = projects.filter((project) => project.featured).slice(0,
                   Live site
                 </a>
               )}
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="border-b border-ink/30 pb-1 hover:text-[var(--color-accent)] hover:border-[var(--color-accent)]"
-              >
-                View source
-              </a>
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="border-b border-ink/30 pb-1 hover:text-[var(--color-accent)] hover:border-[var(--color-accent)]"
+                >
+                  View source
+                </a>
+              )}
             </div>
           </div>
         </div>

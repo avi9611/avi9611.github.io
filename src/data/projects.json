@@ -29,6 +29,33 @@
     "featured": true
   },
   {
+    "id": "visume",
+    "title": "Visume",
+    "subtitle": "AI Video Resume and Hiring Platform",
+    "description": "A live product experience focused on AI-assisted video resumes and faster hiring workflows, built to help candidates present themselves better and give employers a more structured first screening layer.",
+    "role": "Contributed to product implementation and delivery on a live platform, with work across interface quality, feature execution, and production-facing polish",
+    "outcome": "A strong example of contributing to a real, publicly available product without overstating ownership. It shows experience working on user-facing flows for an AI-enabled platform with both candidate and employer value.",
+    "highlights": [
+      "Worked on a public-facing product centered on video resumes, AI-assisted interview flows, and cleaner candidate presentation.",
+      "Contributed to implementation quality and delivery on a platform that balances candidate onboarding with employer-facing hiring utility.",
+      "Useful portfolio proof of hands-on work on a live startup-style application even where repository access is private."
+    ],
+    "tags": [
+      "Product UI",
+      "AI Workflow",
+      "Video Resume",
+      "Hiring Platform",
+      "Responsive Web",
+      "Private Client Work"
+    ],
+    "website": "https://visume.co.in/",
+    "images": [
+      "/images/visume.png"
+    ],
+    "engagement": "Contributed as part of a broader team. Repository access is private, so this case study focuses on the live product and my implementation involvement rather than source code.",
+    "featured": true
+  },
+  {
     "id": "code-eval-ai",
     "title": "Code Eval AI",
     "subtitle": "AI-Assisted Code and UI Review Workspace",
@@ -53,7 +80,7 @@
       "/images/codeval1.png",
       "/images/codeval2.png"
     ],
-    "featured": true
+    "featured": false
   },
   {
     "id": "staff-management",
@@ -80,7 +107,7 @@
       "/images/staff1.png",
       "/images/staff2.png"
     ],
-    "featured": true
+    "featured": false
   },
   {
     "id": "click-talk",
@@ -157,7 +184,7 @@
     "images": [
       "/images/bookstore.png"
     ],
-    "featured": false
+    "featured": true
   },
   {
     "id": "otp-auth",
@@ -182,7 +209,7 @@
       "/images/otp1.png",
       "/images/otp2.png"
     ],
-    "featured": false
+    "featured": true
   },
   {
     "id": "vulnerability-detection",
