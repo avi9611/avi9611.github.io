@@ -1,76 +1,34 @@
 {
   "categories": [
     {
-      "title": "Backend Systems",
-      "summary": "Production API design with clear boundaries, reliable contracts, and maintainable service structure.",
-      "skills": [
-        "FastAPI",
-        "Python",
-        "REST API design",
-        "Authentication",
-        "Validation",
-        "Clean architecture"
-      ]
+      "title": "Backend",
+      "summary": "Modular monoliths with strict separation between routes, services and data access. Routes hold no business logic. Services own the transaction boundary. Data access never commits.",
+      "skills": ["FastAPI", "async SQLAlchemy 2.0", "Pydantic v2", "Alembic", "Celery", "REST API design", "JWT and RBAC", "Python"]
     },
     {
-      "title": "Frontend Delivery",
-      "summary": "Modern product interfaces with attention to performance, clarity, and implementation detail.",
-      "skills": [
-        "Next.js",
-        "React",
-        "TypeScript",
-        "Tailwind CSS",
-        "Responsive UI",
-        "Component architecture"
-      ]
+      "title": "Frontend",
+      "summary": "Product interfaces built on a documented component and data-fetching layer, so the tenth screen costs what the second one did.",
+      "skills": ["Next.js App Router", "React 19", "TypeScript", "TanStack Query", "Zustand", "Tailwind CSS", "React Hook Form and Zod", "shadcn/ui"]
     },
     {
-      "title": "Data and Infrastructure",
-      "summary": "Practical foundations for application storage, deployment, and production environment setup.",
-      "skills": [
-        "PostgreSQL",
-        "MySQL",
-        "MongoDB",
-        "Docker",
-        "Azure",
-        "AWS"
-      ]
+      "title": "Data and infrastructure",
+      "summary": "Everything runs in Docker locally and in production. Migrations are reviewed like code, because they are the only part you cannot roll back casually.",
+      "skills": ["PostgreSQL", "Redis", "MongoDB", "MySQL", "Docker and Compose", "S3-compatible storage", "DigitalOcean", "AWS", "Azure"]
     },
     {
-      "title": "Performance and Async Workloads",
-      "summary": "Improving runtime behavior and background processing for real product workflows.",
-      "skills": [
-        "Caching strategies",
-        "Celery workers",
-        "Background jobs",
-        "Query optimization",
-        "Containerized workflows",
-        "System reliability"
-      ]
+      "title": "Reliability",
+      "summary": "Background work, caching and observability treated as part of the feature, not as something added after the first incident.",
+      "skills": ["Celery workers and queues", "Caching strategies", "Prometheus metrics", "Structured logging", "Append-only audit trails", "Rate limiting", "Query optimisation"]
     },
     {
-      "title": "AI Integration",
-      "summary": "Applying LLMs and AI-assisted workflows where they improve product capability or team speed.",
-      "skills": [
-        "LLM integrations",
-        "Prompt workflows",
-        "Evaluation loops",
-        "AI-assisted features",
-        "Workflow automation",
-        "Model-backed UX"
-      ]
+      "title": "Quality",
+      "summary": "Tests where they earn their keep, documentation that carries a date stamp, and a checker that fails the commit when the two disagree.",
+      "skills": ["pytest and pytest-asyncio", "Vitest", "Playwright", "Code review", "Technical documentation", "Architecture decision records", "Git and GitHub"]
     },
     {
-      "title": "Engineering Practice",
-      "summary": "Delivery habits that keep teams fast without sacrificing code quality or maintainability.",
-      "skills": [
-        "Git and GitHub",
-        "API testing",
-        "Agile collaboration",
-        "Code review",
-        "Documentation",
-        "AI developer tooling"
-      ]
+      "title": "AI in production",
+      "summary": "Models used where they change what a product can do, and AI tooling used to ship more without shipping worse.",
+      "skills": ["LLM product integration", "Pydantic AI", "RAG pipelines", "Prompt and context design", "Claude Code", "Codex", "GitHub Copilot"]
     }
   ]
 }

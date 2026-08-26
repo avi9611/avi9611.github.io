@@ -1,238 +1,281 @@
 [
   {
+    "id": "calibration-crm",
+    "title": "Calibration Laboratory CRM",
+    "subtitle": "Lead-to-cash platform for a UAE medical-equipment calibration lab",
+    "category": "client",
+    "period": "2026",
+    "confidential": true,
+    "featured": true,
+    "description": "A multi-branch platform covering the full lead-to-cash lifecycle for one of the few laboratories in the UAE with a dedicated lab for calibrating medical equipment. Sales, operations, procurement, finance and compliance in one system, with traceability across every approval and financial edit.",
+    "role": "Lead developer. Sole author of 98% of both the backend and frontend repositories.",
+    "outcome": "The largest system I have worked on, and the one that taught me the most. Delivered against a signed scope of work with contractual SLA and performance targets.",
+    "highlights": [
+      "18 business modules: sales CRM, clients, work orders, repairs, instruments, inventory, procurement, HRM, certificates, settings, IAM and audit logging. Every module feeds at least one other, so data entered once is referenced downstream instead of re-keyed.",
+      "Multi-branch tenancy where each branch operates with its own credentials, and every generated document carries the issuing branch's identity. A snapshot audit freezes counterparty details onto issued documents so a later edit to a vendor cannot rewrite history.",
+      "A maker-checker approval chain through Leads, Proposals and a single-transaction Accept and Convert that creates the client and raises the work order together, so the two can never diverge.",
+      "A shared PDF engine rendering nine document types across procurement and HRM, replacing the per-module one-offs that came before it.",
+      "Procurement end to end: vendors, purchase requisition, purchase order, goods received note, record purchase, purchase return, and a vendor payments ledger."
+    ],
+    "stack": ["FastAPI", "async SQLAlchemy 2.0", "PostgreSQL", "Redis", "Celery", "Next.js 16", "React 19", "TanStack Query", "Tailwind v4", "Docker"],
+    "tags": ["Modular monolith", "Multi-tenancy", "Audit logging", "RBAC", "PWA"]
+  },
+  {
+    "id": "hospital-systems",
+    "title": "Hospital Management Systems",
+    "subtitle": "Two live deployments on a shared modular core",
+    "category": "client",
+    "period": "2026",
+    "confidential": true,
+    "featured": true,
+    "description": "Two hospital management platforms built and deployed for separate healthcare clients, sharing a common modular backend so improvements to auth, audit and permissions landed in both.",
+    "role": "Joint lead with one colleague across backend and frontend. Primary author on both frontends.",
+    "outcome": "Both are live. Building two products off one core showed me exactly which abstractions survive a second client and which were wishful thinking.",
+    "highlights": [
+      "Shared modular monolith core: JWT auth with refresh tokens, role and permission based access control, and an append-only activity log recording actor, action, resource and a JSON detail payload.",
+      "A release notes system that surfaces what changed to users inside the product, rather than in an email nobody opens.",
+      "Frontend built on the internal Next.js template, which is where most of the template's rough edges were found and fixed."
+    ],
+    "stack": ["FastAPI", "PostgreSQL", "Redis", "Celery", "Next.js", "React", "TypeScript", "Tailwind CSS"],
+    "tags": ["Healthcare", "RBAC", "Audit trail", "Shared core"]
+  },
+  {
+    "id": "service-marketplace",
+    "title": "Hospitality Service Marketplace",
+    "subtitle": "Two-sided booking platform connecting providers, employers and job seekers",
+    "category": "client",
+    "period": "2025 — 2026",
+    "confidential": true,
+    "featured": true,
+    "description": "A marketplace where service providers, customers, employers and job seekers meet, with booking, referrals and provider management. This was the organisation's first real FastAPI project and the one where the house architecture was worked out.",
+    "role": "Full-stack contributor across backend and frontend, alongside two colleagues. My first project at the company.",
+    "outcome": "The project I learned the house patterns on, and the reason the conventions kit exists. Several rules in it were written because of bugs that shipped here first.",
+    "highlights": [
+      "Booking and service-provider modules carrying the bulk of the domain logic, plus customer, employer, job seeker and referral flows.",
+      "Worked through the architectural iteration honestly: different modules landed on different patterns as the team learned, and the current best practice was written down rather than left implicit.",
+      "Live on its own domain with Celery workers and Flower monitoring in production."
+    ],
+    "stack": ["FastAPI", "PostgreSQL", "Redis", "Celery", "Next.js", "TypeScript"],
+    "tags": ["Marketplace", "Booking", "Two-sided", "Referrals"]
+  },
+  {
+    "id": "construction-crm",
+    "title": "Construction Project CRM",
+    "subtitle": "Project management and operations for a construction firm",
+    "category": "client",
+    "period": "2026",
+    "confidential": true,
+    "featured": false,
+    "description": "A CRM for running construction projects: clients, projects, operations tracking and the document trail around them, on the standard modular backend.",
+    "role": "Full-stack contributor. Primary author on the frontend.",
+    "outcome": "A straightforward brief delivered on the house stack, which is what the templates are for.",
+    "highlights": [
+      "JWT auth with refresh tokens and RBAC, Celery background tasks with Flower monitoring, and S3-compatible object storage on DigitalOcean Spaces.",
+      "Prometheus metrics and rotating structured logs wired in from the start rather than added after the first incident.",
+      "Append-only activity log for the audit trail."
+    ],
+    "stack": ["FastAPI", "PostgreSQL", "Redis", "Celery", "Next.js", "DigitalOcean Spaces"],
+    "tags": ["Construction", "Project management", "Object storage"]
+  },
+  {
+    "id": "sales-crm",
+    "title": "Sales CRM",
+    "subtitle": "Pipeline and customer management",
+    "category": "client",
+    "period": "2026",
+    "confidential": true,
+    "featured": false,
+    "description": "A sales CRM covering pipeline, customers and the reporting around them, scaffolded from the in-house CLI and finished on the standard stack.",
+    "role": "Primary author on the frontend, contributor on the backend.",
+    "outcome": "The first project generated from the internal CLI, which surfaced what the scaffolding was missing.",
+    "highlights": [
+      "Frontend built and owned end to end.",
+      "Backend generated from the in-house FastAPI scaffolding and extended with the domain modules."
+    ],
+    "stack": ["FastAPI", "PostgreSQL", "Next.js", "TypeScript", "Tailwind CSS"],
+    "tags": ["Sales", "Pipeline", "CRM"]
+  },
+  {
+    "id": "hrm-platform",
+    "title": "HRM Platform",
+    "subtitle": "Employees, attendance, leave and payroll data",
+    "category": "client",
+    "period": "2026",
+    "confidential": true,
+    "featured": false,
+    "description": "A human resource management platform covering employees, attendance, leave, salary, departments, designations, shifts, teams and holidays.",
+    "role": "Sole developer. 29 of 29 backend commits and 51 of 53 frontend commits.",
+    "outcome": "Built end to end on my own inside a tight window, which is the clearest test of whether the templates actually save time. They did.",
+    "highlights": [
+      "Full HRM domain: employees, attendance, leave, salary, departments, designations, shifts, teams and holidays.",
+      "PDF generation with ReportLab, spreadsheet import and export via Pandas and openpyxl, and image processing with Pillow.",
+      "Rate limiting with slowapi, Prometheus instrumentation, and a pytest suite with pytest-asyncio and httpx."
+    ],
+    "stack": ["FastAPI", "Python 3.14", "PostgreSQL 16", "Redis 7", "Celery 5", "ReportLab", "Pandas", "Next.js"],
+    "tags": ["HRM", "Solo build", "Reporting", "PDF generation"]
+  },
+  {
+    "id": "nextjs-template",
+    "title": "Next.js Frontend Template",
+    "subtitle": "The company standard for new frontends",
+    "category": "standards",
+    "period": "2026",
+    "confidential": false,
+    "featured": true,
+    "description": "An opinionated production template that new client frontends start from. I built and documented it on my own. It is not a starter kit, it is the argument for how we build frontends, written down so it survives me.",
+    "role": "Sole author. 18 of 18 commits.",
+    "outcome": "Now the default starting point for new projects. Writing the rules down forced me to justify each one, and several did not survive the writing.",
+    "highlights": [
+      "143 files across app routes, a data-view component layer, shared UI, permissions, forms and a typed API client.",
+      "Backend-for-frontend authentication: tokens live in httpOnly cookies and are never exposed to JavaScript. Route handlers proxy auth and inject the bearer token.",
+      "Built-in RBAC with four default roles and resource.action permission strings, gating both navigation and individual components.",
+      "17 numbered rule documents, each one topic, plus an architecture guide explaining how the pieces fit. A CLAUDE.md carries the guardrails and the anti-pattern list for AI assistants working in the repo.",
+      "Trimming support, so a project that does not need permissions, decimal money maths or dark mode can remove them cleanly instead of working around them."
+    ],
+    "stack": ["Next.js 16", "React 19", "TypeScript", "TanStack Query", "Zustand", "Tailwind v4", "shadcn/ui", "React Hook Form", "Zod", "Vitest", "Playwright"],
+    "tags": ["Internal standard", "Solo build", "Architecture", "Documentation"],
+    "github": "https://github.com/hybridinteract/nextjs-template"
+  },
+  {
+    "id": "backend-conventions",
+    "title": "Backend Conventions Kit",
+    "subtitle": "Rules, traps and checklists for starting a backend",
+    "category": "standards",
+    "period": "2026",
+    "confidential": false,
+    "featured": true,
+    "description": "A portable folder you copy into a new backend on day one. Every rule in it was paid for once already, by a bug that shipped. The point of copying it is that you do not pay for them again.",
+    "role": "Sole author.",
+    "outcome": "The clearest thing I have written. It is what I would hand a new engineer before they open the code.",
+    "highlights": [
+      "17 concern guides, one per cross-cutting topic: permissions, migrations, caching, tenancy and scoping, dates and timezones, money and quantities, state machines, background jobs, audit logging, pagination, rate limiting, seeding, notifications, import and export, analytics, testing and the frontend contract.",
+      "A day-one checklist of roughly twenty decisions that are cheap now and very expensive in month six.",
+      "One owner per rule. A cross-cutting rule is written in full in exactly one place and appears everywhere else as a one-line summary with a link, so it cannot drift into eight disagreeing copies.",
+      "Every document carries a date stamp, and check_docs.py fails the commit when a link dies or a document goes stale. A document that lies is worse than no document."
+    ],
+    "stack": ["Python", "Markdown", "pre-commit"],
+    "tags": ["Internal standard", "Solo build", "Documentation", "Engineering practice"]
+  },
+  {
     "id": "nadisa-solutions",
     "title": "Nadisa Solutions",
-    "subtitle": "Chemistry Career Guidance Platform",
-    "description": "A modern Next.js platform for chemistry professionals and students, combining career guidance services, dynamic content, job discovery, contact workflows, and a secure admin dashboard in one production-ready product.",
-    "role": "Full-stack implementation across product UI, Firebase services, admin workflows, performance tuning, and SEO delivery",
-    "outcome": "Represents end-to-end product delivery on a real business platform, with dynamic content systems, measurable performance work, mobile-aware interaction design, and infrastructure that supports day-to-day operations.",
+    "subtitle": "Career guidance platform for chemistry professionals",
+    "category": "personal",
+    "period": "2026",
+    "confidential": false,
+    "featured": true,
+    "description": "A live platform combining career guidance content, job discovery, contact workflows and a secure admin dashboard for a real business.",
+    "role": "Built solo, end to end.",
+    "outcome": "A real business runs on it, which is a different bar from a side project nobody depends on.",
     "highlights": [
-      "Built a Next.js 16 and React 19 experience with App Router, TypeScript, Tailwind CSS 4, Framer Motion, and Radix UI for a polished and accessible front end.",
-      "Integrated Firebase Firestore, Authentication, and Storage to power blogs, jobs, contact submissions, and a secure admin dashboard for content operations.",
-      "Optimized for production with SEO metadata, JSON-LD, sitemap generation, PWA readiness, mobile-first animation fallbacks, Vercel Analytics, and Core Web Vitals monitoring."
+      "Next.js 16 and React 19 on the App Router with TypeScript, Tailwind v4, Framer Motion and Radix UI.",
+      "Firebase Firestore, Authentication and Storage powering blogs, jobs, contact submissions and the admin dashboard.",
+      "Production concerns handled: SEO metadata, JSON-LD, sitemap generation, PWA readiness, mobile-first animation fallbacks and Core Web Vitals monitoring."
     ],
-    "tags": [
-      "Next.js 16",
-      "React 19",
-      "TypeScript",
-      "Tailwind CSS 4",
-      "Firebase",
-      "Framer Motion",
-      "Radix UI",
-      "Vercel Analytics"
-    ],
+    "stack": ["Next.js 16", "React 19", "TypeScript", "Tailwind v4", "Firebase", "Framer Motion", "Radix UI"],
+    "tags": ["Live product", "Solo build", "SEO", "Firebase"],
     "github": "https://github.com/avi9611/nadisa-solutions",
     "website": "https://www.nadisasolutions.com/",
-    "images": [
-      "/images/nadisa.png"
-    ],
-    "featured": true
+    "images": ["/images/nadisa.png"]
   },
   {
     "id": "visume",
     "title": "Visume",
-    "subtitle": "AI Video Resume and Hiring Platform",
-    "description": "A live product experience focused on AI-assisted video resumes and faster hiring workflows, built to help candidates present themselves better and give employers a more structured first screening layer.",
-    "role": "Contributed to product implementation and delivery on a live platform, with work across interface quality, feature execution, and production-facing polish",
-    "outcome": "A strong example of contributing to a real, publicly available product without overstating ownership. It shows experience working on user-facing flows for an AI-enabled platform with both candidate and employer value.",
+    "subtitle": "AI video resume and hiring platform",
+    "category": "personal",
+    "period": "2025",
+    "confidential": false,
+    "featured": false,
+    "description": "A live hiring platform built during my internship at GRID R & D, where candidates record video answers and the system scores their technical responses to give employers a structured first screen.",
+    "role": "Built the AI video-interview flow and worked across the MERN stack, MySQL, Prisma and AWS S3.",
+    "outcome": "My first experience shipping something that strangers use without anyone explaining it to them first.",
     "highlights": [
-      "Worked on a public-facing product centered on video resumes, AI-assisted interview flows, and cleaner candidate presentation.",
-      "Contributed to implementation quality and delivery on a platform that balances candidate onboarding with employer-facing hiring utility.",
-      "Useful portfolio proof of hands-on work on a live startup-style application even where repository access is private."
+      "AI-scored video interview flow for technical screening.",
+      "Authentication, authorization and S3-backed file storage for candidate and employer data."
     ],
-    "tags": [
-      "Product UI",
-      "AI Workflow",
-      "Video Resume",
-      "Hiring Platform",
-      "Responsive Web",
-      "Private Client Work"
-    ],
+    "stack": ["React", "Node.js", "Express", "MySQL", "Prisma", "AWS S3"],
+    "tags": ["AI workflow", "Hiring", "Internship work"],
     "website": "https://visume.co.in/",
-    "images": [
-      "/images/visume.png"
-    ],
-    "engagement": "Contributed as part of a broader team. Repository access is private, so this case study focuses on the live product and my implementation involvement rather than source code.",
-    "featured": true
+    "images": ["/images/visume.png"]
   },
   {
     "id": "code-eval-ai",
     "title": "Code Eval AI",
-    "subtitle": "AI-Assisted Code and UI Review Workspace",
-    "description": "An evaluation workflow that combines AI-generated analysis, structured scoring, and reviewer-friendly UX for assessing code submissions and interface quality.",
-    "role": "Full-stack development, evaluation workflow design",
-    "outcome": "Demonstrates how AI feedback and product design can work together in a more structured engineering review flow.",
+    "subtitle": "AI-assisted code and interface review workspace",
+    "category": "personal",
+    "period": "2025",
+    "confidential": false,
+    "featured": false,
+    "description": "An evaluation workflow pairing AI-generated analysis with structured scoring and a reviewer-friendly interface for assessing code submissions.",
+    "role": "Full-stack build.",
+    "outcome": "An early attempt at making model output predictable enough to act on, rather than just interesting to read.",
     "highlights": [
-      "Connected AI-backed analysis to predictable scoring and review outputs.",
-      "Designed a workspace that makes structured feedback easier to read and act on.",
-      "Used PostgreSQL and Prisma to manage submission state and persistence."
+      "Gemini-backed analysis mapped to consistent scoring output.",
+      "PostgreSQL and Prisma managing submission state."
     ],
-    "tags": [
-      "React",
-      "Node.js",
-      "PostgreSQL",
-      "Prisma",
-      "Gemini API",
-      "Tailwind CSS"
-    ],
+    "stack": ["React", "Node.js", "PostgreSQL", "Prisma", "Gemini API", "Tailwind CSS"],
+    "tags": ["AI", "Evaluation", "Full stack"],
     "github": "https://github.com/avi9611/code-eval-ai",
-    "images": [
-      "/images/codeval1.png",
-      "/images/codeval2.png"
-    ],
-    "featured": false
-  },
-  {
-    "id": "staff-management",
-    "title": "Staff Management Dashboard",
-    "subtitle": "Operational Admin Workflow",
-    "description": "A full-stack admin application for managing staff records, roles, and day-to-day workflows through a clear dashboard experience.",
-    "role": "Full-stack dashboard implementation",
-    "outcome": "Represents business-oriented CRUD delivery with role-based workflows and practical admin UX.",
-    "highlights": [
-      "Implemented dynamic filtering, CRUD flows, and role-aware interactions.",
-      "Built a dashboard UI that prioritizes clarity for repeated admin tasks.",
-      "Structured the application around maintainable front-to-back workflow handling."
-    ],
-    "tags": [
-      "React",
-      "TypeScript",
-      "Node.js",
-      "Express",
-      "MongoDB",
-      "Tailwind CSS"
-    ],
-    "github": "https://github.com/avi9611/staff-app",
-    "images": [
-      "/images/staff1.png",
-      "/images/staff2.png"
-    ],
-    "featured": false
+    "images": ["/images/codeval1.png", "/images/codeval2.png"]
   },
   {
     "id": "click-talk",
     "title": "ClickTalk",
-    "subtitle": "Realtime Messaging Platform",
-    "description": "A realtime chat application with secure authentication, online presence handling, and a lightweight interface for fast conversation flows.",
-    "role": "Realtime feature implementation and product UX",
-    "outcome": "Highlights work across stateful frontend behavior, auth, and backend-connected realtime communication.",
+    "subtitle": "Realtime messaging",
+    "category": "personal",
+    "period": "2024",
+    "confidential": false,
+    "featured": false,
+    "description": "A realtime chat application with secure authentication, online presence and a lightweight interface.",
+    "role": "Full-stack build.",
+    "outcome": "Where I learned how much harder stateful realtime behaviour is than request and response.",
     "highlights": [
-      "Implemented secure authentication and authorization flows.",
-      "Handled realtime messaging and online-user status updates.",
-      "Built a clean interface for a highly interactive product experience."
+      "Socket-based messaging with online presence tracking.",
+      "Authentication and authorization flows with Zustand-managed client state."
     ],
-    "tags": [
-      "React",
-      "Node.js",
-      "Express",
-      "MongoDB",
-      "Zustand",
-      "Tailwind CSS"
-    ],
+    "stack": ["React", "Node.js", "Express", "MongoDB", "Zustand", "Socket.IO"],
+    "tags": ["Realtime", "MERN", "WebSockets"],
     "github": "https://github.com/avi9611/Click-Talk-MERN-App",
-    "images": [
-      "/images/click1.png",
-      "/images/click2.png"
-    ],
-    "featured": true
-  },
-  {
-    "id": "task-manager",
-    "title": "Task Manager",
-    "subtitle": "Authenticated Product Workflow",
-    "description": "A Next.js task application focused on authenticated user workflows, clear task organization, and a dependable dashboard-style experience.",
-    "role": "Product implementation, auth workflow integration",
-    "outcome": "Shows practical full-stack delivery around user management, protected routes, and task-based interaction design.",
-    "highlights": [
-      "Integrated Clerk-based authentication into the application workflow.",
-      "Used TypeScript and Tailwind CSS for a clean product UI.",
-      "Managed application data with MongoDB-backed persistence."
-    ],
-    "tags": [
-      "Next.js",
-      "TypeScript",
-      "MongoDB",
-      "Clerk",
-      "Tailwind CSS"
-    ],
-    "github": "https://github.com/avi9611/task-app",
-    "images": [
-      "/images/taskapp.png",
-      "/images/taskapp2.png"
-    ],
-    "featured": false
+    "images": ["/images/click1.png", "/images/click2.png"]
   },
   {
     "id": "bookstore",
     "title": "BookStore",
-    "subtitle": "Commerce-Like Product Interface",
-    "description": "A Next.js application for browsing, managing, and organizing book inventory with a more polished interface and structured product flow.",
-    "role": "Full-stack product interface development",
-    "outcome": "Demonstrates how I approach user-facing product design alongside authentication and database-backed functionality.",
+    "subtitle": "Catalogue and inventory interface",
+    "category": "personal",
+    "period": "2025",
+    "confidential": false,
+    "featured": false,
+    "description": "A Next.js application for browsing, managing and organising book inventory.",
+    "role": "Full-stack build.",
+    "outcome": "An early exercise in pairing a polished interface with real database-backed functionality.",
     "highlights": [
-      "Built a modern interface for browsing and managing catalog data.",
-      "Used PostgreSQL and TypeScript in a structured Next.js setup.",
-      "Focused on balancing visual polish with straightforward product flows."
+      "PostgreSQL with Drizzle ORM behind a typed Next.js frontend.",
+      "Authentication with NextAuth."
     ],
-    "tags": [
-      "Next.js",
-      "PostgreSQL",
-      "TypeScript",
-      "Tailwind CSS"
-    ],
+    "stack": ["Next.js", "PostgreSQL", "Drizzle ORM", "TypeScript", "Tailwind CSS"],
+    "tags": ["Next.js", "Commerce-like", "Catalogue"],
     "github": "https://github.com/avi9611/book-store-nextjs",
-    "images": [
-      "/images/bookstore.png"
-    ],
-    "featured": true
+    "images": ["/images/bookstore.png"]
   },
   {
     "id": "otp-auth",
     "title": "Secure OTP Authentication",
-    "subtitle": "Passwordless Access Flow",
-    "description": "A passwordless authentication product built around OTP verification, session-aware access patterns, and usage analytics.",
-    "role": "Authentication workflow design and interface implementation",
-    "outcome": "Highlights security-oriented thinking through OTP flows, session handling, and analytics visibility.",
+    "subtitle": "Passwordless access flow",
+    "category": "personal",
+    "period": "2025",
+    "confidential": false,
+    "featured": false,
+    "description": "A passwordless authentication flow built around OTP verification, session-aware access and usage analytics.",
+    "role": "Full-stack build.",
+    "outcome": "A focused look at the trade-off between security and how much friction a login can carry.",
     "highlights": [
-      "Designed a passwordless login experience around OTP verification.",
-      "Added analytics-oriented UI for tracking activity and usage patterns.",
-      "Built the experience with security and usability in balance."
+      "OTP verification with session handling.",
+      "Analytics interface for activity and usage patterns."
     ],
-    "tags": [
-      "React",
-      "Express",
-      "ApexCharts",
-      "Tailwind CSS"
-    ],
+    "stack": ["React", "Express", "ApexCharts", "Tailwind CSS"],
+    "tags": ["Authentication", "Security", "Analytics"],
     "github": "https://github.com/avi9611/otp-app",
-    "images": [
-      "/images/otp1.png",
-      "/images/otp2.png"
-    ],
-    "featured": true
-  },
-  {
-    "id": "vulnerability-detection",
-    "title": "Vulnerability Detection Tool",
-    "subtitle": "Security-Focused Web Application",
-    "description": "A Python-based application focused on identifying common web security issues such as weak credentials, unsafe uploads, and injection risks.",
-    "role": "Backend logic, detection workflow, interface support",
-    "outcome": "Represents an early security-oriented build with practical detection use cases and defensive product thinking.",
-    "highlights": [
-      "Focused on common application vulnerabilities with practical detection checks.",
-      "Used Flask and MySQL to structure backend functionality and persistence.",
-      "Presented security concepts through an accessible web interface."
-    ],
-    "tags": [
-      "Python",
-      "Flask",
-      "MySQL",
-      "JavaScript"
-    ],
-    "github": "https://github.com/avi9611/VulnerabilityDetection",
-    "images": [
-      "/images/project-placeholder.jpg"
-    ],
-    "featured": false
+    "images": ["/images/otp1.png", "/images/otp2.png"]
   }
 ]

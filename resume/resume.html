@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Avinash Neralakatte — Full-Stack Engineer</title>
+<style>
+  @page { size: A4; margin: 11mm 12mm 9mm 12mm; }
+
+  :root {
+    --ink:      #111418;
+    --ink-mid:  #3d444d;
+    --ink-soft: #6a727b;
+    --rule:     #c9cdd2;
+    --rule-soft:#e3e6e9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 8.75pt;
+    line-height: 1.35;
+    color: var(--ink-mid);
+    font-feature-settings: "kern" 1;
+    text-rendering: optimizeLegibility;
+  }
+
+  .mono {
+    font-family: "SF Mono", "Menlo", "Consolas", monospace;
+    font-size: 7.1pt;
+    letter-spacing: 0.05em;
+  }
+
+  /* ---------- header ---------- */
+
+  header { margin-bottom: 7pt; }
+
+  h1 {
+    font-size: 19pt;
+    font-weight: 600;
+    letter-spacing: -0.022em;
+    color: var(--ink);
+    line-height: 1.04;
+  }
+
+  .role {
+    margin-top: 2.5pt;
+    font-size: 9.4pt;
+    font-weight: 500;
+    color: var(--ink-mid);
+  }
+
+  .contact {
+    margin-top: 5pt;
+    padding-top: 4pt;
+    border-top: 0.6pt solid var(--rule);
+    color: var(--ink-soft);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 6pt;
+  }
+
+  .contact span::after { content: "·"; margin-left: 6pt; color: var(--rule); }
+  .contact span:last-child::after { content: ""; margin: 0; }
+  .contact a { color: var(--ink-soft); text-decoration: none; }
+
+  /* ---------- sections ---------- */
+
+  section { margin-top: 8.5pt; }
+
+  h2 {
+    font-family: "SF Mono", "Menlo", "Consolas", monospace;
+    font-size: 7.1pt;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    padding-bottom: 2.5pt;
+    border-bottom: 0.8pt solid var(--ink);
+    margin-bottom: 5.5pt;
+  }
+
+  .summary strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- entries ---------- */
+
+  .entry { margin-bottom: 6.5pt; }
+  .entry:last-child { margin-bottom: 0; }
+
+  .entry-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10pt;
+  }
+
+  .entry-title { font-size: 9.4pt; font-weight: 600; color: var(--ink); letter-spacing: -0.008em; }
+  .entry-title .at { font-weight: 400; color: var(--ink-mid); }
+  .entry-meta { color: var(--ink-soft); white-space: nowrap; flex-shrink: 0; }
+
+  .entry-sub { margin-top: 1pt; color: var(--ink-soft); font-size: 8.3pt; }
+
+  ul { list-style: none; margin-top: 3.5pt; }
+
+  li { position: relative; padding-left: 8.5pt; margin-bottom: 2.4pt; }
+  li:last-child { margin-bottom: 0; }
+
+  li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 4.2pt;
+    width: 2.4pt;
+    height: 2.4pt;
+    background: var(--rule);
+  }
+
+  li strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- compact rows ---------- */
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10pt;
+    padding: 2pt 0;
+    border-bottom: 0.5pt solid var(--rule-soft);
+  }
+
+  .row:last-child { border-bottom: none; }
+  .row-main { color: var(--ink); }
+  .row-main .soft { color: var(--ink-soft); font-weight: 400; }
+  .row-meta { color: var(--ink-soft); white-space: nowrap; flex-shrink: 0; }
+
+  /* ---------- skills ---------- */
+
+  .skills { display: grid; grid-template-columns: 68pt 1fr; gap: 2.8pt 8pt; }
+
+  .skills dt {
+    font-family: "SF Mono", "Menlo", "Consolas", monospace;
+    font-size: 6.9pt;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding-top: 0.5pt;
+  }
+
+  .skills dd { color: var(--ink-mid); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Avinash Neralakatte</h1>
+  <div class="role">Full-Stack Engineer — FastAPI · Next.js · PostgreSQL</div>
+  <div class="contact mono">
+    <span>Kochi, India</span>
+    <span>+91 9611670779</span>
+    <span><a href="mailto:avinashpoojary651@gmail.com">avinashpoojary651@gmail.com</a></span>
+    <span><a href="https://www.linkedin.com/in/avinash-n-dev/">linkedin.com/in/avinash-n-dev</a></span>
+    <span><a href="https://github.com/avi9611">github.com/avi9611</a></span>
+    <span><a href="https://avi9611.github.io">avi9611.github.io</a></span>
+  </div>
+</header>
+
+<section>
+  <h2>Summary</h2>
+  <p class="summary">
+    Full-stack engineer building production CRM, ERP and hospital systems on FastAPI and Next.js.
+    <span data-tenure="long">Nine months</span> at a delivery consultancy, <strong>eight client products shipped</strong> across healthcare,
+    hospitality, construction and calibration. Author of the two internal standards new projects now start
+    from: a <strong>Next.js frontend template</strong> and a <strong>backend conventions kit</strong>.
+  </p>
+</section>
+
+<section>
+  <h2>Experience</h2>
+
+  <div class="entry">
+    <div class="entry-head">
+      <div class="entry-title">Full-Stack Engineer <span class="at">— Hybrid Interactive Consultancy LLP</span></div>
+      <div class="entry-meta mono">DEC 2025 — PRESENT</div>
+    </div>
+    <div class="entry-sub">Kochi, India</div>
+    <ul>
+      <li><strong>Lead developer on a lead-to-cash CRM for a UAE medical-equipment calibration laboratory</strong> — 18 modules across sales, work orders, instruments, inventory, procurement, HRM, certificates and audit. Sole author of 98% of both repositories, built to contractual SLA and performance targets.</li>
+      <li>Designed the <strong>multi-branch tenancy model</strong> so every purchase order, work log and quotation carries its issuing branch's identity, backed by an append-only audit trail and a snapshot that freezes counterparty details onto issued documents.</li>
+      <li>Shipped <strong>eight production products in <span data-tenure="lower">nine months</span></strong> — hospital systems for Dr Shannon's and Herbally, a service marketplace for Korab, plus construction, sales-CRM and HRM platforms — on FastAPI, async SQLAlchemy, PostgreSQL, Redis, Celery, Docker and Next.js.</li>
+      <li><strong>Built the company's Next.js frontend template alone</strong>: BFF cookie authentication, RBAC, TanStack Query and a Vitest/Playwright suite across 143 files, documented in 17 rule guides. Co-designed the FastAPI backend template.</li>
+      <li>Wrote the <strong>backend conventions kit</strong> new projects start from — 17 concern guides on permissions, migrations, caching, tenancy, timezones and money handling, plus a checker that fails the commit when documentation drifts from the code.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-head">
+      <div class="entry-title">Software Engineer Intern <span class="at">— PurpleMerit</span></div>
+      <div class="entry-meta mono">SEP 2025 — NOV 2025</div>
+    </div>
+    <ul>
+      <li>Built and shipped features for a social-media application, working across both frontend delivery and backend API work.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-head">
+      <div class="entry-title">Software Developer Intern <span class="at">— GRID R&amp;D</span></div>
+      <div class="entry-meta mono">MAY 2025 — AUG 2025</div>
+    </div>
+    <ul>
+      <li>Built AI video-interview functionality for <strong>Visume</strong>, a live hiring platform where candidates record video answers and the system scores their technical responses.</li>
+      <li>Worked across the MERN stack with MySQL, Prisma and AWS S3, implementing authentication, authorization and file storage for candidate and employer data.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-head">
+      <div class="entry-title">Java Full-Stack Developer Intern <span class="at">— Kodnest, Bangalore</span></div>
+      <div class="entry-meta mono">JAN 2024 — APR 2024</div>
+    </div>
+    <div class="entry-sub">Java, Spring Boot, Hibernate and MySQL — REST APIs, authentication flows and unit testing with JUnit.</div>
+  </div>
+</section>
+
+<section>
+  <h2>Selected Personal Work</h2>
+  <div class="entry">
+    <div class="entry-head">
+      <div class="entry-title">Nadisa Solutions <span class="at">— nadisasolutions.com</span></div>
+      <div class="entry-meta mono">2026</div>
+    </div>
+    <ul>
+      <li>Live career-guidance platform for chemistry professionals, built solo. Next.js 16 and React 19 with Firebase Firestore, Auth and Storage powering a blog, job board, contact workflows and a secure admin dashboard, shipped with JSON-LD, sitemap generation and Core Web Vitals monitoring.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Technical Skills</h2>
+  <dl class="skills">
+    <dt>Languages</dt>
+    <dd>Python, TypeScript, JavaScript, SQL, Java</dd>
+
+    <dt>Backend</dt>
+    <dd>FastAPI, async SQLAlchemy 2.0, Pydantic, Celery, Alembic, REST API design, JWT and RBAC, modular monolith architecture</dd>
+
+    <dt>Frontend</dt>
+    <dd>Next.js App Router, React 19, TanStack Query, Zustand, Tailwind CSS, React Hook Form with Zod, shadcn/ui</dd>
+
+    <dt>Infra &amp; Quality</dt>
+    <dd>PostgreSQL, Redis, MongoDB, Docker and Compose, S3-compatible storage, AWS, DigitalOcean, Azure, pytest, Vitest, Playwright, Prometheus, structured logging</dd>
+
+    <dt>AI</dt>
+    <dd>LLM product integration, Pydantic AI, RAG pipelines, agentic development with Claude Code, Codex and Copilot</dd>
+  </dl>
+</section>
+
+<section>
+  <h2>Education</h2>
+  <div class="row">
+    <div class="row-main">Master of Computer Applications <span class="soft">— Visvesvaraya Technological University, Srinivas Institute of Technology, Mangalore</span></div>
+    <div class="row-meta mono">CGPA 8.85 · 2022—2024</div>
+  </div>
+  <div class="row">
+    <div class="row-main">BSc Mathematics <span class="soft">— Mangalore University, Bhandarkars Arts and Science College, Kundapura</span></div>
+    <div class="row-meta mono">2017—2019</div>
+  </div>
+  <div class="row">
+    <div class="row-main">Microsoft Certified: Azure Fundamentals <span class="soft">— Microsoft</span></div>
+    <div class="row-meta mono">2024</div>
+  </div>
+</section>
+
+<!-- Tenure fills itself in each time build.sh runs, so no month needs editing
+     by hand. The text in the markup is the fallback if scripts do not run.
+     The logic is duplicated from src/lib/duration.ts on purpose: this file has
+     to stand alone so it can be opened straight in a browser. -->
+<script>
+  (function () {
+    var START = "2025-12-01";
+    var WORDS = ["zero","one","two","three","four","five","six","seven","eight","nine","ten","eleven"];
+
+    function monthsSince(iso) {
+      var s = new Date(iso + "T00:00:00");
+      var n = new Date();
+      var m = (n.getFullYear() - s.getFullYear()) * 12 + (n.getMonth() - s.getMonth()) + 1;
+      return Math.max(1, m);
+    }
+
+    function unit(n, name, words) {
+      var count = words ? (WORDS[n] || String(n)) : String(n);
+      return count + " " + name + (n === 1 ? "" : "s");
+    }
+
+    function format(months, style) {
+      var words = style !== "short";
+      var years = Math.floor(months / 12);
+      var rest = months % 12;
+      var parts = [];
+      if (years > 0) parts.push(unit(years, "year", words));
+      if (rest > 0) parts.push(unit(rest, "month", words));
+      if (!parts.length) parts.push(unit(1, "month", words));
+      var out = words ? parts.join(" and ") : parts.join(" ");
+      return style === "long" ? out.charAt(0).toUpperCase() + out.slice(1) : out;
+    }
+
+    var months = monthsSince(START);
+    var nodes = document.querySelectorAll("[data-tenure]");
+    for (var i = 0; i < nodes.length; i++) {
+      nodes[i].textContent = format(months, nodes[i].getAttribute("data-tenure"));
+    }
+  })();
+</script>
+
+</body>
+</html>

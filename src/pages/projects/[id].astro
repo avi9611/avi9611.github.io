@@ -15,171 +15,67 @@ interface Project {
   id: string;
   title: string;
   subtitle: string;
+  category: "client" | "standards" | "personal";
+  period: string;
+  confidential?: boolean;
   description: string;
   role?: string;
   outcome?: string;
   highlights?: string[];
+  stack: string[];
   tags: string[];
   github?: string;
   website?: string;
-  engagement?: string;
-  images: string[];
-  featured: boolean;
+  images?: string[];
 }
 
 const { project } = Astro.props as { project: Project };
+const images = project.images ?? [];
+
+const categoryLabel = {
+  client: "Client work",
+  standards: "Internal standard",
+  personal: "Personal work",
+}[project.category];
 ---
 
 <Layout
-  title={`${project.title} | Project Case Study | Avinash Neralakatte`}
-  description={`${project.description} Explore the stack, engineering focus, and case-study details behind this project by Avinash Neralakatte.`}
-  image={project.images[0]}
+  title={`${project.title} — ${project.subtitle} | Avinash Neralakatte`}
+  description={project.description}
+  image={images[0] ?? "/images/avinash.jpg"}
 >
   <Navigation />
 
-  <main class="pt-24 pb-24 min-h-screen">
-    <div class="max-w-[1200px] mx-auto px-4 md:px-8">
-      <a
-        href="/projects"
-        class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-ink-light hover:text-ink mb-8"
-      >
-        <svg
-          class="w-4 h-4"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
+  <main id="main">
+    <article>
+      <!-- Header -->
+      <header class="shell pt-12 pb-12 md:pt-16 md:pb-14">
+        <a
+          href="/projects"
+          class="inline-flex items-center gap-2 label hover:text-[var(--ink)] transition-colors mb-8"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-        </svg>
-        Back to project archive
-      </a>
+          <span aria-hidden="true">←</span> All work
+        </a>
 
-      <header class="mb-12">
-        <div class="flex flex-wrap items-center gap-3 mb-4">
-          {
-            project.featured && (
-              <span class="tag-chip">
-                Featured
-              </span>
-            )
-          }
-          <span class="kicker">{project.subtitle}</span>
-        </div>
-        <h1 class="text-5xl md:text-7xl font-semibold text-ink-bold leading-[0.95] mb-4">
+        <p class="label mb-4">{categoryLabel} · {project.period}</p>
+
+        <h1 class="text-[clamp(2rem,5vw,3.25rem)] font-semibold leading-[1.1] tracking-[-0.03em] max-w-3xl">
           {project.title}
         </h1>
-        <p class="text-xl md:text-2xl text-ink/80 max-w-4xl leading-relaxed">
-          {project.description}
-        </p>
-      </header>
 
-      <div class="paper-card overflow-hidden mb-12 p-3">
-        <div
-          class={`grid ${project.images.length > 1 ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"} gap-2`}
-        >
-          {
-            project.images.map((img: string, index: number) => (
-              <img
-                src={img}
-                alt={`${project.title} screenshot ${index + 1}`}
-                class="w-full h-64 md:h-[25rem] object-cover"
-                loading={index === 0 ? "eager" : "lazy"}
-              />
-            ))
-          }
-        </div>
-      </div>
+        <p class="lede mt-4">{project.subtitle}</p>
 
-      <div class="grid grid-cols-1 lg:grid-cols-[1.4fr_0.6fr] gap-8">
-        <div class="space-y-6">
-          <section class="paper-card p-6 md:p-8">
-            <p class="kicker mb-3">Project Overview</p>
-            <h2 class="font-display text-4xl font-semibold mb-4">What this project demonstrates</h2>
-            <p class="text-lg text-ink/85 leading-relaxed">
-              {project.outcome || project.description}
-            </p>
-          </section>
-
-          {project.highlights && project.highlights.length > 0 && (
-            <section class="paper-card p-6 md:p-8">
-              <p class="kicker mb-3">Engineering Highlights</p>
-              <ul class="space-y-4">
-                {project.highlights.map((highlight) => (
-                  <li class="flex gap-3 items-start">
-                    <span class="font-mono text-xs uppercase tracking-[0.16em] text-ink-light pt-1">
-                      +
-                    </span>
-                    <span class="text-base md:text-lg text-ink/80 leading-relaxed">{highlight}</span>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
-
-          <section class="paper-card p-6 md:p-8">
-            <p class="kicker mb-3">Why it matters</p>
-            <p class="text-lg text-ink/85 leading-relaxed">
-              I use projects like this to sharpen the same skills I rely on in production work: clear workflows, maintainable implementation, thoughtful UI, and backend choices that can grow with the product.
-            </p>
-          </section>
-
-          {project.engagement && (
-            <section class="paper-card p-6 md:p-8">
-              <p class="kicker mb-3">Engagement Notes</p>
-              <p class="text-lg text-ink/85 leading-relaxed">
-                {project.engagement}
-              </p>
-            </section>
-          )}
-        </div>
-
-        <div class="space-y-6">
-          <aside class="paper-card p-6">
-            <p class="kicker mb-3">Role</p>
-            <h3 class="font-display text-3xl font-semibold mb-3">
-              Implementation scope
-            </h3>
-            <p class="text-base text-ink/80 leading-relaxed">
-              {project.role || "Full-stack product implementation"}
-            </p>
-          </aside>
-
-          <aside class="paper-card p-6">
-            <p class="kicker mb-3">Stack</p>
-            <h3 class="font-display text-3xl font-semibold mb-4">
-              Technologies used
-            </h3>
-            <div class="flex flex-wrap gap-2">
-              {
-                project.tags.map((tag: string) => (
-                  <span class="tag-chip">
-                    {tag}
-                  </span>
-                ))
-              }
-            </div>
-          </aside>
-
-          <aside class="paper-card p-6">
-            <p class="kicker mb-3">Links</p>
-            <h3 class="font-display text-3xl font-semibold mb-4">Source and archive</h3>
-            <div class="space-y-3">
+        {
+          (project.github || project.website) && (
+            <div class="mt-8 flex flex-wrap gap-3">
               {project.website && (
                 <a
                   href={project.website}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="flex items-center gap-3 text-ink-light hover:text-[var(--color-accent)] transition-colors"
+                  class="btn"
                 >
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 3h7m0 0v7m0-7L10 14" />
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5v14h14" />
-                  </svg>
-                  Visit live site
+                  Visit the site
                 </a>
               )}
               {project.github && (
@@ -187,62 +83,118 @@ const { project } = Astro.props as { project: Project };
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="flex items-center gap-3 text-ink-light hover:text-[var(--color-accent)] transition-colors"
+                  class="btn btn-ghost"
                 >
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path
-                      d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                    ></path>
-                  </svg>
-                  View source on GitHub
+                  View the code
                 </a>
               )}
-              <a
-                href="/projects"
-                class="flex items-center gap-3 text-ink-light hover:text-[var(--color-accent)] transition-colors"
-              >
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m7-7l-7 7 7 7" />
-                </svg>
-                Back to archive
-              </a>
+            </div>
+          )
+        }
+
+        {
+          project.confidential && (
+            <p class="mt-8 max-w-[42rem] text-[0.875rem] text-[var(--ink-soft)] border-l-2 border-[var(--rule)] pl-4 leading-relaxed">
+              Built for a client of Hybrid Interactive Consultancy. The client
+              name, screens and source stay private. What follows is the
+              architecture and my part in it.
+            </p>
+          )
+        }
+      </header>
+
+      <!-- Overview -->
+      <section class="band section-pad">
+        <div class="shell grid lg:grid-cols-[1fr_16rem] gap-12 lg:gap-16 items-start">
+          <div>
+            <h2 class="label mb-4">What it is</h2>
+            <p class="text-[1.0625rem] leading-relaxed max-w-[42rem]">
+              {project.description}
+            </p>
+
+            {
+              project.highlights && (
+                <>
+                  <h2 class="label mt-12 mb-5">How it works</h2>
+                  <ul class="space-y-4 max-w-[42rem]">
+                    {project.highlights.map((h) => (
+                      <li class="flex gap-3.5">
+                        <span class="tick" />
+                        <span class="leading-relaxed">{h}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )
+            }
+
+            {
+              project.outcome && (
+                <>
+                  <h2 class="label mt-12 mb-4">What I took from it</h2>
+                  <p class="text-[1.0625rem] leading-relaxed max-w-[42rem] text-[var(--ink-mid)]">
+                    {project.outcome}
+                  </p>
+                </>
+              )
+            }
+          </div>
+
+          <aside class="lg:sticky lg:top-24 space-y-8">
+            {
+              project.role && (
+                <div>
+                  <h2 class="label mb-3">My part</h2>
+                  <p class="text-[0.9375rem] leading-relaxed">{project.role}</p>
+                </div>
+              )
+            }
+
+            <div>
+              <h2 class="label mb-3">Stack</h2>
+              <ul class="flex flex-wrap gap-1.5">
+                {project.stack.map((s) => <li class="chip">{s}</li>)}
+              </ul>
+            </div>
+
+            <div>
+              <h2 class="label mb-3">Focus</h2>
+              <ul class="flex flex-wrap gap-1.5">
+                {project.tags.map((t) => <li class="chip">{t}</li>)}
+              </ul>
             </div>
           </aside>
         </div>
-      </div>
+      </section>
 
-      <div class="mt-16">
-        <h2 class="font-display text-4xl font-semibold mb-6">More projects</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {
-            projects
-              .filter((p: Project) => p.id !== project.id)
-              .slice(0, 2)
-              .map((p: Project) => (
-                <a
-                  href={`/projects/${p.id}`}
-                  class="paper-card p-4 flex gap-4 items-center hover:bg-white/55"
-                >
+      {
+        images.length > 0 && (
+          <section class="band section-pad bg-[var(--surface)]">
+            <div class="shell">
+              <h2 class="label mb-6">Screens</h2>
+              <div class="grid sm:grid-cols-2 gap-5">
+                {images.map((src) => (
                   <img
-                    src={p.images[0]}
-                    alt={p.title}
-                    class="w-20 h-20 object-cover flex-shrink-0 border border-ink/10"
+                    src={src}
+                    alt={`${project.title} screenshot`}
                     loading="lazy"
+                    decoding="async"
+                    class="w-full rounded-[5px] border border-[var(--rule)]"
                   />
-                  <div>
-                    <h3 class="font-display text-2xl font-semibold">
-                      {p.title}
-                    </h3>
-                    <p class="text-ink-light text-sm">
-                      {p.subtitle}
-                    </p>
-                  </div>
-                </a>
-              ))
-          }
+                ))}
+              </div>
+            </div>
+          </section>
+        )
+      }
+
+      <section class="band">
+        <div class="shell py-12 flex flex-wrap items-center justify-between gap-4">
+          <a href="/projects" class="btn btn-ghost">← All work</a>
+          <a href="/#contact" class="btn">Get in touch</a>
         </div>
-      </div>
-    </div>
+      </section>
+    </article>
   </main>
 
   <Footer />

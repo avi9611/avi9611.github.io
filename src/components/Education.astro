@@ -1,55 +1,71 @@
 ---
 import education from "../data/education.json";
+import certificates from "../data/certificates.json";
+
+const keyCerts = [
+  "Microsoft Certified: Azure Fundamentals",
+  "Fundamentals of Docker & Kubernetes",
+  "Learning Docker",
+  "Cloud Computing Fundamentals",
+  "Computer Networks & Internet Protocol",
+  "Data Mining",
+];
+
+const shown = certificates.filter((c) => keyCerts.includes(c.title));
 ---
 
-<section
-  id="education"
-  class="py-16 px-4 md:px-8 max-w-[1400px] mx-auto border-b-4 border-double border-ink/70"
->
-  <div class="text-center mb-12">
-    <h2 class="section-header inline-block">Education</h2>
-    <p class="section-lede mt-4">
-      Formal foundations that support the practical engineering work above.
-    </p>
-  </div>
+<section id="education" class="band section-pad">
+  <div class="shell">
+    <div class="section-head">
+      <h2 class="section-title">Education</h2>
+      <span class="label">and certifications</span>
+    </div>
 
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-    {
-      education.map((edu) => (
-        <article class="paper-card p-6 md:p-7 relative">
-          <div class="absolute -top-3 right-4 bg-paper-light px-2 border border-ink/20 font-mono text-[11px] uppercase font-semibold text-ink-light tracking-[0.18em]">
-            Academic foundation
-          </div>
-
-          <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-4 mb-4 border-b border-ink/10 pb-4">
-            <h3 class="font-display font-semibold text-3xl">
-              {edu.degree}
-            </h3>
-            <span class="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-ink-light">
-              {edu.period}
-            </span>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <ol class="mb-12">
+      {
+        education.map((e, i) => (
+          <li
+            class={`grid md:grid-cols-[8.5rem_1fr] gap-x-8 gap-y-2 py-6 ${
+              i === 0 ? "" : "border-t border-[var(--rule-soft)]"
+            }`}
+          >
+            <p class="mono !normal-case !tracking-[0.04em] text-[var(--ink-soft)] md:pt-1">
+              {e.period}
+            </p>
             <div>
-              <h4 class="font-semibold text-lg text-ink-bold">{edu.institution}</h4>
-              <p class="text-ink-light">{edu.college}</p>
+              <h3 class="font-semibold text-[var(--ink)]">{e.degree}</h3>
+              <p class="text-[var(--ink-mid)] mt-0.5 text-[0.9375rem]">
+                {e.institution}
+                <span class="text-[var(--ink-faint)]"> · {e.college}</span>
+              </p>
+              <p class="mono !normal-case text-[var(--accent)] mt-2">{e.grade}</p>
             </div>
-            <div class="text-right flex flex-col items-start md:items-end justify-center">
-              <div class="font-mono text-[11px] uppercase tracking-[0.18em] mb-1 text-ink-light">
-                Result
-              </div>
-              <div class="text-xl font-semibold font-display border border-ink/20 px-3 py-1 bg-white/60 text-ink-bold">
-                {edu.grade}
-              </div>
-            </div>
-          </div>
+          </li>
+        ))
+      }
+    </ol>
 
-          <p class="mt-4 font-body text-base leading-relaxed text-ink/80">
-            {edu.description}
-          </p>
-        </article>
-      ))
-    }
+    <h3 class="label mb-4">Selected certifications</h3>
+    <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-0">
+      {
+        shown.map((c) => (
+          <li class="py-3 border-t border-[var(--rule-soft)]">
+            <a
+              href={c.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group block"
+            >
+              <p class="text-[0.9375rem] text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors leading-snug">
+                {c.title}
+              </p>
+              <p class="mono !normal-case text-[var(--ink-faint)] mt-1">
+                {c.issuer}
+              </p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
   </div>
 </section>

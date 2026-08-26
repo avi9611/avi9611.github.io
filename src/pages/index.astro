@@ -1,27 +1,29 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navigation from '../components/Navigation.astro';
-import Hero from '../components/Hero.astro';
-import About from '../components/About.astro';
-import Experience from '../components/Experience.astro';
-import Skills from '../components/Skills.astro';
-import Education from '../components/Education.astro';
-import Projects from '../components/Projects.astro';
-import Certificates from '../components/Certificates.astro';
-import Contact from '../components/Contact.astro';
-import Footer from '../components/Footer.astro';
+import Layout from "../layouts/Layout.astro";
+import Navigation from "../components/Navigation.astro";
+import Hero from "../components/Hero.astro";
+import Projects from "../components/Projects.astro";
+import Standards from "../components/Standards.astro";
+import Experience from "../components/Experience.astro";
+import PersonalWork from "../components/PersonalWork.astro";
+import About from "../components/About.astro";
+import Skills from "../components/Skills.astro";
+import Education from "../components/Education.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <Layout>
   <Navigation />
-  <main>
+  <main id="main">
     <Hero />
-    <About />
-    <Experience />
     <Projects />
+    <Standards />
+    <Experience />
+    <PersonalWork />
+    <About />
     <Skills />
     <Education />
-    <Certificates />
     <Contact />
   </main>
   <Footer />

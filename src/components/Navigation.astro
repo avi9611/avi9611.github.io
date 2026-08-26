@@ -1,77 +1,106 @@
 ---
 import personal from "../data/personal.json";
 
-const navItems = [
-  { href: "#home", label: "Overview" },
-  { href: "#about", label: "Profile" },
-  { href: "#experience", label: "Experience" },
-  { href: "#projects", label: "Work" },
-  { href: "#skills", label: "Capabilities" },
-  { href: "#contact", label: "Contact" },
+const links = [
+  { href: "/#work", label: "Work" },
+  { href: "/#standards", label: "Standards" },
+  { href: "/#about", label: "About" },
+  { href: "/#contact", label: "Contact" },
 ];
 ---
 
-<nav
-  id="navbar"
-  class="sticky top-0 z-50 bg-paper-light/95 backdrop-blur border-y border-ink/20 w-full"
+<header
+  class="no-print sticky top-0 z-40 border-b border-[var(--rule)] bg-[var(--bg)]/85 backdrop-blur-md"
 >
-  <div class="max-w-[1400px] mx-auto px-4 md:px-8 py-3 flex justify-between items-center gap-4">
+  <nav class="shell flex items-center justify-between h-14" aria-label="Main">
     <a
-      href="#home"
-      class="font-mono text-[11px] md:text-xs uppercase tracking-[0.28em] text-ink-light hover:text-ink"
+      href="/"
+      class="text-[0.875rem] font-medium tracking-[-0.01em] text-[var(--ink)] hover:text-[var(--accent)] transition-colors"
     >
-      {personal.name} / Portfolio
+      Avinash <span class="text-[var(--ink-faint)]">Neralakatte</span>
     </a>
 
-    <!-- Mobile Menu Button -->
-    <button
-      id="mobile-menu-btn"
-      class="lg:hidden px-3 py-2 text-ink border border-ink/30 font-mono text-xs uppercase tracking-[0.2em]"
-      aria-label="Menu"
-    >
-      <span class="block">Menu</span>
-    </button>
+    <div class="flex items-center gap-1 sm:gap-2">
+      <ul class="hidden sm:flex items-center gap-1">
+        {
+          links.map((l) => (
+            <li>
+              <a
+                href={l.href}
+                class="px-2.5 py-1.5 text-[0.8125rem] text-[var(--ink-soft)] hover:text-[var(--ink)] transition-colors"
+              >
+                {l.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
 
-    <!-- Desktop Navigation -->
-    <div
-      class="hidden lg:flex items-center gap-2"
-    >
-      {
-        navItems.map((item) => (
-          <a
-            href={item.href}
-            class="px-4 py-2 font-mono text-xs uppercase tracking-[0.22em] text-ink-light hover:text-ink hover:bg-white/40"
-          >
-            {item.label}
-          </a>
-        ))
-      }
-    </div>
+      <a
+        href={personal.resume}
+        download
+        class="px-2.5 py-1.5 text-[0.8125rem] text-[var(--ink-soft)] hover:text-[var(--ink)] transition-colors"
+      >
+        CV
+      </a>
 
-    <!-- Mobile Menu Overlay -->
-    <div
-      id="mobile-menu"
-      class="absolute top-full left-0 w-full bg-paper-light border-b border-ink/20 hidden flex-col"
-    >
-      {
-        navItems.map((item) => (
-          <a
-            href={item.href}
-            class="block py-4 px-6 text-left font-mono text-xs uppercase tracking-[0.22em] border-b border-ink/10 hover:bg-white/40"
-          >
-            {item.label}
-          </a>
-        ))
-      }
+      <button
+        id="theme-toggle"
+        type="button"
+        aria-label="Switch between light and dark"
+        class="ml-1 grid place-items-center w-8 h-8 rounded border border-[var(--rule)] text-[var(--ink-soft)] hover:text-[var(--ink)] hover:border-[var(--ink-faint)] transition-colors"
+      >
+        <svg
+          class="w-[15px] h-[15px] hidden dark-show"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+        </svg>
+        <svg
+          class="w-[15px] h-[15px] light-show"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
+        </svg>
+      </button>
     </div>
-  </div>
-</nav>
+  </nav>
+</header>
+
+<style>
+  :global(html[data-theme="dark"]) .dark-show { display: block; }
+  :global(html[data-theme="dark"]) .light-show { display: none; }
+</style>
 
 <script>
-  const mobileMenuBtn = document.getElementById("mobile-menu-btn");
-  const mobileMenu = document.getElementById("mobile-menu");
+  function bindThemeToggle() {
+    const btn = document.getElementById("theme-toggle");
+    if (!btn || btn.dataset.bound === "1") return;
+    btn.dataset.bound = "1";
+    btn.addEventListener("click", () => {
+      const root = document.documentElement;
+      const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+      try {
+        localStorage.setItem("theme", next);
+      } catch {
+        // Private browsing blocks writes. The toggle still works for this page.
+      }
+    });
+  }
 
-  mobileMenuBtn?.addEventListener("click", () => {
-    mobileMenu?.classList.toggle("hidden");
-  });
+  bindThemeToggle();
+  document.addEventListener("astro:page-load", bindThemeToggle);
 </script>

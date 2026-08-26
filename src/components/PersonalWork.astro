@@ -1,0 +1,44 @@
+---
+import projects from "../data/projects.json";
+
+const personalWork = projects.filter((p) => p.category === "personal");
+---
+
+<section id="personal" class="band section-pad">
+  <div class="shell">
+    <div class="section-head">
+      <h2 class="section-title">Personal work</h2>
+      <span class="label">Open source and live</span>
+    </div>
+
+    <ul class="grid sm:grid-cols-2 gap-px bg-[var(--rule)] border border-[var(--rule)] rounded-[5px] overflow-hidden">
+      {
+        personalWork.map((p) => (
+          <li class="bg-[var(--bg)]">
+            <a
+              href={`/projects/${p.id}`}
+              class="block h-full p-6 hover:bg-[var(--surface)] transition-colors group"
+            >
+              <div class="flex items-baseline justify-between gap-4">
+                <h3 class="font-semibold text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors">
+                  {p.title}
+                </h3>
+                <span class="mono !normal-case text-[var(--ink-faint)] shrink-0">
+                  {p.period}
+                </span>
+              </div>
+              <p class="text-[0.875rem] text-[var(--ink-soft)] mt-1.5 leading-relaxed">
+                {p.subtitle}
+              </p>
+              <ul class="mt-4 flex flex-wrap gap-1.5">
+                {p.stack.slice(0, 4).map((s) => (
+                  <li class="chip">{s}</li>
+                ))}
+              </ul>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

@@ -1,85 +1,106 @@
 ---
 import personal from "../data/personal.json";
+import Duration from "./Duration.astro";
+
+const since = personal.currentSinceISO;
+const [taglineBefore, taglineAfter] = personal.tagline.split("{duration}");
 ---
 
-<section
-  id="home"
-  class="pt-10 pb-18 px-4 md:px-8 max-w-[1400px] mx-auto border-b-4 border-double border-ink/70 relative z-10"
->
-  <div
-    class="flex flex-col md:flex-row justify-between gap-3 border-y border-ink/30 py-3 font-mono text-[11px] md:text-xs uppercase tracking-[0.24em] text-ink-light"
+<section id="home" class="shell pt-16 pb-14 md:pt-24 md:pb-20">
+  <p class="label mb-5">
+    {personal.role} · {personal.location}
+  </p>
+
+  <h1
+    class="text-[clamp(2.5rem,7vw,4.25rem)] font-semibold leading-[1.02] tracking-[-0.035em]"
   >
-    <span>Portfolio Dossier</span>
-    <span class="md:text-center">FastAPI • Next.js • Docker • AI Workflows</span>
-    <span>{personal.location}</span>
+    {personal.fullName}
+  </h1>
+
+  <p
+    class="mt-5 text-[clamp(1.25rem,2.9vw,1.75rem)] leading-[1.3] tracking-[-0.02em] text-[var(--ink)] max-w-3xl"
+  >
+    {personal.headline}
+  </p>
+
+  <p class="lede mt-5">
+    {taglineBefore}<Duration since={since} style="long" />{taglineAfter}
+  </p>
+
+  <div class="mt-9 flex flex-wrap items-center gap-3">
+    <a href="#work" class="btn">
+      See the work
+      <svg
+        class="w-3.5 h-3.5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M5 12h14M13 6l6 6-6 6"></path>
+      </svg>
+    </a>
+    <a href={personal.resume} download class="btn btn-ghost">Download CV</a>
   </div>
 
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 mt-10 items-start">
-    <div class="lg:col-span-7">
-      <p class="kicker mb-4">{personal.role}</p>
-      <h1 class="text-6xl md:text-8xl xl:text-[6.8rem] font-semibold leading-[0.92] text-ink-bold">
-        {personal.fullName}
-      </h1>
-      <p class="mt-6 text-3xl md:text-4xl leading-tight font-display text-ink-bold max-w-4xl">
-        {personal.headline}
-      </p>
-      <p class="mt-6 text-lg md:text-xl max-w-3xl text-ink/80 leading-relaxed">
-        {personal.tagline}
-      </p>
+  <!-- Current role strip -->
+  <dl
+    class="mt-14 grid gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-4 pt-8 border-t border-[var(--rule)]"
+  >
+    <div>
+      <dt class="label mb-2">Now</dt>
+      <dd class="text-[var(--ink)] font-medium leading-snug">
+        {personal.currentRole}
+      </dd>
+      <dd class="text-[0.8125rem] text-[var(--ink-soft)] mt-0.5">
+        {personal.currentCompany}
+      </dd>
+    </div>
 
-      <div class="mt-8 grid sm:grid-cols-2 gap-4">
-        {
-          personal.proofPoints.map((point) => (
-            <div class="paper-card p-4">
-              <p class="font-body text-base text-ink/85 leading-relaxed">{point}</p>
+    <div>
+      <dt class="label mb-2">Since</dt>
+      <dd class="text-[var(--ink)] font-medium">{personal.currentSince}</dd>
+      <dd class="text-[0.8125rem] text-[var(--ink-soft)] mt-0.5">
+        <Duration since={since} /> in production delivery
+      </dd>
+    </div>
+
+    <div class="sm:col-span-2">
+      <dt class="label mb-2">Primary stack</dt>
+      <dd class="text-[var(--ink-mid)] leading-relaxed">
+        {personal.primaryStack}
+      </dd>
+    </div>
+  </dl>
+</section>
+
+<!-- Numbers -->
+<section class="band bg-[var(--surface)]">
+  <div class="shell py-10 md:py-12">
+    <dl class="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-6">
+      {
+        personal.highlights.map((h) => (
+          <div class="flex items-baseline gap-4 sm:block">
+            <dd class="stat-value sm:mb-2">{h.value}</dd>
+            <div>
+              <dt class="text-[var(--ink)] font-medium text-[0.9375rem] leading-tight">
+                {h.label}
+              </dt>
+              <dd class="text-[0.8125rem] text-[var(--ink-soft)] mt-0.5">
+                {h.note.split("{duration}").map((part, i) => (
+                  <>
+                    {i > 0 && <Duration since={since} />}
+                    {part}
+                  </>
+                ))}
+              </dd>
             </div>
-          ))
-        }
-      </div>
-
-      <div class="mt-8 flex flex-wrap gap-4">
-        <a href="#projects" class="btn-news">View selected work</a>
-        <a
-          href={personal.resume}
-          download
-          class="btn-news btn-news-secondary"
-        >
-          Download resume
-        </a>
-      </div>
-    </div>
-
-    <div class="lg:col-span-5 space-y-6">
-      <figure class="paper-card p-3">
-        <img
-          src={personal.profileImage}
-          alt={personal.fullName}
-          class="w-full aspect-[4/5] object-cover grayscale-[0.2] contrast-110 saturate-75"
-          loading="eager"
-        />
-        <figcaption class="mt-3 font-mono text-[11px] uppercase tracking-[0.2em] text-ink-light">
-          Production-minded full-stack delivery across backend, frontend, and deployment.
-        </figcaption>
-      </figure>
-
-      <div class="paper-card p-6">
-        <div class="flex items-center justify-between gap-4 pb-4 border-b border-ink/15">
-          <div>
-            <p class="kicker mb-2">Current Role</p>
-            <h2 class="text-3xl font-semibold">{personal.currentCompany}</h2>
           </div>
-          <span class="tag-chip">{personal.availability}</span>
-        </div>
-
-        <dl class="grid grid-cols-[110px_1fr] gap-y-3 pt-5 text-sm md:text-base">
-          <dt class="font-mono uppercase tracking-[0.18em] text-ink-light">Focus</dt>
-          <dd>{personal.experience}</dd>
-          <dt class="font-mono uppercase tracking-[0.18em] text-ink-light">Based</dt>
-          <dd>{personal.location}</dd>
-          <dt class="font-mono uppercase tracking-[0.18em] text-ink-light">Primary stack</dt>
-          <dd>FastAPI, Next.js, PostgreSQL, Docker, Celery, AI integrations</dd>
-        </dl>
-      </div>
-    </div>
+        ))
+      }
+    </dl>
   </div>
 </section>

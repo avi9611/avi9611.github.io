@@ -2,76 +2,81 @@
   {
     "title": "Full-Stack Engineer",
     "company": "Hybrid Interactive Consultancy LLP",
-    "period": "Dec 2025 - Present",
-    "description": "Working as one of the leading developers on delivery teams building websites and CRM products for medium-scale companies. I contribute across backend architecture, frontend implementation, infrastructure decisions, and production readiness with a strong focus on maintainability and execution speed.",
+    "location": "Kochi, India",
+    "period": "Dec 2025 — Present",
+    "start": "2025-12",
+    "current": true,
+    "description": "Delivery work on line-of-business systems for client companies. Eight products in {duration}, across healthcare, hospitality, construction, calibration, sales and HR, split roughly evenly between backend architecture and frontend implementation.",
     "highlights": [
-      "Design FastAPI services, data models, and API contracts that stay clear as products grow.",
-      "Build Next.js interfaces and collaborate on implementations recognized by clients for design quality and usability.",
-      "Integrate Docker workflows, caching strategies, Celery workers, and AI-powered features into real product delivery.",
-      "Own features from implementation through review, fixes, and deployment preparation."
+      "Lead developer on a lead-to-cash CRM for a UAE medical-equipment calibration laboratory: 18 business modules covering sales, work orders, instruments, inventory, procurement, HRM, certificates and audit, built to contractual SLA and performance targets.",
+      "Designed the multi-branch tenancy model so every purchase order, work log and quotation carries its issuing branch's identity, backed by an append-only audit trail and a snapshot that freezes counterparty details onto issued documents.",
+      "Built the company's Next.js frontend template on my own: BFF cookie authentication, RBAC, TanStack Query, a Vitest and Playwright suite, and 17 rule guides that document why each decision was made. Co-designed the FastAPI backend template alongside it.",
+      "Wrote the backend conventions kit new projects now start from, covering permissions, migrations, caching, tenancy, timezones, money handling and state machines, with a checker that fails the commit when documentation drifts from the code."
     ],
     "tags": [
       "FastAPI",
       "Next.js",
       "PostgreSQL",
-      "Docker",
+      "Redis",
       "Celery",
-      "LLM Integration"
+      "Docker",
+      "RBAC"
     ],
-    "current": true
+    "startISO": "2025-12-01"
   },
   {
     "title": "Software Engineer Intern",
     "company": "PurpleMerit",
-    "period": "Sep 2025 - Nov 2025",
-    "description": "Contributed to AI-oriented product development and deployment work, supporting end-to-end feature delivery across web applications and model-assisted workflows.",
+    "location": "Remote",
+    "period": "Sep 2025 — Nov 2025",
+    "start": "2025-09",
+    "current": false,
+    "description": "Feature delivery on a social media application, working across both frontend and backend.",
     "highlights": [
-      "Implemented full-stack features for AI-powered software products.",
-      "Supported model integration, testing, and iteration for production-facing use cases.",
-      "Gained practical experience with deployment challenges around AI-enabled products."
+      "Built and shipped user-facing features end to end, from API work through to interface delivery."
     ],
     "tags": [
-      "AI Products",
       "Full Stack",
-      "Deployment",
-      "Optimization"
-    ],
-    "current": false
+      "Product Features",
+      "APIs"
+    ]
   },
   {
     "title": "Software Developer Intern",
     "company": "GRID R & D",
-    "period": "May 2025 - Aug 2025",
-    "description": "Worked on full-stack product delivery using the MERN stack, MySQL, and AWS-backed deployment workflows, building a solid foundation in shipping scalable application features.",
+    "location": "Bangalore, India",
+    "period": "May 2025 — Aug 2025",
+    "start": "2025-05",
+    "current": false,
+    "description": "Product work on Visume, a live AI-assisted hiring platform for video resumes and first-round screening.",
     "highlights": [
-      "Built responsive interfaces and REST API functionality across product modules.",
-      "Improved database usage and query efficiency for application workflows.",
-      "Collaborated on cloud-based deployment and day-to-day feature delivery."
+      "Built the AI video-interview flow where candidates record answers and the system scores their technical responses.",
+      "Worked across the MERN stack with MySQL, Prisma and AWS S3, implementing authentication, authorization and file storage for candidate and employer data."
     ],
     "tags": [
-      "MERN Stack",
-      "AWS",
+      "MERN",
+      "AWS S3",
+      "Prisma",
       "MySQL",
-      "REST APIs"
-    ],
-    "current": false
+      "AI Workflow"
+    ]
   },
   {
     "title": "Java Full-Stack Developer Intern",
     "company": "Kodnest",
-    "period": "Jan 2024 - Apr 2024",
-    "description": "Built core engineering discipline through hands-on work with Java, Spring Boot, Hibernate, MySQL, and frontend implementation in a structured full-stack training environment.",
+    "location": "Bangalore, India",
+    "period": "Jan 2024 — Apr 2024",
+    "start": "2024-01",
+    "current": false,
+    "description": "Structured full-stack training and delivery in the Java ecosystem.",
     "highlights": [
-      "Implemented REST APIs, authentication flows, and database-backed features.",
-      "Strengthened understanding of layered backend architecture and object modeling.",
-      "Practiced shipping features in an Agile team workflow."
+      "Built REST APIs, authentication flows and database-backed features with Java, Spring Boot, Hibernate and MySQL, with unit testing in JUnit."
     ],
     "tags": [
       "Java",
       "Spring Boot",
       "Hibernate",
-      "React"
-    ],
-    "current": false
+      "JUnit"
+    ]
   }
 ]

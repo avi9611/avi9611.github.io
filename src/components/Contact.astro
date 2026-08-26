@@ -1,61 +1,54 @@
 ---
 import personal from "../data/personal.json";
+
+const channels = [
+  { label: "Email", value: personal.email, href: `mailto:${personal.email}` },
+  { label: "Phone", value: personal.phone, href: `tel:${personal.phone.replace(/\s/g, "")}` },
+  { label: "LinkedIn", value: "avinash-n-dev", href: personal.social.linkedin },
+  { label: "GitHub", value: "avi9611", href: personal.social.github },
+];
 ---
 
-<section
-  id="contact"
-  class="py-18 px-4 md:px-8 max-w-[1400px] mx-auto"
->
-  <div
-    class="paper-card border-4 border-double border-ink/70 p-8 md:p-12 max-w-5xl mx-auto"
-  >
-    <div class="text-center">
-      <h2 class="section-header inline-block">Contact</h2>
-      <p class="section-lede mt-4 mb-8">
-        If you are building a product that needs reliable backend architecture, polished frontend delivery, or practical AI integration, let’s talk.
-      </p>
+<section id="contact" class="band section-pad bg-[var(--surface)]">
+  <div class="shell">
+    <div class="section-head">
+      <h2 class="section-title">Contact</h2>
+      <span class="label">{personal.availability}</span>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-      <a
-        href={`mailto:${personal.email}`}
-        class="paper-card p-6 hover:bg-white/60"
-      >
-        <p class="kicker mb-3">Email</p>
-        <h3 class="font-display text-2xl mb-2">Primary contact</h3>
-        <p class="text-base break-all text-ink/80">{personal.email}</p>
-      </a>
-      <a
-        href={`tel:${personal.phone}`}
-        class="paper-card p-6 hover:bg-white/60"
-      >
-        <p class="kicker mb-3">Phone</p>
-        <h3 class="font-display text-2xl mb-2">Direct line</h3>
-        <p class="text-base text-ink/80">{personal.phone}</p>
-      </a>
-      <div class="paper-card p-6">
-        <p class="kicker mb-3">Location</p>
-        <h3 class="font-display text-2xl mb-2">Working across</h3>
-        <p class="text-base text-ink/80">{personal.location}</p>
-      </div>
-    </div>
-
-    <div class="border-t border-ink/15 pt-8 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+    <div class="grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20 items-start">
       <div>
-        <p class="kicker mb-2">Preferred conversations</p>
-        <p class="text-lg text-ink/80 max-w-2xl">
-          Product development, backend-heavy builds, CRM workflows, performance improvements, and AI-enabled features.
+        <p class="text-[1.125rem] leading-relaxed text-[var(--ink-mid)] max-w-[36rem]">
+          I am based in {personal.location} and open to conversations about
+          backend architecture, product delivery, and roles where the system
+          has to keep working after I hand it over.
         </p>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={`mailto:${personal.email}`} class="btn">Send an email</a>
+          <a href={personal.resume} download class="btn btn-ghost">Download CV</a>
+        </div>
       </div>
 
-      <div class="flex flex-wrap gap-3">
-        <a href={personal.social.linkedin} target="_blank" rel="noopener noreferrer" class="btn-news">
-          LinkedIn
-        </a>
-        <a href={personal.social.github} target="_blank" rel="noopener noreferrer" class="btn-news btn-news-secondary">
-          GitHub
-        </a>
-      </div>
+      <dl>
+        {
+          channels.map((c) => (
+            <div class="flex items-baseline justify-between gap-6 py-3.5 border-t border-[var(--rule)]">
+              <dt class="label">{c.label}</dt>
+              <dd class="text-right">
+                <a
+                  href={c.href}
+                  target={c.href.startsWith("http") ? "_blank" : undefined}
+                  rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  class="link-underline text-[0.9375rem]"
+                >
+                  {c.value}
+                </a>
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
     </div>
   </div>
 </section>

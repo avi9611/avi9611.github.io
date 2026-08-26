@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import personal from "../data/personal.json";
 import { ClientRouter } from "astro:transitions";
+import { tenure } from "../lib/duration";
 
 interface Props {
   title?: string;
@@ -10,83 +11,43 @@ interface Props {
 }
 
 const {
-  title = `Avinash Neralakatte - Full-Stack Engineer | FastAPI, Next.js, Docker, AI Integration`,
-  description = `Avinash Neralakatte is a full-stack engineer building production FastAPI and Next.js systems with PostgreSQL, Docker, Celery, caching, and AI-powered product workflows. Explore client-focused delivery, case studies, and technical strengths.`,
+  title = "Avinash Neralakatte — Full-Stack Engineer | FastAPI, Next.js, PostgreSQL",
+  description = "Avinash Neralakatte is a full-stack engineer in Kochi building production CRM and ERP systems on FastAPI and Next.js. Eight client products shipped in nine months, plus the internal frontend template and backend conventions his team builds on.",
   image = "/images/avinash.jpg",
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const sameAs = Object.values(personal.social).filter(Boolean);
 
-// JSON-LD Structured Data for SEO
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Avinash Neralakatte",
-  alternateName: ["Avinash N", "Avinash N Neralakatte"],
-  additionalName: "Neralakatte",
+  alternateName: ["Avinash N", "Avinash Poojary"],
   jobTitle: personal.role,
-  description: personal.tagline,
+  description: personal.tagline.replace(
+    "{duration}",
+    tenure(personal.currentSinceISO, "long")
+  ),
   url: Astro.site?.toString() || "https://avi9611.github.io",
   image: `${Astro.site}images/avinash.jpg`,
-  sameAs: [
-    personal.social.github,
-    personal.social.linkedin,
-    personal.social.leetcode,
-    personal.social.hackerrank,
-    personal.social.geeksforgeeks,
-    personal.social.instagram,
-    personal.social.dailydev,
-  ],
+  sameAs,
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Kochi, Bangalore",
-    addressRegion: "Kerala, Karnataka",
+    addressLocality: "Kochi",
+    addressRegion: "Kerala",
     addressCountry: "IN",
   },
   email: personal.email,
-  telephone: personal.phone,
   knowsAbout: [
-    "Full Stack Development",
-    "Generative AI",
-    "FastAPI",
-    "Next.js",
-    "React.js",
-    "Node.js",
-    "Python",
-    "TypeScript",
-    "JavaScript",
-    "MERN Stack",
-    "PostgreSQL",
-    "MongoDB",
-    "Docker",
-    "Celery",
-    "Caching Strategies",
-    "Cloud Computing",
-    "Azure",
-    "AWS",
-    "API Development",
-    "Backend Development",
-    "Frontend Development",
-    "Web Development",
-    "Clean Architecture",
-    "System Design",
-    "LLM Integration",
+    "FastAPI", "Next.js", "React", "Python", "TypeScript", "PostgreSQL",
+    "Redis", "Celery", "Docker", "SQLAlchemy", "Modular monolith architecture",
+    "Role-based access control", "Multi-tenancy", "Audit logging",
+    "REST API design", "LLM integration", "Full-stack development",
   ],
   alumniOf: {
     "@type": "EducationalOrganization",
     name: "Visvesvaraya Technological University",
-  },
-  hasOccupation: {
-    "@type": "Occupation",
-    name: "Full Stack Engineer",
-    occupationLocation: {
-      "@type": "City",
-      name: "Bangalore, India",
-    },
-    estimatedSalary: {
-      "@type": "MonetaryAmountDistribution",
-      name: "Full-time Employed",
-    },
   },
   worksFor: {
     "@type": "Organization",
@@ -94,7 +55,6 @@ const jsonLd = {
   },
 };
 
-// Breadcrumb Schema for better navigation
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -106,14 +66,12 @@ const breadcrumbSchema = {
       item: Astro.site?.toString() || "https://avi9611.github.io",
     },
     ...(Astro.url.pathname !== "/"
-      ? [
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: title.split("|")[0].trim(),
-            item: canonicalURL.toString(),
-          },
-        ]
+      ? [{
+          "@type": "ListItem",
+          position: 2,
+          name: title.split("|")[0].split("—")[0].trim(),
+          item: canonicalURL.toString(),
+        }]
       : []),
   ],
 };
@@ -125,195 +83,108 @@ const breadcrumbSchema = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Primary Meta Tags -->
     <title>{title}</title>
-    <meta name="title" content={title} />
     <meta name="description" content={description} />
-    <meta name="author" content={personal.name} />
+    <meta name="author" content={personal.fullName} />
     <meta
       name="keywords"
-      content="Avinash Neralakatte, Avinash N, Full-Stack Engineer, FastAPI, Next.js, React, PostgreSQL, Docker, Python, TypeScript, Celery, caching, AI integration, LLM integration, backend architecture, frontend delivery, Bangalore developer, Kochi developer, India, portfolio, production systems, CRM products, software engineer"
+      content="Avinash Neralakatte, Avinash N, full-stack engineer, FastAPI, Next.js, React, PostgreSQL, Redis, Celery, Docker, Python, TypeScript, modular monolith, RBAC, multi-tenancy, audit logging, CRM, ERP, Kochi developer, India, portfolio"
     />
 
-    <!-- Canonical URL -->
     <link rel="canonical" href={canonicalURL} />
-
-    <!-- Favicon -->
     <link rel="icon" type="image/jpeg" href="/images/avinash.jpg" />
     <link rel="apple-touch-icon" href="/images/avinash.jpg" />
 
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={`${Astro.site}${image}`} />
-    <meta property="og:site_name" content={`${personal.name} Portfolio`} />
+    <meta property="og:image" content={`${Astro.site}${image.replace(/^\//, "")}`} />
+    <meta property="og:site_name" content={`${personal.fullName} — Portfolio`} />
     <meta property="og:locale" content="en_US" />
 
-    <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={canonicalURL} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={`${Astro.site}${image}`} />
+    <meta property="twitter:image" content={`${Astro.site}${image.replace(/^\//, "")}`} />
 
-    <!-- Additional SEO -->
     <meta name="robots" content="index, follow" />
-    <meta name="googlebot" content="index, follow" />
-    <meta name="theme-color" content="#f4ede1" />
-    <meta name="language" content="English" />
-    <meta name="revisit-after" content="7 days" />
-    <meta name="rating" content="General" />
-    <meta name="geo.region" content="IN-KA" />
-    <meta name="geo.placename" content="Kochi, Bangalore" />
-    <meta name="geo.position" content="12.9716;77.5946" />
-    <meta name="ICBM" content="12.9716, 77.5946" />
+    <meta name="theme-color" content="#fcfcfb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c0e10" media="(prefers-color-scheme: dark)" />
+    <meta name="geo.region" content="IN-KL" />
+    <meta name="geo.placename" content="Kochi" />
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
 
-    <!-- JSON-LD Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-    <script
-      type="application/ld+json"
-      set:html={JSON.stringify(breadcrumbSchema)}
-    />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+    <!-- Set theme before first paint so there is no flash. -->
+    <script is:inline>
+      (function () {
+        function apply() {
+          var saved = null;
+          try { saved = localStorage.getItem("theme"); } catch (e) {}
+          var prefersDark =
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches;
+          var theme = saved || (prefersDark ? "dark" : "light");
+          document.documentElement.setAttribute("data-theme", theme);
+        }
+        apply();
+        document.addEventListener("astro:after-swap", apply);
+      })();
+    </script>
+
     <style is:global>
-      /* Paper Grain Animation */
-      @keyframes paper-noise {
-        0%,
-        100% {
-          transform: translate(0, 0);
-        }
-        10% {
-          transform: translate(-5%, -5%);
-        }
-        20% {
-          transform: translate(-10%, 5%);
-        }
-        30% {
-          transform: translate(5%, -10%);
-        }
-        40% {
-          transform: translate(-5%, 15%);
-        }
-        50% {
-          transform: translate(10%, -5%);
-        }
-        60% {
-          transform: translate(15%, 0);
-        }
-        70% {
-          transform: translate(0, 10%);
-        }
-        80% {
-          transform: translate(-15%, 0);
-        }
-        90% {
-          transform: translate(10%, 5%);
-        }
-      }
+      ::view-transition-old(root) { animation: 0.22s ease both vt-out; }
+      ::view-transition-new(root) { animation: 0.22s ease both vt-in; }
+      @keyframes vt-out { to { opacity: 0; } }
+      @keyframes vt-in { from { opacity: 0; } }
 
-      .paper-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 50;
-        opacity: 0.08;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        mix-blend-mode: multiply;
-      }
-
-      /* Ink Bleed Effect for Text */
-      .ink-bleed {
-        filter: url(#ink-bleed-filter);
-      }
-
-      /* View Transition: Fade through paper color */
-      ::view-transition-old(root) {
-        animation:
-          0.4s cubic-bezier(0.4, 0, 0.2, 1) both fade-out,
-          0.4s cubic-bezier(0.4, 0, 0.2, 1) both scale-down;
-      }
-
-      ::view-transition-new(root) {
-        animation:
-          0.4s cubic-bezier(0.4, 0, 0.2, 1) both fade-in,
-          0.4s cubic-bezier(0.4, 0, 0.2, 1) both scale-up;
-      }
-
-      @keyframes fade-out {
-        to {
-          opacity: 0;
-        }
-      }
-
-      @keyframes fade-in {
-        from {
-          opacity: 0;
-        }
-      }
-
-      @keyframes scale-down {
-        to {
-          transform: scale(0.98);
-          filter: blur(2px);
-        }
-      }
-
-      @keyframes scale-up {
-        from {
-          transform: scale(1.02);
-          filter: blur(2px);
-        }
+      @media (prefers-reduced-motion: reduce) {
+        ::view-transition-old(root),
+        ::view-transition-new(root) { animation: none; }
       }
     </style>
+
+    <!-- Keep tenure correct between deploys. The build writes today's value;
+         this re-checks it in the visitor's browser. -->
+    <script>
+      import { tenure } from "../lib/duration";
+
+      function refreshDurations() {
+        document
+          .querySelectorAll("[data-duration][data-since]")
+          .forEach((el) => {
+            const since = el.getAttribute("data-since");
+            const style =
+              el.getAttribute("data-duration") === "long" ? "long" : "short";
+            if (!since) return;
+            el.textContent = tenure(since, style);
+          });
+      }
+
+      refreshDurations();
+      document.addEventListener("astro:page-load", refreshDurations);
+    </script>
+
     <ClientRouter />
   </head>
-  <body
-    class="bg-paper text-ink antialiased min-h-screen flex flex-col items-center relative overflow-x-hidden selection:bg-ink selection:text-paper"
-  >
-    <!-- SVG Filters for Effects -->
-    <svg style="display: none;">
-      <defs>
-        <filter id="ink-bleed-filter">
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency="0.8"
-            numOctaves="2"
-            result="noise"></feTurbulence>
-          <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5"
-          ></feDisplacementMap>
-          <feGaussianBlur stdDeviation="0.4"></feGaussianBlur>
-        </filter>
-      </defs>
-    </svg>
 
-    <!-- Grain Overlay -->
-    <div class="paper-overlay"></div>
-
-    <div
-      class="max-w-[1440px] w-full bg-paper-light min-h-screen shadow-[0_40px_120px_rgba(58,42,30,0.18)] border-x border-ink/15 relative z-10"
+  <body>
+    <a
+      href="#main"
+      class="no-print sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-3 focus:left-3 focus:px-3 focus:py-2 focus:bg-[var(--ink)] focus:text-[var(--bg)] focus:rounded"
     >
-      <!-- Top decorative line -->
-      <div class="h-1.5 w-full bg-[linear-gradient(90deg,rgba(111,99,86,0),rgba(111,99,86,0.65),rgba(111,99,86,0))] border-b border-ink/20"></div>
-
-      <slot />
-
-      <!-- Bottom decorative line -->
-      <div
-        class="h-5 w-full border-t border-b border-ink/20 my-8 bg-[linear-gradient(90deg,rgba(111,99,86,0),rgba(111,99,86,0.18),rgba(111,99,86,0))]"
-      >
-      </div>
-    </div>
+      Skip to content
+    </a>
+    <slot />
   </body>
 </html>

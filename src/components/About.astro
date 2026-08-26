@@ -1,84 +1,51 @@
 ---
 import personal from "../data/personal.json";
+
+const paragraphs = personal.bio.split("\n\n");
 ---
 
-<section
-  id="about"
-  class="py-18 px-4 md:px-8 max-w-[1400px] mx-auto border-b-4 border-double border-ink/70"
->
-  <div class="text-center mb-12">
-    <h2 class="section-header inline-block">Profile</h2>
-    <p class="section-lede mt-4">
-      A concise view of how I work, where I add value, and what I am building toward.
-    </p>
-  </div>
-
-  <div class="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-8 lg:gap-12 items-start">
-    <div class="paper-card p-6 md:p-8">
-      <p class="kicker mb-3">Professional Summary</p>
-      <div class="font-body text-lg leading-relaxed text-justify drop-cap">
-        {personal.bio}
-      </div>
-
-      <div class="grid sm:grid-cols-3 gap-4 mt-8">
-        <div class="paper-card p-4">
-          <p class="kicker mb-2">Backend</p>
-          <p class="font-display text-2xl text-ink-bold">FastAPI</p>
-          <p class="text-sm text-ink-light mt-2">Clear service structure and API design.</p>
-        </div>
-        <div class="paper-card p-4">
-          <p class="kicker mb-2">Frontend</p>
-          <p class="font-display text-2xl text-ink-bold">Next.js</p>
-          <p class="text-sm text-ink-light mt-2">Responsive interfaces with product discipline.</p>
-        </div>
-        <div class="paper-card p-4">
-          <p class="kicker mb-2">Delivery</p>
-          <p class="font-display text-2xl text-ink-bold">Docker + AI</p>
-          <p class="text-sm text-ink-light mt-2">Practical workflows for modern teams.</p>
-        </div>
-      </div>
+<section id="about" class="band section-pad">
+  <div class="shell">
+    <div class="section-head">
+      <h2 class="section-title">About</h2>
+      <span class="label">{personal.location}</span>
     </div>
 
-    <div class="space-y-6">
-      <figure class="paper-card p-3">
+    <div class="grid lg:grid-cols-[1fr_18rem] gap-12 lg:gap-16 items-start">
+      <div>
+        <div class="space-y-5 text-[1.0625rem] leading-relaxed max-w-[42rem]">
+          {paragraphs.map((p) => <p>{p}</p>)}
+        </div>
+
+        <h3 class="label mt-12 mb-5">How I work</h3>
+        <ul class="space-y-4 max-w-[42rem]">
+          {
+            personal.principles.map((p, i) => (
+              <li class="flex gap-4">
+                <span class="mono text-[var(--ink-faint)] pt-1 tabular-nums">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span class="text-[var(--ink-mid)] leading-relaxed">{p}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <figure class="lg:sticky lg:top-24">
         <img
-          src={personal.secondaryImage}
-          alt={personal.name}
-          class="w-full aspect-[4/3] object-cover grayscale-[0.15] contrast-110"
+          src={personal.profileImage}
+          alt={personal.fullName}
+          width="288"
+          height="360"
           loading="lazy"
+          decoding="async"
+          class="w-full aspect-[4/5] object-cover rounded-[5px] border border-[var(--rule)]"
         />
-        <figcaption class="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-light mt-3">
-          Focused on reliable delivery, not just shipping demos.
+        <figcaption class="mono !normal-case !tracking-[0.03em] text-[var(--ink-faint)] mt-3 leading-relaxed">
+          {personal.fullName} — {personal.currentRole} at {personal.currentCompany}.
         </figcaption>
       </figure>
-
-      <div class="paper-card p-6">
-        <p class="kicker mb-4">Where I add value</p>
-        <ul class="space-y-4">
-          {
-            personal.focusAreas.map((area) => (
-              <li class="flex gap-3 items-start border-b border-ink/10 pb-4 last:border-0 last:pb-0">
-                <span class="font-mono text-xs uppercase tracking-[0.16em] text-ink-light pt-1">01</span>
-                <span class="text-base leading-relaxed text-ink/85">{area}</span>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-
-      <div class="paper-card p-6">
-        <p class="kicker mb-4">How I work</p>
-        <ul class="space-y-3 text-base text-ink/85">
-          {
-            personal.principles.map((principle) => (
-              <li class="flex gap-3">
-                <span class="text-ink-light">•</span>
-                <span>{principle}</span>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
     </div>
   </div>
 </section>

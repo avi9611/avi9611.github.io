@@ -1,0 +1,15 @@
+---
+// Renders a tenure that stays current. The build writes today's value so the
+// HTML is right for crawlers and no-JS visitors; a small script in Layout
+// re-checks it in the browser so it is still right months after the last deploy.
+import { tenure } from "../lib/duration";
+
+interface Props {
+  since: string;
+  style?: "short" | "long";
+}
+
+const { since, style = "short" } = Astro.props;
+---
+
+<span data-duration={style} data-since={since}>{tenure(since, style)}</span>

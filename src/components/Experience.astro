@@ -1,66 +1,71 @@
 ---
 import experience from "../data/experience.json";
+import Duration from "./Duration.astro";
 ---
 
-<section
-  id="experience"
-  class="py-18 px-4 md:px-8 max-w-[1400px] mx-auto border-b-4 border-double border-ink/70"
->
-  <div class="text-center mb-12">
-    <h2 class="section-header inline-block">Experience</h2>
-    <p class="section-lede mt-4">
-      Product delivery across web applications, backend systems, and practical engineering ownership.
-    </p>
-  </div>
+<section id="experience" class="band section-pad">
+  <div class="shell">
+    <div class="section-head">
+      <h2 class="section-title">Experience</h2>
+      <span class="label">04 roles</span>
+    </div>
 
-  <div class="space-y-8">
-    {
-      experience.map((exp) => (
-        <article
-          class={`paper-card p-6 md:p-8 grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-6 md:gap-8 ${exp.current ? "border-[rgba(122,77,55,0.35)] bg-[rgba(255,255,255,0.5)]" : ""}`}
-        >
-          <div class="lg:pr-6 lg:border-r border-ink/15">
-            <span class="font-mono text-xs uppercase tracking-[0.22em] font-semibold text-ink-light block mb-2">
-              {exp.period}
-            </span>
-            {exp.current && (
-              <span class="inline-flex border border-ink/20 bg-white/60 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.18em] text-ink">
-                Current role
-              </span>
-            )}
-          </div>
+    <ol class="space-y-0">
+      {
+        experience.map((job, i) => (
+          <li
+            class={`grid md:grid-cols-[8.5rem_1fr] gap-x-8 gap-y-3 py-8 ${
+              i === 0 ? "" : "border-t border-[var(--rule-soft)]"
+            }`}
+          >
+            <div class="md:pt-1">
+              <p class="mono !normal-case !tracking-[0.04em] text-[var(--ink-soft)]">
+                {job.period}
+              </p>
+              {job.current && (
+                <p class="mt-2 inline-flex items-center gap-1.5 text-[0.6875rem] font-medium text-[var(--accent)]">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" />
+                  Current
+                </p>
+              )}
+            </div>
 
-          <div>
-            <div class="border-b border-ink/15 pb-4">
-              <h3 class="font-display font-semibold text-3xl md:text-4xl mb-1">
-                {exp.title}
+            <div>
+              <h3 class="text-lg font-semibold text-[var(--ink)] leading-snug">
+                {job.title}
               </h3>
-              <p class="text-lg md:text-xl text-ink/70">{exp.company}</p>
+              <p class="text-[var(--ink-mid)] mt-0.5">
+                {job.company}
+                <span class="text-[var(--ink-faint)]"> · {job.location}</span>
+              </p>
+
+              <p class="mt-3 text-[var(--ink-soft)] prose-tight">
+                {job.description.split("{duration}").map((part, k) => (
+                  <>
+                    {k > 0 && job.startISO && <Duration since={job.startISO} />}
+                    {part}
+                  </>
+                ))}
+              </p>
+
+              <ul class="mt-4 space-y-2.5">
+                {job.highlights.map((h) => (
+                  <li class="flex gap-3 prose-tight">
+                    <span class="tick" />
+                    <span class="text-[0.9375rem] leading-relaxed">{h}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <ul class="mt-5 flex flex-wrap gap-1.5">
+                {job.tags.map((t) => (
+                  <li class="chip">{t}</li>
+                ))}
+              </ul>
             </div>
-
-            <p class="font-body text-lg leading-relaxed text-ink/85 my-5 max-w-3xl">
-              {exp.description}
-            </p>
-
-            <ul class="grid gap-3 mb-5">
-              {exp.highlights.map((highlight) => (
-                <li class="flex gap-3 items-start">
-                  <span class="font-mono text-xs uppercase tracking-[0.16em] text-ink-light pt-1">
-                    +
-                  </span>
-                  <span class="text-base leading-relaxed text-ink/80">{highlight}</span>
-                </li>
-              ))}
-            </ul>
-
-            <div class="flex flex-wrap gap-2">
-              {exp.tags.map((tag) => (
-                <span class="tag-chip">{tag}</span>
-              ))}
-            </div>
-          </div>
-        </article>
-      ))
-    }
+          </li>
+        ))
+      }
+    </ol>
   </div>
 </section>

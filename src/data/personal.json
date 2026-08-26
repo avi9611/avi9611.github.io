@@ -2,42 +2,50 @@
   "name": "Avinash N",
   "fullName": "Avinash Neralakatte",
   "role": "Full-Stack Engineer",
-  "headline": "Building production FastAPI and Next.js systems for real businesses.",
-  "tagline": "I design and ship reliable web products across backend architecture, frontend delivery, Dockerized deployment, asynchronous workloads, caching strategies, and AI-powered features.",
-  "location": "Kochi / Bangalore, India",
+  "headline": "I build production CRM and ERP systems that businesses actually run on.",
+  "tagline": "{duration} at a delivery consultancy in Kochi. Eight client products shipped across healthcare, hospitality, construction and calibration, on FastAPI and Next.js.",
+  "location": "Kochi, India",
   "email": "avinashpoojary651@gmail.com",
   "phone": "+91 9611670779",
-  "availability": "Open to select collaborations",
-  "experience": "5+ months in a production delivery role",
+  "availability": "Open to conversations",
   "currentCompany": "Hybrid Interactive Consultancy LLP",
-  "bio": "I am a full-stack engineer currently working as one of the leading developers at Hybrid Interactive Consultancy LLP. My work spans FastAPI backends, Next.js frontends, PostgreSQL, Docker, caching strategies, Celery workers, and LLM-powered product features. I have helped build websites and CRM products for medium-scale companies, with delivery recognized for design quality, implementation efficiency, and shipping on time. I care about clear architecture, maintainable code, and turning business requirements into production-ready systems that teams can extend with confidence.",
-  "focusAreas": [
-    "FastAPI architecture and API design",
-    "Next.js product interfaces and frontend delivery",
-    "Dockerized deployment, caching, and async workers",
-    "LLM integration and AI-assisted product workflows"
-  ],
-  "proofPoints": [
-    "Production CRM products and business websites",
-    "Full-stack ownership from schema design to UI delivery",
-    "Client-focused execution with clean architecture",
-    "Daily use of Claude Code, Codex, and GitHub Copilot"
-  ],
+  "currentRole": "Full-Stack Engineer",
+  "currentSince": "Dec 2025",
+  "primaryStack": "FastAPI · Next.js · PostgreSQL · Redis · Celery · Docker",
+  "bio": "I am a full-stack engineer at Hybrid Interactive Consultancy in Kochi. Most of my work is line-of-business software: CRM, ERP, hospital and HR systems that a company's daily operations depend on. That means the hard parts are rarely the framework. They are the tenancy model, the audit trail, the state machine that decides what a document can become next, and whether the person after me can still read the code.\n\nI work mostly in FastAPI and Next.js, on a modular monolith pattern with async SQLAlchemy, PostgreSQL, Redis and Celery behind it. Alongside the client work I wrote the two internal standards our new projects start from: the Next.js frontend template, and a backend conventions kit that collects the rules we learned the expensive way.",
   "principles": [
-    "Build for maintainability before novelty.",
-    "Keep performance and reliability visible from the start.",
-    "Use AI tooling to increase velocity without lowering engineering standards."
+    "Write for the person debugging this at 2am, not for the person reading it today.",
+    "A document that lies is worse than no document. Date it, or delete it.",
+    "Decide the tenancy, audit and permission model on day one. All three get expensive in month six.",
+    "AI tooling raises how much you ship. It does not lower the bar for what you ship."
+  ],
+  "highlights": [
+    {
+      "value": "8",
+      "label": "Products shipped",
+      "note": "in {duration}"
+    },
+    {
+      "value": "18",
+      "label": "Modules",
+      "note": "on the largest system"
+    },
+    {
+      "value": "2",
+      "label": "Internal standards",
+      "note": "written and adopted"
+    }
   ],
   "social": {
     "github": "https://github.com/avi9611",
-    "linkedin": "https://www.linkedin.com/in/avinash-n-a99387286/",
+    "linkedin": "https://www.linkedin.com/in/avinash-n-dev/",
     "leetcode": "https://leetcode.com/u/avinash516/",
-    "instagram": "https://www.instagram.com/_a_viii/profilecard/?igsh=aDZoNno1NjR3MHNr",
     "hackerrank": "https://www.hackerrank.com/profile/avinashpoojary61",
     "geeksforgeeks": "https://www.geeksforgeeks.org/user/avinashpomzls/",
     "dailydev": "https://app.daily.dev/avinashn"
   },
   "resume": "/avinashresume.pdf",
   "profileImage": "/images/image1.jpeg",
-  "secondaryImage": "/images/image2.jpeg"
+  "secondaryImage": "/images/image2.jpeg",
+  "currentSinceISO": "2025-12-01"
 }

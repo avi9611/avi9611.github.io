@@ -1,60 +1,46 @@
 ---
 import personal from "../data/personal.json";
 
-const currentYear = new Date().getFullYear();
+const year = new Date().getFullYear();
+
+const socials = [
+  { label: "GitHub", href: personal.social.github },
+  { label: "LinkedIn", href: personal.social.linkedin },
+  { label: "LeetCode", href: personal.social.leetcode },
+  { label: "daily.dev", href: personal.social.dailydev },
+];
 ---
 
-<footer class="py-12 bg-paper text-ink border-t-8 border-ink">
-  <div class="max-w-5xl mx-auto px-6 text-center">
-    <div class="mb-8">
-      <h2 class="font-display font-semibold text-4xl mb-2">
-        {personal.fullName}
-      </h2>
-      <p class="font-mono text-[11px] uppercase tracking-[0.24em] text-ink-light">
-        Full-stack engineer • production-focused delivery
-      </p>
-    </div>
-
-    <div
-      class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 font-mono text-sm border-t border-b border-ink/20 py-8"
-    >
+<footer class="band">
+  <div class="shell py-10">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
       <div>
-        <h4 class="font-semibold uppercase mb-2 tracking-[0.18em] text-xs text-ink-light">Navigation</h4>
-        <nav class="flex flex-col gap-2">
-          <a href="#home" class="hover:underline">Overview</a>
-          <a href="#experience" class="hover:underline">Experience</a>
-          <a href="#projects" class="hover:underline">Selected Work</a>
-        </nav>
-      </div>
-      <div>
-        <h4 class="font-semibold uppercase mb-2 tracking-[0.18em] text-xs text-ink-light">Connect</h4>
-        <nav class="flex flex-col gap-2">
-          <a
-            href={personal.social.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="hover:underline">Github</a
-          >
-          <a
-            href={personal.social.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="hover:underline">LinkedIn</a
-          >
-          <a href={`mailto:${personal.email}`} class="hover:underline">Email</a>
-        </nav>
-      </div>
-      <div>
-        <h4 class="font-semibold uppercase mb-2 tracking-[0.18em] text-xs text-ink-light">Status</h4>
-        <p class="text-ink-light">
-          © {currentYear} {personal.name}.<br />
-          Built with Astro and Tailwind CSS.
+        <p class="text-[var(--ink)] font-medium">{personal.fullName}</p>
+        <p class="mono !normal-case !tracking-[0.03em] text-[var(--ink-faint)] mt-1">
+          {personal.role} · {personal.location}
         </p>
       </div>
+
+      <ul class="flex flex-wrap gap-x-5 gap-y-2">
+        {
+          socials.map((s) => (
+            <li>
+              <a
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-[0.875rem] text-[var(--ink-soft)] hover:text-[var(--ink)] transition-colors"
+              >
+                {s.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
     </div>
 
-    <p class="text-sm text-ink-light">
-      Designed to reflect engineering clarity, product maturity, and modern delivery practice.
+    <p class="mono !normal-case !tracking-[0.03em] text-[var(--ink-faint)] mt-8 pt-6 border-t border-[var(--rule-soft)]">
+      © {year} {personal.fullName}. Built with Astro.
     </p>
   </div>
 </footer>

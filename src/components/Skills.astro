@@ -1,36 +1,32 @@
 ---
-import skillsData from "../data/skills.json";
+import skills from "../data/skills.json";
 ---
 
-<section
-  id="skills"
-  class="py-18 border-b-4 border-double border-ink/70 px-4 md:px-8 max-w-[1400px] mx-auto"
->
-  <div class="text-center mb-12">
-    <h2 class="section-header inline-block">Capabilities</h2>
-    <p class="section-lede mt-4">
-      The stack, delivery habits, and system patterns I rely on most in real-world builds.
-    </p>
-  </div>
+<section id="skills" class="band section-pad bg-[var(--surface)]">
+  <div class="shell">
+    <div class="section-head">
+      <h2 class="section-title">Capabilities</h2>
+      <span class="label">{skills.categories.length} areas</span>
+    </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-    {
-      skillsData.categories.map((category, index) => (
-        <article class="paper-card p-6 relative">
-          <div class="absolute -top-3 left-5 bg-paper-light px-2 font-mono text-[11px] font-semibold uppercase border border-ink/20 text-ink-light tracking-[0.18em]">
-            Capability {index + 1}
+    <div class="grid md:grid-cols-2 gap-x-12 gap-y-10">
+      {
+        skills.categories.map((cat) => (
+          <div>
+            <h3 class="text-[1.0625rem] font-semibold text-[var(--ink)]">
+              {cat.title}
+            </h3>
+            <p class="text-[0.9375rem] text-[var(--ink-soft)] mt-2 leading-relaxed">
+              {cat.summary}
+            </p>
+            <ul class="mt-4 flex flex-wrap gap-1.5">
+              {cat.skills.map((s) => (
+                <li class="chip !bg-[var(--bg)]">{s}</li>
+              ))}
+            </ul>
           </div>
-          <h3 class="font-display font-semibold text-3xl mb-3 mt-2">
-            {category.title}
-          </h3>
-          <p class="text-base text-ink/75 leading-relaxed mb-5">{category.summary}</p>
-          <div class="flex flex-wrap gap-2">
-            {category.skills.map((skill: string) => (
-              <span class="tag-chip">{skill}</span>
-            ))}
-          </div>
-        </article>
-      ))
-    }
+        ))
+      }
+    </div>
   </div>
 </section>
