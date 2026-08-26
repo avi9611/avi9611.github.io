@@ -1,9 +1,14 @@
 ---
 import personal from "../data/personal.json";
+import { publishedPosts } from "../lib/posts";
+
+// The Blog link appears on its own once the first post is published.
+const hasPosts = (await publishedPosts()).length > 0;
 
 const links = [
   { href: "/#work", label: "Work" },
   { href: "/#standards", label: "Standards" },
+  ...(hasPosts ? [{ href: "/blog", label: "Blog" }] : []),
   { href: "/#about", label: "About" },
   { href: "/#contact", label: "Contact" },
 ];

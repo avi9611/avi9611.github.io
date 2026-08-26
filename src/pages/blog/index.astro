@@ -2,105 +2,82 @@
 import Layout from "../../layouts/Layout.astro";
 import Navigation from "../../components/Navigation.astro";
 import Footer from "../../components/Footer.astro";
+import { publishedPosts, readingTime, formatDate } from "../../lib/posts";
 
-// Nothing published yet. Add entries here when there is something real to link.
-const posts: {
-  id: string;
-  title: string;
-  excerpt: string;
-  date: string;
-  category: string;
-  readTime: string;
-}[] = [];
+const posts = await publishedPosts();
 
 const planned = [
-  "Deciding tenancy, audit and permissions on day one, and what it costs when you don't.",
   "Why our routes hold no business logic, and what broke before that rule existed.",
   "A documentation checker that fails the commit, and why it was worth the annoyance.",
+  "Snapshots versus live reads: what a document should remember about the day it was issued.",
 ];
 ---
 
 <Layout
-  title="Notes — Avinash Neralakatte"
-  description="Architecture notes and build lessons from shipping production CRM and ERP systems, by Avinash Neralakatte."
+  title="Blog — Avinash Neralakatte"
+  description="Posts on backend architecture and the lessons from shipping production CRM and ERP systems, by Avinash Neralakatte."
 >
   <Navigation />
 
   <main id="main">
     <header class="shell pt-12 pb-10 md:pt-16 md:pb-12">
-      <a
-        href="/"
-        class="inline-flex items-center gap-2 label hover:text-[var(--ink)] transition-colors mb-8"
-      >
+      <a href="/" class="inline-flex items-center gap-2 label hover:text-[var(--ink)] transition-colors mb-8">
         <span aria-hidden="true">←</span> Home
       </a>
-      <h1 class="text-[clamp(2rem,5vw,3.25rem)] font-semibold leading-[1.1] tracking-[-0.03em]">
-        Notes
-      </h1>
-      <p class="lede mt-4">
-        Architecture notes and build lessons from production work.
-      </p>
+      <h1 class="text-[clamp(2rem,5vw,3.25rem)] font-semibold leading-[1.1] tracking-[-0.03em]">Blog</h1>
+      <p class="lede mt-4">Posts on backend architecture and what production work has taught me.</p>
     </header>
 
     <section class="band section-pad">
       <div class="shell">
-        {
-          posts.length === 0 ? (
-            <div class="max-w-[42rem]">
-              <p class="text-[1.0625rem] leading-relaxed">
-                Nothing published here yet. I would rather leave this empty than
-                fill it with posts I have not written.
-              </p>
-              <p class="mt-4 text-[var(--ink-soft)] leading-relaxed">
-                What I have written so far lives inside the repositories it
-                belongs to: 17 rule documents in the frontend template, and 17
-                concern guides in the backend conventions kit. When something
-                is worth pulling out of a repo and explaining properly, it will
-                appear here.
-              </p>
-
-              <h2 class="label mt-12 mb-5">On the list</h2>
-              <ul class="space-y-3.5">
-                {planned.map((p) => (
-                  <li class="flex gap-3.5">
-                    <span class="tick" />
-                    <span class="text-[var(--ink-mid)] leading-relaxed">{p}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div class="mt-12 flex flex-wrap gap-3">
-                <a href="/projects/backend-conventions" class="btn btn-ghost">
-                  Read the conventions kit
-                </a>
-                <a href="/projects" class="btn btn-ghost">See the work</a>
-              </div>
-            </div>
-          ) : (
-            <ul>
-              {posts.map((post) => (
-                <li>
-                  <a href={`/blog/${post.id}`} class="row-link group">
-                    <div class="grid md:grid-cols-[1fr_auto] gap-x-8 gap-y-2">
-                      <div>
-                        <h2 class="row-title text-lg font-semibold text-[var(--ink)]">
-                          {post.title}
-                          <span class="arrow ml-1.5">→</span>
-                        </h2>
-                        <p class="text-[var(--ink-soft)] mt-1 prose-tight">
-                          {post.excerpt}
-                        </p>
-                      </div>
-                      <p class="mono !normal-case text-[var(--ink-faint)] md:text-right shrink-0">
-                        {post.date} · {post.readTime}
+        {posts.length > 0 && (
+          <ul>
+            {posts.map((post) => (
+              <li>
+                <a href={`/blog/${post.id}`} class="row-link group">
+                  <div class="grid md:grid-cols-[1fr_auto] gap-x-8 gap-y-2 items-start">
+                    <div>
+                      <h2 class="row-title text-lg font-semibold text-[var(--ink)] leading-snug">
+                        {post.data.title}
+                        <span class="arrow ml-1.5">→</span>
+                      </h2>
+                      <p class="text-[var(--ink-soft)] mt-1 prose-tight">{post.data.description}</p>
+                      <p class="mono !normal-case !tracking-[0.04em] text-[var(--ink-faint)] mt-3">
+                        {post.data.category}
                       </p>
                     </div>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          )
-        }
+                    <p class="mono !normal-case !tracking-[0.04em] text-[var(--ink-faint)] shrink-0 md:pt-1 md:text-right">
+                      {formatDate(post.data.date)}
+                      <br class="hidden md:inline" />
+                      {readingTime(post.body ?? "")}
+                    </p>
+                  </div>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {posts.length === 0 && (
+          <div class="max-w-[42rem]">
+            <p class="text-[1.0625rem] leading-relaxed">
+              Nothing published here yet. I would rather leave this empty than fill it with
+              posts I have not written.
+            </p>
+          </div>
+        )}
+
+        <div class="max-w-[42rem] mt-16">
+          <h2 class="label mb-5">On the list</h2>
+          <ul class="space-y-3.5">
+            {planned.map((p) => (
+              <li class="flex gap-3.5">
+                <span class="tick" />
+                <span class="text-[var(--ink-mid)] leading-relaxed">{p}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   </main>

@@ -1,0 +1,79 @@
+---
+import { render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Navigation from "../../components/Navigation.astro";
+import Footer from "../../components/Footer.astro";
+import { publishedPosts, readingTime, formatDate } from "../../lib/posts";
+
+export async function getStaticPaths() {
+  const posts = await publishedPosts();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout title={`${post.data.title} — Avinash Neralakatte`} description={post.data.description}>
+  <Navigation />
+
+  <main id="main">
+    <article>
+      <header class="shell pt-12 pb-10 md:pt-16 md:pb-12">
+        <a href="/blog" class="inline-flex items-center gap-2 label hover:text-[var(--ink)] transition-colors mb-8">
+          <span aria-hidden="true">←</span> Blog
+        </a>
+
+        <p class="label mb-4">
+          {post.data.category} · {formatDate(post.data.date)} · {readingTime(post.body ?? "")}
+        </p>
+
+        <h1 class="text-[clamp(1.85rem,4.6vw,3rem)] font-semibold leading-[1.12] tracking-[-0.03em] max-w-3xl">
+          {post.data.title}
+        </h1>
+
+        <p class="lede mt-4">{post.data.description}</p>
+      </header>
+
+      <div class="band section-pad">
+        <div class="shell">
+          <div class="post prose-tight"><Content /></div>
+        </div>
+      </div>
+
+      <section class="band">
+        <div class="shell py-12 flex flex-wrap items-center justify-between gap-4">
+          <a href="/blog" class="btn btn-ghost">← All posts</a>
+          <a href="/#contact" class="btn">Get in touch</a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style is:global>
+  /* Markdown output. Scoped to .post so it cannot leak into the rest of the site. */
+  .post > * + * { margin-top: 1.15rem; }
+  .post h2 { margin-top: 2.75rem; font-size: 1.3rem; letter-spacing: -0.02em; }
+  .post h3 { margin-top: 2rem; font-size: 1.075rem; }
+  .post p, .post li { line-height: 1.75; }
+  .post ul, .post ol { padding-left: 1.15rem; }
+  .post ul { list-style: disc; }
+  .post ol { list-style: decimal; }
+  .post li::marker { color: var(--ink-faint); }
+  .post li + li { margin-top: 0.4rem; }
+  .post a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 0.2em; }
+  .post a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+  .post strong { color: var(--ink); font-weight: 600; }
+  .post blockquote { border-left: 2px solid var(--rule); padding-left: 1.1rem; color: var(--ink-soft); }
+  .post code { font-family: var(--font-mono); font-size: 0.85em; background: var(--surface); border: 1px solid var(--rule-soft); border-radius: 3px; padding: 0.1em 0.35em; }
+  .post pre { background: var(--surface); border: 1px solid var(--rule); border-radius: 5px; padding: 1rem 1.15rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.6; }
+  .post pre code { background: none; border: 0; padding: 0; font-size: inherit; }
+  .post hr { border: 0; border-top: 1px solid var(--rule); margin-block: 2.5rem; }
+  .post table { width: 100%; border-collapse: collapse; font-size: 0.9375rem; display: block; overflow-x: auto; }
+  .post th, .post td { text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--rule-soft); }
+  .post th { color: var(--ink); font-weight: 600; }
+  .post img { border-radius: 5px; border: 1px solid var(--rule); }
+</style>

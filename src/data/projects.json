@@ -17,8 +17,25 @@
       "A shared PDF engine rendering nine document types across procurement and HRM, replacing the per-module one-offs that came before it.",
       "Procurement end to end: vendors, purchase requisition, purchase order, goods received note, record purchase, purchase return, and a vendor payments ledger."
     ],
-    "stack": ["FastAPI", "async SQLAlchemy 2.0", "PostgreSQL", "Redis", "Celery", "Next.js 16", "React 19", "TanStack Query", "Tailwind v4", "Docker"],
-    "tags": ["Modular monolith", "Multi-tenancy", "Audit logging", "RBAC", "PWA"]
+    "stack": [
+      "FastAPI",
+      "async SQLAlchemy 2.0",
+      "PostgreSQL",
+      "Redis",
+      "Celery",
+      "Next.js 16",
+      "React 19",
+      "TanStack Query",
+      "Tailwind v4",
+      "Docker"
+    ],
+    "tags": [
+      "Modular monolith",
+      "Multi-tenancy",
+      "Audit logging",
+      "RBAC",
+      "PWA"
+    ]
   },
   {
     "id": "hospital-systems",
@@ -36,8 +53,22 @@
       "A release notes system that surfaces what changed to users inside the product, rather than in an email nobody opens.",
       "Frontend built on the internal Next.js template, which is where most of the template's rough edges were found and fixed."
     ],
-    "stack": ["FastAPI", "PostgreSQL", "Redis", "Celery", "Next.js", "React", "TypeScript", "Tailwind CSS"],
-    "tags": ["Healthcare", "RBAC", "Audit trail", "Shared core"]
+    "stack": [
+      "FastAPI",
+      "PostgreSQL",
+      "Redis",
+      "Celery",
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS"
+    ],
+    "tags": [
+      "Healthcare",
+      "RBAC",
+      "Audit trail",
+      "Shared core"
+    ]
   },
   {
     "id": "service-marketplace",
@@ -55,8 +86,20 @@
       "Worked through the architectural iteration honestly: different modules landed on different patterns as the team learned, and the current best practice was written down rather than left implicit.",
       "Live on its own domain with Celery workers and Flower monitoring in production."
     ],
-    "stack": ["FastAPI", "PostgreSQL", "Redis", "Celery", "Next.js", "TypeScript"],
-    "tags": ["Marketplace", "Booking", "Two-sided", "Referrals"]
+    "stack": [
+      "FastAPI",
+      "PostgreSQL",
+      "Redis",
+      "Celery",
+      "Next.js",
+      "TypeScript"
+    ],
+    "tags": [
+      "Marketplace",
+      "Booking",
+      "Two-sided",
+      "Referrals"
+    ]
   },
   {
     "id": "construction-crm",
@@ -74,8 +117,19 @@
       "Prometheus metrics and rotating structured logs wired in from the start rather than added after the first incident.",
       "Append-only activity log for the audit trail."
     ],
-    "stack": ["FastAPI", "PostgreSQL", "Redis", "Celery", "Next.js", "DigitalOcean Spaces"],
-    "tags": ["Construction", "Project management", "Object storage"]
+    "stack": [
+      "FastAPI",
+      "PostgreSQL",
+      "Redis",
+      "Celery",
+      "Next.js",
+      "DigitalOcean Spaces"
+    ],
+    "tags": [
+      "Construction",
+      "Project management",
+      "Object storage"
+    ]
   },
   {
     "id": "sales-crm",
@@ -92,8 +146,18 @@
       "Frontend built and owned end to end.",
       "Backend generated from the in-house FastAPI scaffolding and extended with the domain modules."
     ],
-    "stack": ["FastAPI", "PostgreSQL", "Next.js", "TypeScript", "Tailwind CSS"],
-    "tags": ["Sales", "Pipeline", "CRM"]
+    "stack": [
+      "FastAPI",
+      "PostgreSQL",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS"
+    ],
+    "tags": [
+      "Sales",
+      "Pipeline",
+      "CRM"
+    ]
   },
   {
     "id": "hrm-platform",
@@ -111,8 +175,22 @@
       "PDF generation with ReportLab, spreadsheet import and export via Pandas and openpyxl, and image processing with Pillow.",
       "Rate limiting with slowapi, Prometheus instrumentation, and a pytest suite with pytest-asyncio and httpx."
     ],
-    "stack": ["FastAPI", "Python 3.14", "PostgreSQL 16", "Redis 7", "Celery 5", "ReportLab", "Pandas", "Next.js"],
-    "tags": ["HRM", "Solo build", "Reporting", "PDF generation"]
+    "stack": [
+      "FastAPI",
+      "Python 3.14",
+      "PostgreSQL 16",
+      "Redis 7",
+      "Celery 5",
+      "ReportLab",
+      "Pandas",
+      "Next.js"
+    ],
+    "tags": [
+      "HRM",
+      "Solo build",
+      "Reporting",
+      "PDF generation"
+    ]
   },
   {
     "id": "nextjs-template",
@@ -132,8 +210,25 @@
       "17 numbered rule documents, each one topic, plus an architecture guide explaining how the pieces fit. A CLAUDE.md carries the guardrails and the anti-pattern list for AI assistants working in the repo.",
       "Trimming support, so a project that does not need permissions, decimal money maths or dark mode can remove them cleanly instead of working around them."
     ],
-    "stack": ["Next.js 16", "React 19", "TypeScript", "TanStack Query", "Zustand", "Tailwind v4", "shadcn/ui", "React Hook Form", "Zod", "Vitest", "Playwright"],
-    "tags": ["Internal standard", "Solo build", "Architecture", "Documentation"],
+    "stack": [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "TanStack Query",
+      "Zustand",
+      "Tailwind v4",
+      "shadcn/ui",
+      "React Hook Form",
+      "Zod",
+      "Vitest",
+      "Playwright"
+    ],
+    "tags": [
+      "Internal standard",
+      "Solo build",
+      "Architecture",
+      "Documentation"
+    ],
     "github": "https://github.com/hybridinteract/nextjs-template"
   },
   {
@@ -148,13 +243,23 @@
     "role": "Sole author.",
     "outcome": "The clearest thing I have written. It is what I would hand a new engineer before they open the code.",
     "highlights": [
-      "17 concern guides, one per cross-cutting topic: permissions, migrations, caching, tenancy and scoping, dates and timezones, money and quantities, state machines, background jobs, audit logging, pagination, rate limiting, seeding, notifications, import and export, analytics, testing and the frontend contract.",
+      "30 concern guides, one per cross-cutting topic: permissions, migrations, caching, tenancy and scoping, dates and timezones, money and quantities, state machines, background jobs, audit logging, pagination, rate limiting, seeding, notifications, import and export, analytics, testing and the frontend contract.",
       "A day-one checklist of roughly twenty decisions that are cheap now and very expensive in month six.",
       "One owner per rule. A cross-cutting rule is written in full in exactly one place and appears everywhere else as a one-line summary with a link, so it cannot drift into eight disagreeing copies.",
       "Every document carries a date stamp, and check_docs.py fails the commit when a link dies or a document goes stale. A document that lies is worse than no document."
     ],
-    "stack": ["Python", "Markdown", "pre-commit"],
-    "tags": ["Internal standard", "Solo build", "Documentation", "Engineering practice"]
+    "stack": [
+      "Markdown",
+      "Python",
+      "pre-commit"
+    ],
+    "tags": [
+      "Internal standard",
+      "Solo build",
+      "Documentation",
+      "Engineering practice"
+    ],
+    "github": "https://github.com/avi9611/backend-conventions"
   },
   {
     "id": "nadisa-solutions",
@@ -172,11 +277,25 @@
       "Firebase Firestore, Authentication and Storage powering blogs, jobs, contact submissions and the admin dashboard.",
       "Production concerns handled: SEO metadata, JSON-LD, sitemap generation, PWA readiness, mobile-first animation fallbacks and Core Web Vitals monitoring."
     ],
-    "stack": ["Next.js 16", "React 19", "TypeScript", "Tailwind v4", "Firebase", "Framer Motion", "Radix UI"],
-    "tags": ["Live product", "Solo build", "SEO", "Firebase"],
-    "github": "https://github.com/avi9611/nadisa-solutions",
+    "stack": [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Tailwind v4",
+      "Firebase",
+      "Framer Motion",
+      "Radix UI"
+    ],
+    "tags": [
+      "Live product",
+      "Solo build",
+      "SEO",
+      "Firebase"
+    ],
     "website": "https://www.nadisasolutions.com/",
-    "images": ["/images/nadisa.png"]
+    "images": [
+      "/images/nadisa.png"
+    ]
   },
   {
     "id": "visume",
@@ -193,10 +312,23 @@
       "AI-scored video interview flow for technical screening.",
       "Authentication, authorization and S3-backed file storage for candidate and employer data."
     ],
-    "stack": ["React", "Node.js", "Express", "MySQL", "Prisma", "AWS S3"],
-    "tags": ["AI workflow", "Hiring", "Internship work"],
+    "stack": [
+      "React",
+      "Node.js",
+      "Express",
+      "MySQL",
+      "Prisma",
+      "AWS S3"
+    ],
+    "tags": [
+      "AI workflow",
+      "Hiring",
+      "Internship work"
+    ],
     "website": "https://visume.co.in/",
-    "images": ["/images/visume.png"]
+    "images": [
+      "/images/visume.png"
+    ]
   },
   {
     "id": "code-eval-ai",
@@ -213,10 +345,24 @@
       "Gemini-backed analysis mapped to consistent scoring output.",
       "PostgreSQL and Prisma managing submission state."
     ],
-    "stack": ["React", "Node.js", "PostgreSQL", "Prisma", "Gemini API", "Tailwind CSS"],
-    "tags": ["AI", "Evaluation", "Full stack"],
+    "stack": [
+      "React",
+      "Node.js",
+      "PostgreSQL",
+      "Prisma",
+      "Gemini API",
+      "Tailwind CSS"
+    ],
+    "tags": [
+      "AI",
+      "Evaluation",
+      "Full stack"
+    ],
     "github": "https://github.com/avi9611/code-eval-ai",
-    "images": ["/images/codeval1.png", "/images/codeval2.png"]
+    "images": [
+      "/images/codeval1.png",
+      "/images/codeval2.png"
+    ]
   },
   {
     "id": "click-talk",
@@ -233,10 +379,24 @@
       "Socket-based messaging with online presence tracking.",
       "Authentication and authorization flows with Zustand-managed client state."
     ],
-    "stack": ["React", "Node.js", "Express", "MongoDB", "Zustand", "Socket.IO"],
-    "tags": ["Realtime", "MERN", "WebSockets"],
+    "stack": [
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Zustand",
+      "Socket.IO"
+    ],
+    "tags": [
+      "Realtime",
+      "MERN",
+      "WebSockets"
+    ],
     "github": "https://github.com/avi9611/Click-Talk-MERN-App",
-    "images": ["/images/click1.png", "/images/click2.png"]
+    "images": [
+      "/images/click1.png",
+      "/images/click2.png"
+    ]
   },
   {
     "id": "bookstore",
@@ -253,10 +413,22 @@
       "PostgreSQL with Drizzle ORM behind a typed Next.js frontend.",
       "Authentication with NextAuth."
     ],
-    "stack": ["Next.js", "PostgreSQL", "Drizzle ORM", "TypeScript", "Tailwind CSS"],
-    "tags": ["Next.js", "Commerce-like", "Catalogue"],
+    "stack": [
+      "Next.js",
+      "PostgreSQL",
+      "Drizzle ORM",
+      "TypeScript",
+      "Tailwind CSS"
+    ],
+    "tags": [
+      "Next.js",
+      "Commerce-like",
+      "Catalogue"
+    ],
     "github": "https://github.com/avi9611/book-store-nextjs",
-    "images": ["/images/bookstore.png"]
+    "images": [
+      "/images/bookstore.png"
+    ]
   },
   {
     "id": "otp-auth",
@@ -273,9 +445,21 @@
       "OTP verification with session handling.",
       "Analytics interface for activity and usage patterns."
     ],
-    "stack": ["React", "Express", "ApexCharts", "Tailwind CSS"],
-    "tags": ["Authentication", "Security", "Analytics"],
+    "stack": [
+      "React",
+      "Express",
+      "ApexCharts",
+      "Tailwind CSS"
+    ],
+    "tags": [
+      "Authentication",
+      "Security",
+      "Analytics"
+    ],
     "github": "https://github.com/avi9611/otp-app",
-    "images": ["/images/otp1.png", "/images/otp2.png"]
+    "images": [
+      "/images/otp1.png",
+      "/images/otp2.png"
+    ]
   }
 ]

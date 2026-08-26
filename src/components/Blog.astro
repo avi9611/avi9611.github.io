@@ -1,0 +1,56 @@
+---
+import { publishedPosts, readingTime, formatDate } from "../lib/posts";
+
+const posts = (await publishedPosts()).slice(0, 3);
+---
+
+{
+  posts.length > 0 && (
+    <section id="writing" class="band section-pad">
+      <div class="shell">
+        <div class="section-head">
+          <h2 class="section-title">Blog</h2>
+          <a
+            href="/blog"
+            class="label hover:text-[var(--accent)] transition-colors whitespace-nowrap"
+          >
+            All posts →
+          </a>
+        </div>
+
+        <p class="lede -mt-1 mb-9">
+          What I have learned building these systems, written down properly. Mostly
+          architecture decisions and the cost of getting them wrong.
+        </p>
+
+        <ul>
+          {posts.map((post) => (
+            <li>
+              <a href={`/blog/${post.id}`} class="row-link group">
+                <div class="grid md:grid-cols-[1fr_auto] gap-x-8 gap-y-2 items-start">
+                  <div>
+                    <h3 class="row-title text-lg font-semibold text-[var(--ink)] leading-snug">
+                      {post.data.title}
+                      <span class="arrow ml-1.5">→</span>
+                    </h3>
+                    <p class="text-[var(--ink-soft)] mt-1 prose-tight">
+                      {post.data.description}
+                    </p>
+                    <p class="mono !normal-case !tracking-[0.04em] text-[var(--ink-faint)] mt-3">
+                      {post.data.category}
+                    </p>
+                  </div>
+                  <p class="mono !normal-case !tracking-[0.04em] text-[var(--ink-faint)] shrink-0 md:pt-1 md:text-right">
+                    {formatDate(post.data.date)}
+                    <br class="hidden md:inline" />
+                    {readingTime(post.body ?? "")}
+                  </p>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}

@@ -1,7 +1,15 @@
 ---
 import personal from "../data/personal.json";
+import { publishedPosts } from "../lib/posts";
 
 const year = new Date().getFullYear();
+
+const hasPosts = (await publishedPosts()).length > 0;
+
+// Internal links must not open in a new tab, so the list is split.
+const links = [
+  ...(hasPosts ? [{ label: "Blog", href: "/blog" }] : []),
+];
 
 const socials = [
   { label: "GitHub", href: personal.social.github },
@@ -23,12 +31,12 @@ const socials = [
 
       <ul class="flex flex-wrap gap-x-5 gap-y-2">
         {
-          socials.map((s) => (
+          [...links, ...socials].map((s) => (
             <li>
               <a
                 href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                target={s.href.startsWith("http") ? "_blank" : undefined}
+                rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
                 class="text-[0.875rem] text-[var(--ink-soft)] hover:text-[var(--ink)] transition-colors"
               >
                 {s.label}
