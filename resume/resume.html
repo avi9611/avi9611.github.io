@@ -169,7 +169,7 @@
   <h2>Summary</h2>
   <p class="summary">
     Full-stack engineer building production CRM, ERP and hospital systems on FastAPI and Next.js.
-    <span data-tenure="long">Nine months</span> at a delivery consultancy, <strong>eight client products shipped</strong> across healthcare,
+    <strong>Eight client products shipped</strong> at a delivery consultancy, across healthcare,
     hospitality, construction and calibration. Author of the two internal standards new projects now start
     from: a <strong>Next.js frontend template</strong> and a <strong>backend conventions kit</strong>.
   </p>
@@ -187,7 +187,7 @@
     <ul>
       <li><strong>Lead developer on a lead-to-cash CRM for a UAE medical-equipment calibration laboratory</strong> — 18 modules across sales, work orders, instruments, inventory, procurement, HRM, certificates and audit. Sole author of 98% of both repositories, built to contractual SLA and performance targets.</li>
       <li>Designed the <strong>multi-branch tenancy model</strong> so every purchase order, work log and quotation carries its issuing branch's identity, backed by an append-only audit trail and a snapshot that freezes counterparty details onto issued documents.</li>
-      <li>Shipped <strong>eight production products in <span data-tenure="lower">nine months</span></strong> — hospital systems for Dr Shannon's and Herbally, a service marketplace for Korab, plus construction, sales-CRM and HRM platforms — on FastAPI, async SQLAlchemy, PostgreSQL, Redis, Celery, Docker and Next.js.</li>
+      <li>Shipped <strong>eight production products</strong> across healthcare, hospitality, construction, calibration, sales and HR — two hospital management systems, a service marketplace, a construction CRM, a sales CRM and an HRM platform — on FastAPI, async SQLAlchemy, PostgreSQL, Redis, Celery, Docker and Next.js.</li>
       <li><strong>Built the company's Next.js frontend template alone</strong>: BFF cookie authentication, RBAC, TanStack Query and a Vitest/Playwright suite across 143 files, documented in 17 rule guides. Co-designed the FastAPI backend template.</li>
       <li>Wrote the <strong>backend conventions kit</strong> new projects start from — 17 concern guides on permissions, migrations, caching, tenancy, timezones and money handling, plus a checker that fails the commit when documentation drifts from the code.</li>
     </ul>
@@ -271,47 +271,6 @@
     <div class="row-meta mono">2024</div>
   </div>
 </section>
-
-<!-- Tenure fills itself in each time build.sh runs, so no month needs editing
-     by hand. The text in the markup is the fallback if scripts do not run.
-     The logic is duplicated from src/lib/duration.ts on purpose: this file has
-     to stand alone so it can be opened straight in a browser. -->
-<script>
-  (function () {
-    var START = "2025-12-01";
-    var WORDS = ["zero","one","two","three","four","five","six","seven","eight","nine","ten","eleven"];
-
-    function monthsSince(iso) {
-      var s = new Date(iso + "T00:00:00");
-      var n = new Date();
-      var m = (n.getFullYear() - s.getFullYear()) * 12 + (n.getMonth() - s.getMonth()) + 1;
-      return Math.max(1, m);
-    }
-
-    function unit(n, name, words) {
-      var count = words ? (WORDS[n] || String(n)) : String(n);
-      return count + " " + name + (n === 1 ? "" : "s");
-    }
-
-    function format(months, style) {
-      var words = style !== "short";
-      var years = Math.floor(months / 12);
-      var rest = months % 12;
-      var parts = [];
-      if (years > 0) parts.push(unit(years, "year", words));
-      if (rest > 0) parts.push(unit(rest, "month", words));
-      if (!parts.length) parts.push(unit(1, "month", words));
-      var out = words ? parts.join(" and ") : parts.join(" ");
-      return style === "long" ? out.charAt(0).toUpperCase() + out.slice(1) : out;
-    }
-
-    var months = monthsSince(START);
-    var nodes = document.querySelectorAll("[data-tenure]");
-    for (var i = 0; i < nodes.length; i++) {
-      nodes[i].textContent = format(months, nodes[i].getAttribute("data-tenure"));
-    }
-  })();
-</script>
 
 </body>
 </html>
