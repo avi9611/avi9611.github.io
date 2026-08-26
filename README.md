@@ -4,6 +4,12 @@ My portfolio and CV. Astro + Tailwind, deployed to GitHub Pages.
 
 Live: <https://avi9611.github.io>
 
+## Deeper documentation
+
+Detailed notes live one level up, in `my-profile/docs/` — file-by-file reference,
+the CV build, decisions and why they were made. They are kept **outside this repo
+on purpose**: they name client projects, and this repo is public.
+
 ## Structure
 
 ```text

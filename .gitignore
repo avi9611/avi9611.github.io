@@ -22,3 +22,7 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Private notes — must never enter this public repo.
+# They name client projects. Kept at ../docs instead.
+docs/
