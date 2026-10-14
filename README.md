@@ -19,13 +19,17 @@ resume/
 src/
   data/*.json        all content lives here, not in components
   components/*.astro one section each
-  pages/             home, /projects, /projects/[id], /blog
+  pages/             home, /projects, /projects/[id], /blog, /activity
   styles/global.css  design tokens for light and dark, plus shared classes
-public/              images and the built CV
+public/              images, the link-preview card (images/og.png) and the built CV
 ```
 
 Content is in `src/data/`. To change what the site says, edit the JSON, not the
 components.
+
+Project screenshots go in `public/images/` as WebP, no wider than 1200px. A raw
+full-screen PNG is several megabytes, and everything in `public/` ships whether a
+page uses it or not.
 
 ## Commands
 
@@ -69,8 +73,8 @@ date, `currentSinceISO` in `src/data/personal.json`.
   after the last deploy.
 - The workflow also rebuilds on the 1st of each month, which keeps the served HTML
   fresh even with no pushes.
-- `resume/resume.html` does the same for the PDF, with its own copy of the logic so
-  the file still works opened directly in a browser.
+- `resume/resume.html` has no tenure in it, so the PDF never goes stale on its own.
+  Rebuild it whenever its text changes.
 
 Write `{duration}` inside a string in `personal.json` or `experience.json` and it
 gets replaced at render.

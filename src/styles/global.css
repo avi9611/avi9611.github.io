@@ -3,6 +3,8 @@
 /* ============================================================
    Design tokens
    Light is the base. Dark overrides only what changes.
+   Every ink colour is text somewhere, so each one clears WCAG AA
+   (4.5:1) on bg, surface and raised, in both themes.
    ============================================================ */
 
 @theme {
@@ -11,8 +13,8 @@
   --color-raised:    #ffffff;
   --color-ink:       #14171a;
   --color-ink-mid:   #444b52;
-  --color-ink-soft:  #6d757d;
-  --color-ink-faint: #9aa1a8;
+  --color-ink-soft:  #5f666d;
+  --color-ink-faint: #687077;
   --color-rule:      #e2e3e1;
   --color-rule-soft: #ededec;
   --color-accent:    #0d6e60;
@@ -29,8 +31,8 @@
   --raised:    #ffffff;
   --ink:       #14171a;
   --ink-mid:   #444b52;
-  --ink-soft:  #6d757d;
-  --ink-faint: #9aa1a8;
+  --ink-soft:  #5f666d;
+  --ink-faint: #687077;
   --rule:      #e2e3e1;
   --rule-soft: #ededec;
   --accent:    #0d6e60;
@@ -46,8 +48,8 @@ html[data-theme="dark"] {
   --raised:    #171a1d;
   --ink:       #eceeef;
   --ink-mid:   #b3b9bd;
-  --ink-soft:  #868d93;
-  --ink-faint: #626a70;
+  --ink-soft:  #9aa1a7;
+  --ink-faint: #80878d;
   --rule:      #24282b;
   --rule-soft: #1c1f22;
   --accent:    #4fd0ba;
@@ -69,6 +71,11 @@ html[data-theme="dark"] {
     scroll-padding-top: 5rem;
     background: var(--bg);
     -webkit-text-size-adjust: 100%;
+  }
+
+  /* Below sm the header carries a second row of links, so anchors need more room. */
+  @media (max-width: 39.99rem) {
+    html { scroll-padding-top: 7.5rem; }
   }
 
   @media (prefers-reduced-motion: reduce) {
