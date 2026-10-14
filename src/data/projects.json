@@ -7,8 +7,8 @@
     "period": "2026",
     "confidential": true,
     "featured": true,
-    "description": "A multi-branch platform covering the full lead-to-cash lifecycle for one of the few laboratories in the UAE with a dedicated lab for calibrating medical equipment. Sales, operations, procurement, finance and compliance in one system, with traceability across every approval and financial edit.",
-    "role": "Lead developer. Sole author of 98% of both the backend and frontend repositories.",
+    "description": "A multi-branch platform covering the full lead-to-cash lifecycle for a UAE laboratory that calibrates medical equipment. Sales, operations, procurement, finance and compliance in one system, with traceability across every approval and financial edit.",
+    "role": "Lead developer. Author of 98% of both the backend and frontend repositories.",
     "outcome": "The largest system I have worked on, and the one that taught me the most. Delivered against a signed scope of work with contractual SLA and performance targets.",
     "highlights": [
       "18 business modules: sales CRM, clients, work orders, repairs, instruments, inventory, procurement, HRM, certificates, settings, IAM and audit logging. Every module feeds at least one other, so data entered once is referenced downstream instead of re-keyed.",
@@ -294,7 +294,7 @@
     ],
     "website": "https://www.nadisasolutions.com/",
     "images": [
-      "/images/nadisa.png"
+      "/images/nadisa.webp"
     ]
   },
   {
@@ -327,7 +327,7 @@
     ],
     "website": "https://visume.co.in/",
     "images": [
-      "/images/visume.png"
+      "/images/visume.webp"
     ]
   },
   {
@@ -360,8 +360,8 @@
     ],
     "github": "https://github.com/avi9611/code-eval-ai",
     "images": [
-      "/images/codeval1.png",
-      "/images/codeval2.png"
+      "/images/codeval1.webp",
+      "/images/codeval2.webp"
     ]
   },
   {
@@ -394,8 +394,8 @@
     ],
     "github": "https://github.com/avi9611/Click-Talk-MERN-App",
     "images": [
-      "/images/click1.png",
-      "/images/click2.png"
+      "/images/click1.webp",
+      "/images/click2.webp"
     ]
   },
   {
@@ -427,7 +427,7 @@
     ],
     "github": "https://github.com/avi9611/book-store-nextjs",
     "images": [
-      "/images/bookstore.png"
+      "/images/bookstore.webp"
     ]
   },
   {
@@ -458,8 +458,8 @@
     ],
     "github": "https://github.com/avi9611/otp-app",
     "images": [
-      "/images/otp1.png",
-      "/images/otp2.png"
+      "/images/otp1.webp",
+      "/images/otp2.webp"
     ]
   }
 ]

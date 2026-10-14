@@ -9,6 +9,7 @@ const hasPosts = (await publishedPosts()).length > 0;
 // Internal links must not open in a new tab, so the list is split.
 const links = [
   ...(hasPosts ? [{ label: "Blog", href: "/blog" }] : []),
+  { label: "Activity", href: "/activity" },
 ];
 
 const socials = [

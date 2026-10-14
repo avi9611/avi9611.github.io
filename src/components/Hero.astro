@@ -80,24 +80,23 @@ const [taglineBefore, taglineAfter] = personal.tagline.split("{duration}");
 <!-- Numbers -->
 <section class="band bg-[var(--surface)]">
   <div class="shell py-10 md:py-12">
+    <!-- dt has to come first in the markup; the grid puts the number first on screen. -->
     <dl class="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-6">
       {
         personal.highlights.map((h) => (
-          <div class="flex items-baseline gap-4 sm:block">
-            <dd class="stat-value sm:mb-2">{h.value}</dd>
-            <div>
-              <dt class="text-[var(--ink)] font-medium text-[0.9375rem] leading-tight">
-                {h.label}
-              </dt>
-              <dd class="text-[0.8125rem] text-[var(--ink-soft)] mt-0.5">
-                {h.note.split("{duration}").map((part, i) => (
-                  <>
-                    {i > 0 && <Duration since={since} />}
-                    {part}
-                  </>
-                ))}
-              </dd>
-            </div>
+          <div class="grid grid-cols-[auto_1fr] items-baseline gap-x-4 sm:grid-cols-1">
+            <dt class="col-start-2 row-start-1 sm:col-start-1 sm:row-start-2 text-[var(--ink)] font-medium text-[0.9375rem] leading-tight">
+              {h.label}
+            </dt>
+            <dd class="stat-value col-start-1 row-start-1 sm:mb-2">{h.value}</dd>
+            <dd class="col-start-2 row-start-2 sm:col-start-1 sm:row-start-3 text-[0.8125rem] text-[var(--ink-soft)] mt-0.5">
+              {h.note.split("{duration}").map((part, i) => (
+                <>
+                  {i > 0 && <Duration since={since} />}
+                  {part}
+                </>
+              ))}
+            </dd>
           </div>
         ))
       }
