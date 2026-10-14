@@ -42,7 +42,7 @@ const posts = (await publishedPosts()).slice(0, 3);
                   </div>
                   <p class="mono !normal-case !tracking-[0.04em] text-[var(--ink-faint)] shrink-0 md:pt-1 md:text-right">
                     {formatDate(post.data.date)}
-                    <br class="hidden md:inline" />
+                    <span class="md:hidden"> · </span><br class="hidden md:inline" />
                     {readingTime(post.body ?? "")}
                   </p>
                 </div>

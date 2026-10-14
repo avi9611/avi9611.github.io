@@ -1,0 +1,167 @@
+---
+// A year of GitHub contributions as a compact heat map in the site's accent.
+// The empty grid is rendered here so its space is reserved before the data
+// arrives; the script fills in each day from the same feed /activity uses.
+// No React, so the home page stays light.
+const WEEKS = 53;
+const cells = Array.from({ length: WEEKS * 7 });
+---
+
+<div class="activity" data-activity data-weeks={WEEKS}>
+  <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 mb-4">
+    <p class="text-[0.9375rem] text-[var(--ink)]">
+      <span class="font-medium" data-activity-total>A year on GitHub</span>
+      <span class="text-[var(--ink-soft)]" data-activity-note>, client work included</span>
+    </p>
+    <a href="/activity" class="label hover:text-[var(--accent)] transition-colors whitespace-nowrap">
+      See it as a skyline →
+    </a>
+  </div>
+
+  <div class="heat" aria-hidden="true">
+    {cells.map(() => <span />)}
+  </div>
+
+  <div class="legend mt-3 flex items-center justify-between gap-4">
+    <span class="mono !normal-case !tracking-[0.03em] text-[var(--ink-faint)]" data-activity-range></span>
+    <span class="flex items-center gap-1.5 mono !normal-case !tracking-[0.03em] text-[var(--ink-faint)]" aria-hidden="true">
+      Less
+      <span class="swatch" data-l="0"></span>
+      <span class="swatch" data-l="1"></span>
+      <span class="swatch" data-l="2"></span>
+      <span class="swatch" data-l="3"></span>
+      <span class="swatch" data-l="4"></span>
+      More
+    </span>
+  </div>
+</div>
+
+<style>
+  .heat {
+    display: grid;
+    grid-template-rows: repeat(7, 1fr);
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: 1px;
+    /* 53 columns by 7 rows, near-square cells, so the height is fixed before data loads. */
+    aspect-ratio: 7.4;
+  }
+
+  @media (min-width: 640px) { .heat { gap: 2px; } }
+
+  .heat > span,
+  .swatch {
+    border-radius: 1.5px;
+    background: var(--rule-soft);
+    transition: background-color 0.3s ease;
+  }
+
+  .swatch { width: 10px; height: 10px; display: inline-block; }
+
+  .heat > [data-l="1"], .swatch[data-l="1"] { background: color-mix(in srgb, var(--accent) 28%, var(--bg)); }
+  .heat > [data-l="2"], .swatch[data-l="2"] { background: color-mix(in srgb, var(--accent) 52%, var(--bg)); }
+  .heat > [data-l="3"], .swatch[data-l="3"] { background: color-mix(in srgb, var(--accent) 76%, var(--bg)); }
+  .heat > [data-l="4"], .swatch[data-l="4"] { background: var(--accent); }
+
+  /* Days after the latest one in the feed. */
+  .heat > [data-l="none"] { visibility: hidden; }
+
+  [data-state="failed"] .heat,
+  [data-state="failed"] .legend { display: none; }
+</style>
+
+<script>
+  // Written every night by the Skyline workflow in the avi9611/avi9611 profile repo.
+  const DATA_URL = "https://raw.githubusercontent.com/avi9611/avi9611/output/days.json";
+  const DAY = 86_400_000;
+
+  type Day = { date: string; count: number };
+
+  // One request per visit, shared across view-transition navigations.
+  let request: Promise<Day[]> | null = null;
+
+  function load(): Promise<Day[]> {
+    request ??= fetch(DATA_URL)
+      .then((response) => {
+        if (!response.ok) throw new Error(`Contribution data request failed with ${response.status}`);
+        return response.json();
+      })
+      .then((days: unknown) => {
+        if (!Array.isArray(days) || days.length === 0) throw new Error("Contribution data is empty");
+        return days as Day[];
+      })
+      .catch((error) => {
+        request = null;
+        throw error;
+      });
+    return request;
+  }
+
+  const utc = (iso: string) => {
+    const [y, m, d] = iso.split("-").map(Number);
+    return Date.UTC(y, m - 1, d);
+  };
+
+  const monthYear = (ms: number) =>
+    new Date(ms).toLocaleDateString("en-GB", { month: "short", year: "numeric", timeZone: "UTC" });
+
+  const dayMonthYear = (ms: number) =>
+    new Date(ms).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+
+  // GitHub-style levels: quartiles of the days that had any activity.
+  function levels(counts: number[]): (count: number) => number {
+    const active = counts.filter((c) => c > 0).sort((a, b) => a - b);
+    const at = (q: number) => active[Math.min(active.length - 1, Math.floor(q * active.length))] ?? 0;
+    const [q1, q2, q3] = [at(0.25), at(0.5), at(0.75)];
+    return (c) => (c <= 0 ? 0 : c <= q1 ? 1 : c <= q2 ? 2 : c <= q3 ? 3 : 4);
+  }
+
+  async function render() {
+    const root = document.querySelector<HTMLElement>("[data-activity]");
+    if (!root || root.dataset.state === "ready") return;
+
+    const cells = [...root.querySelectorAll<HTMLElement>(".heat > span")];
+    const weeks = Number(root.dataset.weeks);
+
+    let days: Day[];
+    try {
+      days = await load();
+    } catch (error) {
+      console.error(error);
+      root.dataset.state = "failed";
+      const total = root.querySelector("[data-activity-total]");
+      const note = root.querySelector("[data-activity-note]");
+      if (total) total.textContent = "Contribution history";
+      if (note) note.textContent = " is on the activity page and GitHub.";
+      return;
+    }
+
+    const byDay = new Map(days.map((d) => [utc(d.date), d.count]));
+    const end = Math.max(...byDay.keys());
+    // The grid's last column is the week holding the latest day; its first cell is a Sunday.
+    const start = end - new Date(end).getUTCDay() * DAY - (weeks - 1) * 7 * DAY;
+
+    const inWindow = [...byDay].filter(([t]) => t >= start);
+    const level = levels(inWindow.map(([, c]) => c));
+    const total = inWindow.reduce((sum, [, c]) => sum + c, 0);
+
+    cells.forEach((cell, i) => {
+      const t = start + i * DAY;
+      if (t > end) {
+        cell.dataset.l = "none";
+        return;
+      }
+      const count = byDay.get(t) ?? 0;
+      cell.dataset.l = String(level(count));
+      cell.title = `${count} contribution${count === 1 ? "" : "s"} on ${dayMonthYear(t)}`;
+    });
+
+    const totalEl = root.querySelector("[data-activity-total]");
+    const rangeEl = root.querySelector("[data-activity-range]");
+    if (totalEl) totalEl.textContent = `${total.toLocaleString("en-US")} contributions in the last year`;
+    if (rangeEl) rangeEl.textContent = `${monthYear(start)} — ${monthYear(end)}`;
+    root.dataset.state = "ready";
+  }
+
+  document.addEventListener("astro:page-load", render);
+</script>

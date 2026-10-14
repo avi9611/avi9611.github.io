@@ -9,6 +9,7 @@
   "phone": "+91 9611670779",
   "availability": "Open to conversations",
   "currentCompany": "Hybrid Interactive Consultancy LLP",
+  "currentCompanyShort": "Hybrid Interactive",
   "currentRole": "Full-Stack Engineer",
   "currentSince": "Dec 2025",
   "primaryStack": "FastAPI · Next.js · PostgreSQL · Redis · Celery · Docker",

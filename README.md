@@ -27,6 +27,11 @@ public/              images, the link-preview card (images/og.png) and the built
 Content is in `src/data/`. To change what the site says, edit the JSON, not the
 components.
 
+The first client project in `projects.json` is the case study on the home page.
+Its `metrics` and `architecture` fields fill the numbers and the flow diagram, on
+the home page and on its own page. `roleShort` is the one-line role on the
+smaller client cards.
+
 Project screenshots go in `public/images/` as WebP, no wider than 1200px. A raw
 full-screen PNG is several megabytes, and everything in `public/` ships whether a
 page uses it or not.

@@ -137,9 +137,9 @@ html[data-theme="dark"] {
 
 .band { border-top: 1px solid var(--rule); }
 
-.section-pad { padding-block: 5rem; }
+.section-pad { padding-block: 4rem; }
 
-@media (min-width: 768px) { .section-pad { padding-block: 7rem; } }
+@media (min-width: 768px) { .section-pad { padding-block: 5.5rem; } }
 
 /* ============================================================
    Type utilities

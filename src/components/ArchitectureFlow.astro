@@ -1,0 +1,86 @@
+---
+// The shape of a confidential system without its screens: each lane is a flow
+// of steps, and the foundation row lists what every record carries. Plain HTML,
+// so it reflows on a phone instead of shrinking like an image would.
+interface Lane {
+  name: string;
+  steps: string[];
+  key?: string;
+  note?: string;
+}
+
+interface Props {
+  architecture: { lanes: Lane[]; foundation: string[] };
+}
+
+const { architecture } = Astro.props;
+---
+
+<figure>
+  <figcaption class="label mb-6">How it fits together</figcaption>
+
+  <div class="space-y-7">
+    {
+      architecture.lanes.map((lane) => (
+        <div class="grid md:grid-cols-[7.5rem_1fr] gap-x-6 gap-y-2.5 items-start">
+          <p class="label md:pt-2">{lane.name}</p>
+          <div>
+            <ol class="flex flex-wrap items-center gap-y-2">
+              {lane.steps.map((step, i) => (
+                <li class="flex items-center">
+                  {i > 0 && <span class="arrow" aria-hidden="true">→</span>}
+                  <span class:list={["node", step === lane.key && "node-key"]}>{step}</span>
+                </li>
+              ))}
+            </ol>
+            {lane.note && (
+              <p class="mt-3 text-[0.8125rem] text-[var(--ink-soft)] leading-relaxed max-w-[40rem]">
+                {lane.note}
+              </p>
+            )}
+          </div>
+        </div>
+      ))
+    }
+
+    <div class="grid md:grid-cols-[7.5rem_1fr] gap-x-6 gap-y-2.5 items-start pt-7 border-t border-[var(--rule)]">
+      <p class="label md:pt-2">Underneath</p>
+      <ul class="flex flex-wrap gap-2">
+        {architecture.foundation.map((item) => <li class="node node-base">{item}</li>)}
+      </ul>
+    </div>
+  </div>
+</figure>
+
+<style>
+  .node {
+    display: inline-flex;
+    padding: 0.375rem 0.6875rem;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: var(--ink);
+    background: var(--raised);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .node-key {
+    color: var(--accent);
+    background: var(--accent-dim);
+    border-color: var(--accent);
+    font-weight: 500;
+  }
+
+  .node-base {
+    color: var(--ink-mid);
+    background: transparent;
+    border-style: dashed;
+  }
+
+  .arrow {
+    padding-inline: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--ink-faint);
+  }
+</style>

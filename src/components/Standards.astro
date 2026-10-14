@@ -44,13 +44,13 @@ const standards = projects.filter((p) => p.category === "standards");
 
             <p class="mt-4 text-[0.9375rem] leading-relaxed">{p.description}</p>
 
-            <p class="mt-4 mono !normal-case !tracking-[0.03em] text-[var(--accent)]">
+            <p class="mt-4 mb-6 mono !normal-case !tracking-[0.03em] text-[var(--accent)]">
               {p.role}
             </p>
 
             <a
               href={`/projects/${p.id}`}
-              class="mt-6 pt-5 border-t border-[var(--rule-soft)] text-[0.875rem] font-medium text-[var(--ink)] hover:text-[var(--accent)] transition-colors mt-auto"
+              class="mt-auto pt-5 border-t border-[var(--rule-soft)] text-[0.875rem] font-medium text-[var(--ink)] hover:text-[var(--accent)] transition-colors"
             >
               How it works →
             </a>

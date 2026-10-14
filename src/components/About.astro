@@ -1,7 +1,21 @@
 ---
 import personal from "../data/personal.json";
+import skills from "../data/skills.json";
+import education from "../data/education.json";
+import certificates from "../data/certificates.json";
 
 const paragraphs = personal.bio.split("\n\n");
+
+const keyCerts = [
+  "Microsoft Certified: Azure Fundamentals",
+  "Fundamentals of Docker & Kubernetes",
+  "Learning Docker",
+  "Cloud Computing Fundamentals",
+  "Computer Networks & Internet Protocol",
+  "Data Mining",
+];
+
+const shown = certificates.filter((c) => keyCerts.includes(c.title));
 ---
 
 <section id="about" class="band section-pad">
@@ -32,7 +46,8 @@ const paragraphs = personal.bio.split("\n\n");
         </ul>
       </div>
 
-      <figure class="lg:sticky lg:top-24">
+      <!-- On phones the portrait is small and comes first, beside its caption. -->
+      <figure class="order-first lg:order-none flex items-center gap-4 lg:block lg:sticky lg:top-24">
         <img
           src={personal.profileImage}
           alt={personal.fullName}
@@ -40,12 +55,72 @@ const paragraphs = personal.bio.split("\n\n");
           height="360"
           loading="lazy"
           decoding="async"
-          class="w-full aspect-[4/5] object-cover rounded-[5px] border border-[var(--rule)]"
+          class="w-20 shrink-0 lg:w-full lg:max-w-[18rem] aspect-[4/5] object-cover rounded-[5px] border border-[var(--rule)]"
         />
-        <figcaption class="mono !normal-case !tracking-[0.03em] text-[var(--ink-faint)] mt-3 leading-relaxed">
+        <figcaption class="mono !normal-case !tracking-[0.03em] text-[var(--ink-faint)] lg:mt-3 leading-relaxed">
           {personal.fullName} — {personal.currentRole} at {personal.currentCompany}.
         </figcaption>
       </figure>
+    </div>
+
+    <!-- Background: toolkit, education and certifications, kept to what a reader needs. -->
+    <div id="skills" class="mt-16 pt-10 border-t border-[var(--rule)]">
+      <h3 class="label mb-6">Toolkit</h3>
+      <dl class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-6">
+        {
+          skills.categories.map((cat) => (
+            <div>
+              <dt class="text-[0.9375rem] font-semibold text-[var(--ink)]">{cat.title}</dt>
+              <dd class="mt-1 text-[0.875rem] text-[var(--ink-soft)] leading-relaxed">
+                {cat.skills.join(" · ")}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+
+    <div id="education" class="mt-14 grid md:grid-cols-2 gap-x-10 gap-y-12">
+      <div>
+        <h3 class="label mb-5">Education</h3>
+        <ul class="space-y-5">
+          {
+            education.map((e) => (
+              <li>
+                <p class="text-[0.9375rem] font-semibold text-[var(--ink)] leading-snug">{e.degree}</p>
+                <p class="text-[0.875rem] text-[var(--ink-mid)] mt-0.5">
+                  {e.institution}
+                  <span class="text-[var(--ink-faint)]"> · {e.college}</span>
+                </p>
+                <p class="mono !normal-case !tracking-[0.03em] text-[var(--ink-soft)] mt-1.5">
+                  {e.period} · <span class="text-[var(--accent)]">{e.grade}</span>
+                </p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="label mb-5">Selected certifications</h3>
+        <ul class="space-y-2.5">
+          {
+            shown.map((c) => (
+              <li class="flex items-baseline justify-between gap-4">
+                <a
+                  href={c.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-[0.9375rem] text-[var(--ink)] hover:text-[var(--accent)] transition-colors leading-snug"
+                >
+                  {c.title}
+                </a>
+                <span class="mono !normal-case text-[var(--ink-faint)] shrink-0">{c.issuer}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
     </div>
   </div>
 </section>

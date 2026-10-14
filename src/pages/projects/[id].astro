@@ -2,6 +2,8 @@
 import Layout from "../../layouts/Layout.astro";
 import Navigation from "../../components/Navigation.astro";
 import Footer from "../../components/Footer.astro";
+import ArchitectureFlow from "../../components/ArchitectureFlow.astro";
+import Metrics from "../../components/Metrics.astro";
 import projects from "../../data/projects.json";
 
 export async function getStaticPaths() {
@@ -27,6 +29,11 @@ interface Project {
   github?: string;
   website?: string;
   images?: string[];
+  metrics?: { value: string; label: string }[];
+  architecture?: {
+    lanes: { name: string; steps: string[]; key?: string; note?: string }[];
+    foundation: string[];
+  };
 }
 
 const { project } = Astro.props as { project: Project };
@@ -63,6 +70,15 @@ const categoryLabel = {
         </h1>
 
         <p class="lede mt-4">{project.subtitle}</p>
+
+        {
+          project.metrics && (
+            <Metrics
+              items={project.metrics}
+              class="mt-10 pt-8 border-t border-[var(--rule)] grid-cols-3 max-w-3xl"
+            />
+          )
+        }
 
         {
           (project.github || project.website) && (
@@ -165,6 +181,16 @@ const categoryLabel = {
           </aside>
         </div>
       </section>
+
+      {
+        project.architecture && (
+          <section class="band section-pad bg-[var(--surface)]">
+            <div class="shell">
+              <ArchitectureFlow architecture={project.architecture} />
+            </div>
+          </section>
+        )
+      }
 
       {
         images.length > 0 && (
