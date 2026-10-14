@@ -1,63 +1,102 @@
 ---
 import projects from "../data/projects.json";
+import ArchitectureFlow from "./ArchitectureFlow.astro";
+import Metrics from "./Metrics.astro";
 
 const client = projects.filter((p) => p.category === "client");
+
+// The first client project in projects.json is told as the case study. The rest
+// share the grid below it.
+const [lead, ...rest] = client;
 ---
 
 <section id="work" class="band section-pad">
   <div class="shell">
     <div class="section-head">
-      <h2 class="section-title">Client work</h2>
-      <span class="label">Selected</span>
+      <h2 class="section-title">Selected work</h2>
+      <span class="label">Client systems</span>
     </div>
 
-    <p class="lede -mt-1 mb-9">
+    <p class="lede -mt-1 mb-10">
       Line-of-business systems companies run their operations on. These were
       built for clients of Hybrid Interactive, so names and screens stay out of
       it. The architecture does not.
     </p>
 
-    <ul>
-      {
-        client.map((p) => (
-          <li>
-            <a href={`/projects/${p.id}`} class="row-link group">
-              <div class="grid md:grid-cols-[1fr_auto] gap-x-8 gap-y-2 items-start">
-                <div>
-                  <h3 class="row-title text-lg font-semibold text-[var(--ink)] leading-snug">
-                    {p.title}
-                    <span class="arrow ml-1.5">→</span>
-                  </h3>
-                  <p class="text-[var(--ink-soft)] mt-1 prose-tight">
-                    {p.subtitle}
-                  </p>
-                  <ul class="mt-3.5 flex flex-wrap gap-1.5">
-                    {p.stack.slice(0, 6).map((s) => (
-                      <li class="chip">{s}</li>
-                    ))}
-                    {p.stack.length > 6 && (
-                      <li class="chip !bg-transparent !border-transparent">
-                        +{p.stack.length - 6}
-                      </li>
-                    )}
-                  </ul>
-                </div>
+    <article class="card overflow-hidden">
+      <div class="p-6 md:p-10 grid lg:grid-cols-[1fr_15rem] gap-x-16 gap-y-10">
+        <div>
+          <p class="label mb-4">Case study · {lead.period} · {lead.roleShort}</p>
+          <h3 class="text-[clamp(1.5rem,3.2vw,2.125rem)] font-semibold leading-[1.12] tracking-[-0.025em]">
+            <a href={`/projects/${lead.id}`} class="hover:text-[var(--accent)] transition-colors">
+              {lead.title}
+            </a>
+          </h3>
+          <p class="text-[var(--ink-soft)] mt-2.5 text-[1.0625rem]">{lead.subtitle}</p>
+          <p class="mt-6 leading-relaxed max-w-[38rem]">{lead.description}</p>
+          <a href={`/projects/${lead.id}`} class="btn mt-8">
+            Read the case study
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
 
-                <div class="md:text-right shrink-0 md:pt-1">
-                  <p class="mono !normal-case !tracking-[0.04em] text-[var(--ink-faint)]">
-                    {p.period}
-                  </p>
-                  {p.confidential && (
-                    <p class="mono !text-[0.625rem] text-[var(--ink-faint)] mt-1.5">
-                      Client work
-                    </p>
-                  )}
-                </div>
+        {lead.metrics && <Metrics items={lead.metrics} class="grid-cols-3 lg:grid-cols-1 content-start" />}
+      </div>
+
+      {
+        lead.architecture && (
+          <div class="border-t border-[var(--rule)] bg-[var(--surface)] p-6 md:p-10">
+            <ArchitectureFlow architecture={lead.architecture} />
+          </div>
+        )
+      }
+    </article>
+
+    <ul class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[var(--rule)] border border-[var(--rule)] rounded-[5px] overflow-hidden">
+      {
+        rest.map((p) => (
+          <li class="bg-[var(--bg)]">
+            <a
+              href={`/projects/${p.id}`}
+              class="group flex flex-col h-full p-6 hover:bg-[var(--surface)] transition-colors"
+            >
+              <div class="flex items-baseline justify-between gap-4">
+                <h3 class="font-semibold text-[var(--ink)] leading-snug group-hover:text-[var(--accent)] transition-colors">
+                  {p.title}
+                </h3>
+                <span class="mono !normal-case !tracking-[0.04em] text-[var(--ink-faint)] shrink-0">
+                  {p.period}
+                </span>
               </div>
+              <p class="text-[0.875rem] text-[var(--ink-soft)] mt-1.5 leading-relaxed">
+                {p.subtitle}
+              </p>
+              <ul class="mt-4 flex flex-wrap gap-1.5">
+                {p.tags.slice(0, 3).map((t) => (
+                  <li class="chip">{t}</li>
+                ))}
+              </ul>
+              <p class="mt-auto pt-6 mono !normal-case !tracking-[0.03em] text-[var(--accent)]">
+                {p.roleShort}
+              </p>
             </a>
           </li>
         ))
       }
+      <li class="bg-[var(--bg)]">
+        <a
+          href="/projects"
+          class="group flex flex-col h-full p-6 hover:bg-[var(--surface)] transition-colors"
+        >
+          <p class="text-[0.875rem] text-[var(--ink-soft)] leading-relaxed">
+            Every project has a write-up: what it is, how it works, and the part I
+            played in it.
+          </p>
+          <p class="mt-auto pt-6 font-medium text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors">
+            All work →
+          </p>
+        </a>
+      </li>
     </ul>
   </div>
 </section>

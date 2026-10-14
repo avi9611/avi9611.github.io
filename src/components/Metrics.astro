@@ -1,0 +1,20 @@
+---
+// A project's headline numbers. The caller sets the grid columns.
+interface Props {
+  items: { value: string; label: string }[];
+  class?: string;
+}
+
+const { items, class: className } = Astro.props;
+---
+
+<dl class:list={["grid gap-x-6 gap-y-6", className]}>
+  {
+    items.map((m) => (
+      <div class="flex flex-col">
+        <dt class="order-2 text-[0.8125rem] text-[var(--ink-soft)] leading-snug mt-1.5">{m.label}</dt>
+        <dd class="order-1 stat-value">{m.value}</dd>
+      </div>
+    ))
+  }
+</dl>

@@ -9,6 +9,7 @@
     "featured": true,
     "description": "A multi-branch platform covering the full lead-to-cash lifecycle for a UAE laboratory that calibrates medical equipment. Sales, operations, procurement, finance and compliance in one system, with traceability across every approval and financial edit.",
     "role": "Lead developer. Author of 98% of both the backend and frontend repositories.",
+    "roleShort": "Lead developer",
     "outcome": "The largest system I have worked on, and the one that taught me the most. Delivered against a signed scope of work with contractual SLA and performance targets.",
     "highlights": [
       "18 business modules: sales CRM, clients, work orders, repairs, instruments, inventory, procurement, HRM, certificates, settings, IAM and audit logging. Every module feeds at least one other, so data entered once is referenced downstream instead of re-keyed.",
@@ -35,7 +36,52 @@
       "Audit logging",
       "RBAC",
       "PWA"
-    ]
+    ],
+    "metrics": [
+      {
+        "value": "18",
+        "label": "business modules in one system"
+      },
+      {
+        "value": "98%",
+        "label": "of both repositories written by me"
+      },
+      {
+        "value": "9",
+        "label": "document types from one shared PDF engine"
+      }
+    ],
+    "architecture": {
+      "lanes": [
+        {
+          "name": "Sales",
+          "steps": [
+            "Lead",
+            "Proposal",
+            "Accept and convert",
+            "Client and work order"
+          ],
+          "key": "Accept and convert",
+          "note": "Leads and proposals pass a maker-checker approval. Accept and convert is one transaction: it creates the client and raises the work order together, so the two can never diverge."
+        },
+        {
+          "name": "Procurement",
+          "steps": [
+            "Requisition",
+            "Purchase order",
+            "Goods received",
+            "Purchase recorded"
+          ],
+          "note": "Plus purchase returns and a vendor payments ledger. Documents across procurement and HRM come out of one shared PDF engine."
+        }
+      ],
+      "foundation": [
+        "Branch identity on every document",
+        "Counterparty snapshot when issued",
+        "Append-only audit trail",
+        "Role-based access"
+      ]
+    }
   },
   {
     "id": "hospital-systems",
@@ -47,6 +93,7 @@
     "featured": true,
     "description": "Two hospital management platforms built and deployed for separate healthcare clients, sharing a common modular backend so improvements to auth, audit and permissions landed in both.",
     "role": "Joint lead with one colleague across backend and frontend. Primary author on both frontends.",
+    "roleShort": "Joint lead",
     "outcome": "Both are live. Building two products off one core showed me exactly which abstractions survive a second client and which were wishful thinking.",
     "highlights": [
       "Shared modular monolith core: JWT auth with refresh tokens, role and permission based access control, and an append-only activity log recording actor, action, resource and a JSON detail payload.",
@@ -80,6 +127,7 @@
     "featured": true,
     "description": "A marketplace where service providers, customers, employers and job seekers meet, with booking, referrals and provider management. This was the organisation's first real FastAPI project and the one where the house architecture was worked out.",
     "role": "Full-stack contributor across backend and frontend, alongside two colleagues. My first project at the company.",
+    "roleShort": "Full-stack contributor",
     "outcome": "The project I learned the house patterns on, and the reason the conventions kit exists. Several rules in it were written because of bugs that shipped here first.",
     "highlights": [
       "Booking and service-provider modules carrying the bulk of the domain logic, plus customer, employer, job seeker and referral flows.",
@@ -111,6 +159,7 @@
     "featured": false,
     "description": "A CRM for running construction projects: clients, projects, operations tracking and the document trail around them, on the standard modular backend.",
     "role": "Full-stack contributor. Primary author on the frontend.",
+    "roleShort": "Primary frontend author",
     "outcome": "A straightforward brief delivered on the house stack, which is what the templates are for.",
     "highlights": [
       "JWT auth with refresh tokens and RBAC, Celery background tasks with Flower monitoring, and S3-compatible object storage on DigitalOcean Spaces.",
@@ -141,6 +190,7 @@
     "featured": false,
     "description": "A sales CRM covering pipeline, customers and the reporting around them, scaffolded from the in-house CLI and finished on the standard stack.",
     "role": "Primary author on the frontend, contributor on the backend.",
+    "roleShort": "Primary frontend author",
     "outcome": "The first project generated from the internal CLI, which surfaced what the scaffolding was missing.",
     "highlights": [
       "Frontend built and owned end to end.",
@@ -169,6 +219,7 @@
     "featured": false,
     "description": "A human resource management platform covering employees, attendance, leave, salary, departments, designations, shifts, teams and holidays.",
     "role": "Sole developer. 29 of 29 backend commits and 51 of 53 frontend commits.",
+    "roleShort": "Sole developer",
     "outcome": "Built end to end on my own inside a tight window, which is the clearest test of whether the templates actually save time. They did.",
     "highlights": [
       "Full HRM domain: employees, attendance, leave, salary, departments, designations, shifts, teams and holidays.",

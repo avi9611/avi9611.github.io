@@ -1,14 +1,15 @@
 ---
 import personal from "../data/personal.json";
 import Duration from "./Duration.astro";
+import ActivityStrip from "./ActivityStrip.astro";
 
 const since = personal.currentSinceISO;
 const [taglineBefore, taglineAfter] = personal.tagline.split("{duration}");
 ---
 
-<section id="home" class="shell pt-16 pb-14 md:pt-24 md:pb-20">
+<section id="home" class="shell pt-14 pb-16 md:pt-20 md:pb-20">
   <p class="label mb-5">
-    {personal.role} · {personal.location}
+    {personal.role} · {personal.currentCompanyShort} · {personal.location}
   </p>
 
   <h1
@@ -46,50 +47,17 @@ const [taglineBefore, taglineAfter] = personal.tagline.split("{duration}");
     <a href={personal.resume} download class="btn btn-ghost">Download CV</a>
   </div>
 
-  <!-- Current role strip -->
-  <dl
-    class="mt-14 grid gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-4 pt-8 border-t border-[var(--rule)]"
-  >
-    <div>
-      <dt class="label mb-2">Now</dt>
-      <dd class="text-[var(--ink)] font-medium leading-snug">
-        {personal.currentRole}
-      </dd>
-      <dd class="text-[0.8125rem] text-[var(--ink-soft)] mt-0.5">
-        {personal.currentCompany}
-      </dd>
-    </div>
-
-    <div>
-      <dt class="label mb-2">Since</dt>
-      <dd class="text-[var(--ink)] font-medium">{personal.currentSince}</dd>
-      <dd class="text-[0.8125rem] text-[var(--ink-soft)] mt-0.5">
-        <Duration since={since} /> in production delivery
-      </dd>
-    </div>
-
-    <div class="sm:col-span-2">
-      <dt class="label mb-2">Primary stack</dt>
-      <dd class="text-[var(--ink-mid)] leading-relaxed">
-        {personal.primaryStack}
-      </dd>
-    </div>
-  </dl>
-</section>
-
-<!-- Numbers -->
-<section class="band bg-[var(--surface)]">
-  <div class="shell py-10 md:py-12">
-    <!-- dt has to come first in the markup; the grid puts the number first on screen. -->
-    <dl class="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-6">
+  <!-- Proof: the numbers, then the year of work behind them. -->
+  <div class="mt-14 pt-9 border-t border-[var(--rule)]">
+    <dl class="grid grid-cols-3 gap-x-4 sm:gap-x-8">
       {
         personal.highlights.map((h) => (
-          <div class="grid grid-cols-[auto_1fr] items-baseline gap-x-4 sm:grid-cols-1">
-            <dt class="col-start-2 row-start-1 sm:col-start-1 sm:row-start-2 text-[var(--ink)] font-medium text-[0.9375rem] leading-tight">
+          <div class="flex flex-col">
+            <dt class="order-2 mt-2 text-[var(--ink)] font-medium text-[0.875rem] sm:text-[0.9375rem] leading-tight">
               {h.label}
             </dt>
-            <dd class="stat-value col-start-1 row-start-1 sm:mb-2">{h.value}</dd>
-            <dd class="col-start-2 row-start-2 sm:col-start-1 sm:row-start-3 text-[0.8125rem] text-[var(--ink-soft)] mt-0.5">
+            <dd class="order-1 stat-value">{h.value}</dd>
+            <dd class="order-3 mt-1 text-[0.8125rem] text-[var(--ink-soft)] leading-snug">
               {h.note.split("{duration}").map((part, i) => (
                 <>
                   {i > 0 && <Duration since={since} />}
@@ -101,5 +69,9 @@ const [taglineBefore, taglineAfter] = personal.tagline.split("{duration}");
         ))
       }
     </dl>
+
+    <div class="mt-12">
+      <ActivityStrip />
+    </div>
   </div>
 </section>

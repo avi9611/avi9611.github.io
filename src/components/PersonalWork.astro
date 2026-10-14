@@ -11,30 +11,42 @@ const personalWork = projects.filter((p) => p.category === "personal");
       <span class="label">Open source and live</span>
     </div>
 
-    <ul class="grid sm:grid-cols-2 gap-px bg-[var(--rule)] border border-[var(--rule)] rounded-[5px] overflow-hidden">
+    <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
       {
         personalWork.map((p) => (
-          <li class="bg-[var(--bg)]">
+          <li>
             <a
               href={`/projects/${p.id}`}
-              class="block h-full p-6 hover:bg-[var(--surface)] transition-colors group"
+              class="group card flex sm:flex-col h-full overflow-hidden hover:border-[var(--ink-faint)] transition-colors"
             >
-              <div class="flex items-baseline justify-between gap-4">
-                <h3 class="font-semibold text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors">
-                  {p.title}
-                </h3>
-                <span class="mono !normal-case text-[var(--ink-faint)] shrink-0">
-                  {p.period}
-                </span>
+              {p.images?.[0] && (
+                <div class="w-28 shrink-0 sm:w-auto aspect-[4/3] sm:aspect-[2/1] overflow-hidden border-r sm:border-r-0 sm:border-b border-[var(--rule)] bg-[var(--surface)]">
+                  <img
+                    src={p.images[0]}
+                    alt=""
+                    width="1200"
+                    height="600"
+                    loading="lazy"
+                    decoding="async"
+                    class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                </div>
+              )}
+              <!-- On phones each card is a row: thumbnail beside the text. -->
+              <div class="flex flex-col flex-1 min-w-0 p-4 sm:p-5">
+                <div class="flex items-baseline justify-between gap-4">
+                  <h3 class="font-semibold text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors">
+                    {p.title}
+                  </h3>
+                  <span class="mono !normal-case text-[var(--ink-faint)] shrink-0">{p.period}</span>
+                </div>
+                <p class="text-[0.875rem] text-[var(--ink-soft)] mt-1 sm:mt-1.5 leading-snug sm:leading-relaxed">
+                  {p.subtitle}
+                </p>
+                <p class="mt-auto pt-2 sm:pt-4 mono !normal-case !tracking-[0.03em] text-[var(--ink-faint)]">
+                  {[p.website && "Live site", p.github && "Source code"].filter(Boolean).join(" · ")}
+                </p>
               </div>
-              <p class="text-[0.875rem] text-[var(--ink-soft)] mt-1.5 leading-relaxed">
-                {p.subtitle}
-              </p>
-              <ul class="mt-4 flex flex-wrap gap-1.5">
-                {p.stack.slice(0, 4).map((s) => (
-                  <li class="chip">{s}</li>
-                ))}
-              </ul>
             </a>
           </li>
         ))
