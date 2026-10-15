@@ -7,19 +7,16 @@ const since = personal.currentSinceISO;
 const [taglineBefore, taglineAfter] = personal.tagline.split("{duration}");
 ---
 
-<!-- The point of view leads. The name is in the nav and the title already. -->
 <section id="home" class="shell pt-14 pb-16 md:pt-20 md:pb-20">
-  <p class="label mb-6">
-    {personal.fullName} · {personal.role} · {personal.currentCompanyShort}
+  <p class="label mb-5">
+    {personal.role} · {personal.currentCompanyShort} · {personal.location}
   </p>
 
-  <h1
-    class="text-[clamp(2.125rem,6.2vw,4.25rem)] font-semibold leading-[1.04] tracking-[-0.035em] max-w-[15ch] [text-wrap:balance]"
-  >
-    {personal.headline}
+  <h1 class="text-[clamp(2.5rem,7vw,4.25rem)] font-semibold leading-[1.02] tracking-[-0.035em]">
+    {personal.fullName}
   </h1>
 
-  <p class="lede mt-7">
+  <p class="lede mt-6">
     {taglineBefore}<Duration since={since} style="long" />{taglineAfter}
   </p>
 
