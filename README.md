@@ -29,11 +29,7 @@ components.
 
 The home page opens with a point of view rather than a job title. The headline
 and tagline are in `personal.json`. Straight after them, "Decided on day one"
-lists four decisions from the essay, kept in `decisions.json`, followed by "Try
-to break it" (`src/components/BreakIt.astro`): a toy purchasing flow where a
-visitor can move a vendor and watch an issued order keep the address it was sent
-with, and try to delete an audit entry. The vendor and orders are invented, and
-nothing in it is client code.
+lists four decisions from the essay, kept in `decisions.json`.
 
 The first client project in `projects.json` is the case study on the home page.
 Its `metrics` and `architecture` fields fill the numbers and the flow diagram, on

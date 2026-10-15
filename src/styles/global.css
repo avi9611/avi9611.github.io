@@ -38,8 +38,6 @@
   --accent:    #0d6e60;
   --accent-mid:#0a5a4e;
   --accent-dim:#e3f1ee;
-  --deny:      #b42318;
-  --deny-dim:  #fbeceb;
   --shadow: 0 1px 2px rgb(20 23 26 / 0.04), 0 4px 16px rgb(20 23 26 / 0.04);
   color-scheme: light;
 }
@@ -57,8 +55,6 @@ html[data-theme="dark"] {
   --accent:    #4fd0ba;
   --accent-mid:#6fdcc9;
   --accent-dim:#12312c;
-  --deny:      #ff8f80;
-  --deny-dim:  #351816;
   --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 4px 20px rgb(0 0 0 / 0.3);
   color-scheme: dark;
 }
