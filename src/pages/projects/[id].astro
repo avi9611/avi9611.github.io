@@ -24,6 +24,7 @@ interface Project {
   role?: string;
   outcome?: string;
   highlights?: string[];
+  decisions?: { question: string; decided: string; effect: string }[];
   stack: string[];
   tags: string[];
   github?: string;
@@ -126,6 +127,26 @@ const categoryLabel = {
             <p class="text-[1.0625rem] leading-relaxed max-w-[42rem]">
               {project.description}
             </p>
+
+            {
+              project.decisions && (
+                <>
+                  <h2 class="label mt-12 mb-1">Decisions</h2>
+                  <ol class="max-w-[42rem]">
+                    {project.decisions.map((d) => (
+                      <li class="py-5 border-b border-[var(--rule)]">
+                        <h3 class="font-semibold text-[var(--ink)] leading-snug">{d.question}</h3>
+                        <p class="mt-2 leading-relaxed">{d.decided}</p>
+                        <p class="mt-2 text-[0.9375rem] text-[var(--ink-soft)] leading-relaxed">
+                          <span class="label !text-[var(--accent)] mr-1.5">So that</span>
+                          {d.effect}
+                        </p>
+                      </li>
+                    ))}
+                  </ol>
+                </>
+              )
+            }
 
             {
               project.highlights && (

@@ -1,0 +1,38 @@
+---
+import decisions from "../data/decisions.json";
+
+// How I think, before what I built. The four come from the essay, in its words.
+---
+
+<section id="decisions" class="band section-pad">
+  <div class="shell">
+    <div class="section-head">
+      <h2 class="section-title">Decided on day one</h2>
+      <span class="label">Four of twenty</span>
+    </div>
+
+    <p class="lede -mt-1 mb-10">{decisions.intro}</p>
+
+    <ul class="grid md:grid-cols-2 gap-px bg-[var(--rule)] border border-[var(--rule)] rounded-[5px] overflow-hidden">
+      {
+        decisions.items.map((d) => (
+          <li class="bg-[var(--bg)] p-6 md:p-7 flex flex-col">
+            <h3 class="text-[1.0625rem] font-semibold leading-snug text-[var(--ink)]">{d.title}</h3>
+            <p class="mt-2.5 text-[var(--ink-mid)] leading-relaxed">{d.rule}</p>
+            <div class="mt-auto pt-5">
+              <p class="label !text-[var(--accent)]">Month six, if you don't</p>
+              <p class="mt-1.5 text-[0.9375rem] text-[var(--ink-soft)] leading-relaxed">{d.cost}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="mt-6 text-[0.9375rem]">
+      <a href={decisions.essay} class="link-underline">
+        Read the essay they come from: the twenty decisions that get expensive in month six
+      </a>
+      <span aria-hidden="true" class="text-[var(--ink-faint)]"> →</span>
+    </p>
+  </div>
+</section>

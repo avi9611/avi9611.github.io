@@ -27,10 +27,15 @@ public/              images, the link-preview card (images/og.png) and the built
 Content is in `src/data/`. To change what the site says, edit the JSON, not the
 components.
 
+The home page opens with a point of view rather than a job title. The headline
+and tagline are in `personal.json`. Straight after them, "Decided on day one"
+lists four decisions from the essay, kept in `decisions.json`.
+
 The first client project in `projects.json` is the case study on the home page.
 Its `metrics` and `architecture` fields fill the numbers and the flow diagram, on
-the home page and on its own page. `roleShort` is the one-line role on the
-smaller client cards.
+the home page and on its own page. Its `decisions` field lists the question,
+what was decided, and what that buys, on its own page. `roleShort` is the
+one-line role on the smaller client cards.
 
 Project screenshots go in `public/images/` as WebP, no wider than 1200px. A raw
 full-screen PNG is several megabytes, and everything in `public/` ships whether a
@@ -78,6 +83,14 @@ date, `currentSinceISO` in `src/data/personal.json`.
   after the last deploy.
 - The workflow also rebuilds on the 1st of each month, which keeps the served HTML
   fresh even with no pushes.
+
+## The site is dated
+
+The footer carries the site's revision number and the date of the last commit,
+with a link to the change log on GitHub. Both come from git at build time
+(`src/lib/revision.ts`), which is why the workflow checks out the full history
+(`fetch-depth: 0`). In a shallow clone the count would be wrong, so the line is
+left out instead.
 - `resume/resume.html` has no tenure in it, so the PDF never goes stale on its own.
   Rebuild it whenever its text changes.
 

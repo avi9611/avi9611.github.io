@@ -2,8 +2,7 @@
   "name": "Avinash N",
   "fullName": "Avinash Neralakatte",
   "role": "Full-Stack Engineer",
-  "headline": "I build production CRM and ERP systems that businesses actually run on.",
-  "tagline": "{duration} at a delivery consultancy in Kochi. Eight client products shipped across healthcare, hospitality, construction and calibration, on FastAPI and Next.js.",
+  "tagline": "{duration} at a delivery consultancy in Kochi. In that time I have shipped eight systems that companies run their operations on, among them a calibration lab's lead-to-cash platform and two hospital deployments, and written the two standards our new projects start from.",
   "location": "Kochi, India",
   "email": "avinashpoojary651@gmail.com",
   "phone": "+91 9611670779",
@@ -20,29 +19,9 @@
     "Decide the tenancy, audit and permission model on day one. All three get expensive in month six.",
     "AI tooling raises how much you ship. It does not lower the bar for what you ship."
   ],
-  "highlights": [
-    {
-      "value": "8",
-      "label": "Products shipped",
-      "note": "in {duration}"
-    },
-    {
-      "value": "18",
-      "label": "Modules",
-      "note": "on the largest system"
-    },
-    {
-      "value": "2",
-      "label": "Internal standards",
-      "note": "written and adopted"
-    }
-  ],
   "social": {
     "github": "https://github.com/avi9611",
     "linkedin": "https://www.linkedin.com/in/avinash-n-dev/",
-    "leetcode": "https://leetcode.com/u/avinash516/",
-    "hackerrank": "https://www.hackerrank.com/profile/avinashpoojary61",
-    "geeksforgeeks": "https://www.geeksforgeeks.org/user/avinashpomzls/",
     "dailydev": "https://app.daily.dev/avinashn"
   },
   "resume": "/avinashresume.pdf",

@@ -1,0 +1,26 @@
+{
+  "intro": "Most of what I have been asked to fix in month six was a decision nobody made on day one. These are four I now make first, in writing, before the first module exists.",
+  "essay": "/blog/day-one-decisions",
+  "items": [
+    {
+      "title": "Tenancy is four decisions, not one",
+      "rule": "Scoped by what. Which tables stay shared. Whether a user can cross tenants. Whether the database enforces it or every query has to remember.",
+      "cost": "A system scoped by branch, when someone asks for company-level reporting, is a rewrite rather than a feature."
+    },
+    {
+      "title": "The audit trail is append-only, from the first module",
+      "rule": "Actor, action, resource and detail on every change, and no update or delete path anywhere in the application.",
+      "cost": "Added late, it starts on the day you added it. Every question anyone asks is about the period before."
+    },
+    {
+      "title": "A sent document keeps the facts it was sent with",
+      "rule": "Screens read live data. Anything that has left the building carries a snapshot of who it was issued to, frozen at issue time.",
+      "cost": "A vendor moves office, and every purchase order you ever sent now shows an address that was never on it."
+    },
+    {
+      "title": "Money is a decimal with a currency, always",
+      "rule": "One type and scale, the currency stored beside every amount even in a single-currency system, and rounding in exactly one place.",
+      "cost": "Rounding in three places with two rules is a reconciliation bug that arrives as a customer complaint."
+    }
+  ]
+}

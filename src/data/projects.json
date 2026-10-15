@@ -81,7 +81,29 @@
         "Append-only audit trail",
         "Role-based access"
       ]
-    }
+    },
+    "decisions": [
+      {
+        "question": "Scoped by what?",
+        "decided": "By branch. Each branch works with its own credentials, and every generated document carries the identity of the branch that issued it.",
+        "effect": "each branch's paperwork stays its own inside one shared system."
+      },
+      {
+        "question": "Can a later edit rewrite a document that has already gone out?",
+        "decided": "No. Counterparty details are frozen onto a document at the moment it is issued.",
+        "effect": "a vendor updating their address cannot change a purchase order that was sent last month."
+      },
+      {
+        "question": "How does a won proposal become a client with a job?",
+        "decided": "In one transaction. Accept and Convert creates the client and raises the work order together.",
+        "effect": "the client and its work order can never diverge."
+      },
+      {
+        "question": "Where do the documents come from?",
+        "decided": "One shared PDF engine for all nine document types across procurement and HRM.",
+        "effect": "a fix to layout or numbering lands on every document at once, not in nine separate generators."
+      }
+    ]
   },
   {
     "id": "hospital-systems",

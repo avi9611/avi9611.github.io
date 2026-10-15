@@ -1,8 +1,18 @@
 ---
 import personal from "../data/personal.json";
 import { publishedPosts } from "../lib/posts";
+import { revision } from "../lib/revision";
 
 const year = new Date().getFullYear();
+
+// The site is dated like any other document: which revision this is, and when.
+const rev = revision();
+const revised = rev?.date.toLocaleDateString("en-GB", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "Asia/Kolkata",
+});
 
 const hasPosts = (await publishedPosts()).length > 0;
 
@@ -15,7 +25,6 @@ const links = [
 const socials = [
   { label: "GitHub", href: personal.social.github },
   { label: "LinkedIn", href: personal.social.linkedin },
-  { label: "LeetCode", href: personal.social.leetcode },
   { label: "daily.dev", href: personal.social.dailydev },
 ];
 ---
@@ -48,8 +57,23 @@ const socials = [
       </ul>
     </div>
 
-    <p class="mono !normal-case !tracking-[0.03em] text-[var(--ink-faint)] mt-8 pt-6 border-t border-[var(--rule-soft)]">
-      © {year} {personal.fullName}. Built with Astro.
-    </p>
+    <div class="mono !normal-case !tracking-[0.03em] text-[var(--ink-faint)] mt-8 pt-6 border-t border-[var(--rule-soft)] flex flex-wrap justify-between gap-x-6 gap-y-2">
+      <p>© {year} {personal.fullName}. Built with Astro.</p>
+      {
+        rev && (
+          <p>
+            Rev {rev.number} · revised <time datetime={rev.date.toISOString()}>{revised}</time> ·{" "}
+            <a
+              href={`${personal.social.github}/avi9611.github.io/commits/main`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="underline decoration-[var(--rule)] underline-offset-[0.2em] hover:text-[var(--ink)] hover:decoration-current"
+            >
+              change log
+            </a>
+          </p>
+        )
+      }
+    </div>
   </div>
 </footer>
