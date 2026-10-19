@@ -55,22 +55,20 @@ page uses it or not.
 
 ## Updating the CV
 
-Edit `resume/resume.html`, then:
+Edit `resume/resume.html` and push. The deploy runs `./resume/build.sh`, which
+renders it through headless Chrome to `public/avinashresume.pdf`, so the CV on
+the site always matches the HTML. Run it yourself to see the PDF before pushing,
+or to update the copy kept in the repo:
 
 ```bash
 ./resume/build.sh
 ```
 
-It renders through headless Chrome to `public/avinashresume.pdf`. One A4 page,
-selectable text so applicant tracking systems can parse it. If you add enough
-content to spill onto a second page, cut something rather than shrinking the
-type below about 8.5pt.
-
-Check the page count after a change:
-
-```bash
-pdftotext -layout public/avinashresume.pdf - | head -40
-```
+It finds Chrome on a Mac or on Linux; set `CHROME` to point it elsewhere. The CV
+is set in Geist, the site's typeface, loaded from `node_modules`, so it comes out
+the same on any machine (run `npm install` first). One A4 page, selectable text
+so applicant tracking systems can parse it. The script fails if the PDF runs to a
+second page; cut something rather than shrinking the type below about 8.5pt.
 
 ## Tenure that updates itself
 
@@ -88,7 +86,7 @@ date, `currentSinceISO` in `src/data/personal.json`.
 - The hero is React, so `HomeHero.tsx` does the same re-check for its copy after
   hydration.
 - `resume/resume.html` has no tenure in it, so the PDF never goes stale on its own.
-  Rebuild it whenever its text changes.
+  Each deploy rebuilds it from the HTML.
 
 Write `{duration}` inside a string in `personal.json` or `experience.json` and it
 gets replaced at render.

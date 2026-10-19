@@ -38,7 +38,12 @@ jobs:
       
       - name: Install dependencies
         run: npm ci
-      
+
+      # Renders resume/resume.html to public/avinashresume.pdf with the
+      # runner's Chrome, so the CV on the site is always the current one.
+      - name: Build the CV
+        run: ./resume/build.sh
+
       - name: Build with Astro
         run: npm run build
       
