@@ -1190,7 +1190,8 @@ const CSS = `
   background:var(--sh-bg);color:var(--sh-fg);font-family:var(--sh-body);-webkit-font-smoothing:antialiased;
   touch-action:pan-y;display:flex;flex-direction:column;box-sizing:border-box}
 .sh-root *,.sh-root *::before,.sh-root *::after{box-sizing:border-box}
-.sh-stage{position:absolute;inset:0;z-index:0;pointer-events:none}
+.sh-stage{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .9s ease}
+.sh-root[data-placed] .sh-stage{opacity:1}
 .sh-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity .5s ease}
 .sh-fallback{position:absolute;display:block;max-width:none;user-select:none;-webkit-user-drag:none;transition:opacity .5s ease}
 .sh-root[data-gl="on"] .sh-canvas{opacity:1}
@@ -1198,7 +1199,9 @@ const CSS = `
 .sh-root[data-swap="1"] .sh-canvas{opacity:0;transition-duration:.25s}
 .sh-root[data-swap="1"] .sh-fallback{opacity:0;transition-duration:.25s}
 .sh-backdrop{position:absolute;left:50%;z-index:0;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;user-select:none;
-  font-family:var(--sh-head);font-weight:600;letter-spacing:-.06em;line-height:.8;color:color-mix(in srgb,var(--sh-fg) 5%,transparent)}
+  font-family:var(--sh-head);font-weight:600;letter-spacing:-.06em;line-height:.8;color:color-mix(in srgb,var(--sh-fg) 5%,transparent);
+  opacity:0;transition:opacity .9s ease}
+.sh-root[data-placed] .sh-backdrop{opacity:1}
 .sh-nav{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:24px;
   padding:26px clamp(20px,3.2cqw,48px) 0}
 .sh-brand{font-family:var(--sh-head);font-weight:600;font-size:17px;letter-spacing:-.02em;color:inherit;text-decoration:none}
@@ -1215,7 +1218,7 @@ const CSS = `
 .sh-hint{position:absolute;z-index:1;transform:translate(-50%,0);display:flex;align-items:center;gap:10px;white-space:nowrap;
   font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.5;pointer-events:none;transition:opacity .8s ease}
 .sh-hint::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;animation:sh-pulse 2.4s ease-in-out infinite}
-.sh-root[data-touched="1"] .sh-hint{opacity:0}
+.sh-root[data-touched="1"] .sh-hint,.sh-root:not([data-placed]) .sh-hint{opacity:0}
 @keyframes sh-pulse{0%,100%{transform:scale(.6);opacity:.45}50%{transform:scale(1);opacity:1}}
 .sh-spacer{flex:1 1 auto;min-height:0}
 .sh-content{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);align-items:end;
@@ -1261,7 +1264,7 @@ const CSS = `
 }
 @media (prefers-reduced-motion:reduce){
   .sh-hint::before{animation:none}
-  .sh-canvas,.sh-fallback,.sh-btn,.sh-btn svg,.sh-txt svg{transition:none}
+  .sh-stage,.sh-backdrop,.sh-canvas,.sh-fallback,.sh-btn,.sh-btn svg,.sh-txt svg{transition:none}
 }
 `
 
@@ -1403,8 +1406,10 @@ export default function SculptureHero(props: SculptureHeroProps) {
     y: sculptureY,
   }
 
-  const [mode, setMode] = React.useState<"light" | "dark">(theme)
+  const [ownMode, setMode] = React.useState<"light" | "dark">(theme)
   React.useEffect(() => setMode(theme), [theme])
+  // without its own toggle the hero simply follows the theme it is given
+  const mode = themeToggle ? ownMode : theme
   const background = mode === "dark" ? darkBackground : lightBackground
   const bgRgb = React.useMemo(() => hexToRgb(background, [0.92, 0.91, 0.9]), [background])
   // text follows the background unless set: light on dark grounds, dark on light ones
@@ -1415,8 +1420,11 @@ export default function SculptureHero(props: SculptureHeroProps) {
     () => (imageBackground ? hexToRgb(imageBackground, [0.918, 0.914, 0.906]) : null),
     [imageBackground]
   )
-  const [isMobile, setIsMobile] = React.useState(false)
-  const mobileRef = React.useRef(false)
+  // null until the first measure: the image is only chosen once the layout is known,
+  // so a phone never fetches the wide sculpture
+  const [isMobile, setIsMobile] = React.useState<boolean | null>(null)
+  const mobileRef = React.useRef<boolean | null>(null)
+  const measured = isMobile !== null
   // pick the image for the current theme and layout, falling back sensibly
   const activeSrc =
     (isMobile && mode === "dark" && (mobileDarkSrc || darkSrc)) ||
@@ -1589,8 +1597,13 @@ export default function SculptureHero(props: SculptureHeroProps) {
   React.useEffect(() => {
     const root = rootRef.current
     const engine = engineRef.current
-    if (!root) return
+    if (!root || !measured) return
     let cancelled = false
+    let placeTimer = 0
+    // the stage fades in once the sculpture is in place (see the CSS)
+    const place = () => {
+      if (!cancelled) root.dataset.placed = "1"
+    }
     const image = new Image()
     image.crossOrigin = "anonymous"
     image.decoding = "async"
@@ -1606,13 +1619,20 @@ export default function SculptureHero(props: SculptureHeroProps) {
             if (cancelled) return
             root.dataset.gl = "on"
             delete root.dataset.swap
+            place()
           }
           engine.setImage(image)
           relayout()
+          // a slow first frame shows the still image in the meantime
+          placeTimer = window.setTimeout(place, 1200)
         } catch {
           root.dataset.gl = "off"
+          place()
         }
-      } else delete root.dataset.swap
+      } else {
+        delete root.dataset.swap
+        place()
+      }
     }
     image.onerror = () => {
       delete root.dataset.swap
@@ -1622,10 +1642,11 @@ export default function SculptureHero(props: SculptureHeroProps) {
     return () => {
       cancelled = true
       window.clearTimeout(t)
+      window.clearTimeout(placeTimer)
       image.onload = null
       image.onerror = null
     }
-  }, [activeSrc, relayout])
+  }, [activeSrc, measured, relayout])
 
   // live option updates without re-creating the engine
   React.useEffect(() => {
@@ -1660,7 +1681,7 @@ export default function SculptureHero(props: SculptureHeroProps) {
         </div>
       ) : null}
       <div ref={stageRef} className="sh-stage" aria-hidden="true">
-        <img ref={imgRef} className="sh-fallback" src={activeSrc} alt="" crossOrigin="anonymous" draggable={false} />
+        <img ref={imgRef} className="sh-fallback" src={measured ? activeSrc : undefined} alt="" crossOrigin="anonymous" draggable={false} />
       </div>
       <span style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0 0 0 0)" }}>{imageAlt}</span>
 
