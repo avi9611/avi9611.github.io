@@ -25,7 +25,7 @@ const links = [
     <div class="shell flex items-center justify-between h-14">
       <a
         href="/"
-        class="text-[1.0625rem] font-semibold tracking-[-0.02em] text-[var(--ink)]"
+        class="text-[1.0625rem] font-semibold tracking-[-0.02em] text-[var(--ink)] hover:opacity-65 transition-opacity"
       >
         Avinash
       </a>
@@ -37,7 +37,7 @@ const links = [
               <li>
                 <a
                   href={l.href}
-                  class="px-2 py-1.5 text-[0.84375rem] tracking-[-0.005em] text-[var(--ink-soft)] hover:text-[var(--ink)] transition-colors"
+                  class="hover-line px-2 py-1.5 text-[0.84375rem] tracking-[-0.005em] text-[var(--ink-soft)] hover:text-[var(--ink)]"
                 >
                   {l.label}
                 </a>
@@ -95,7 +95,7 @@ const links = [
           <li>
             <a
               href={l.href}
-              class="block py-2 text-[0.8125rem] text-[var(--ink-soft)] hover:text-[var(--ink)] transition-colors"
+              class="hover-line block py-2 text-[0.8125rem] text-[var(--ink-soft)] hover:text-[var(--ink)]"
             >
               {l.label}
             </a>

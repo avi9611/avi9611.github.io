@@ -47,6 +47,10 @@
   /* Height of the sticky header, so the hero can fill exactly what is left of the screen.
      Below sm the header carries a second row of links. */
   --nav-h: calc(6rem + 1px);
+  /* The page column: as wide as the screen up to a large desktop, with a side
+     margin that grows with it. Prose keeps its own narrower measure. */
+  --shell-max: 120rem;
+  --gutter: clamp(1.5rem, 5vw, 4.5rem);
   color-scheme: light;
 }
 
@@ -140,12 +144,10 @@ html[data-theme="dark"] {
 
 .shell {
   width: 100%;
-  max-width: 68rem;
+  max-width: var(--shell-max);
   margin-inline: auto;
-  padding-inline: 1.5rem;
+  padding-inline: var(--gutter);
 }
-
-@media (min-width: 768px) { .shell { padding-inline: 2.5rem; } }
 
 .band { border-top: 1px solid var(--rule); }
 
@@ -230,6 +232,38 @@ html[data-theme="dark"] {
 
 .link-underline:hover { text-decoration-color: currentColor; }
 
+/* Anything clickable answers the pointer. The theme has no colour accent, so a
+   hover never relies on a colour change alone: text links underline, cards
+   shade and their arrow steps forward, buttons change fill. */
+button:not(:disabled),
+[role="button"],
+summary,
+label[for] { cursor: pointer; }
+
+/* Text that underlines when it, or the link or card around it, is hovered. */
+.hover-line {
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  transition: text-decoration-color 0.18s ease, color 0.18s ease;
+}
+
+.hover-line:hover,
+a:hover .hover-line,
+.group:hover .hover-line { text-decoration-color: currentColor; }
+
+/* An arrow that steps forward, or back, with its link. */
+.go,
+.go-back {
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+a:hover .go,
+.group:hover .go { transform: translateX(4px); }
+a:hover .go-back { transform: translateX(-4px); }
+
 /* Pill buttons, as in the hero: solid ink for the main action, an outline for the rest. */
 .btn {
   display: inline-flex;
@@ -247,7 +281,11 @@ html[data-theme="dark"] {
   transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), background-color 0.25s ease, color 0.25s ease;
 }
 
-.btn:hover { transform: translateY(-1px); }
+.btn:hover {
+  transform: translateY(-1px);
+  background: color-mix(in srgb, var(--ink) 78%, var(--bg));
+  border-color: color-mix(in srgb, var(--ink) 78%, var(--bg));
+}
 .btn:active { transform: translateY(0); }
 
 .btn-ghost {
@@ -256,7 +294,7 @@ html[data-theme="dark"] {
   border-color: color-mix(in srgb, var(--ink) 22%, transparent);
 }
 
-.btn-ghost:hover { background: var(--ink); color: var(--bg); }
+.btn-ghost:hover { background: var(--ink); border-color: var(--ink); color: var(--bg); }
 
 .chip {
   display: inline-flex;
@@ -296,9 +334,14 @@ html[data-theme="dark"] {
 }
 
 .row-link:hover .arrow { opacity: 1; transform: translateX(3px); }
-.row-link:hover .row-title { color: var(--accent); }
 
-.row-title { transition: color 0.2s ease; }
+.row-title {
+  text-decoration: underline 1px transparent;
+  text-underline-offset: 0.22em;
+  transition: text-decoration-color 0.2s ease;
+}
+
+.row-link:hover .row-title { text-decoration-color: currentColor; }
 
 /* Marker used for list bullets */
 .tick {
@@ -332,12 +375,15 @@ html[data-theme="dark"] .home-hero:not(.is-live) .sh-fallback { opacity: 0; }
    header and every section below it. */
 .home-hero .sh-content {
   width: 100%;
-  max-width: 68rem;
+  max-width: var(--shell-max);
   margin-inline: auto;
-  padding-inline: 1.5rem;
+  padding-inline: var(--gutter);
 }
 
-@media (min-width: 768px) { .home-hero .sh-content { padding-inline: 2.5rem; } }
+/* Its buttons follow the site's hover: the solid one changes fill, the text
+   link's underline darkens. */
+.home-hero .sh-btn:hover { background: color-mix(in srgb, var(--ink) 78%, var(--bg)); }
+.home-hero .sh-txt:hover { border-bottom-color: currentColor; }
 
 /* ============================================================
    Print
