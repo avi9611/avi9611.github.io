@@ -28,7 +28,7 @@ const [lead, ...rest] = client;
         <div>
           <p class="label mb-4">Case study · {lead.period} · {lead.roleShort}</p>
           <h3 class="text-[clamp(1.5rem,3.2vw,2.125rem)] font-semibold leading-[1.12] tracking-[-0.025em]">
-            <a href={`/projects/${lead.id}`} class="hover:text-[var(--accent)] transition-colors">
+            <a href={`/projects/${lead.id}`} class="hover-line">
               {lead.title}
             </a>
           </h3>
@@ -36,7 +36,7 @@ const [lead, ...rest] = client;
           <p class="mt-6 leading-relaxed max-w-[38rem]">{lead.description}</p>
           <a href={`/projects/${lead.id}`} class="btn mt-8">
             Read the case study
-            <span aria-hidden="true">→</span>
+            <span aria-hidden="true" class="go">→</span>
           </a>
         </div>
 
@@ -61,7 +61,7 @@ const [lead, ...rest] = client;
               class="group flex flex-col h-full p-6 hover:bg-[var(--surface)] transition-colors"
             >
               <div class="flex items-baseline justify-between gap-4">
-                <h3 class="font-semibold text-[var(--ink)] leading-snug group-hover:text-[var(--accent)] transition-colors">
+                <h3 class="hover-line font-semibold text-[var(--ink)] leading-snug">
                   {p.title}
                 </h3>
                 <span class="mono !normal-case !tracking-[0.04em] text-[var(--ink-faint)] shrink-0">
@@ -76,8 +76,9 @@ const [lead, ...rest] = client;
                   <li class="chip">{t}</li>
                 ))}
               </ul>
-              <p class="mt-auto pt-6 mono !normal-case !tracking-[0.03em] text-[var(--accent)]">
+              <p class="mt-auto pt-6 flex items-baseline justify-between gap-4 mono !normal-case !tracking-[0.03em] text-[var(--accent)]">
                 {p.roleShort}
+                <span aria-hidden="true" class="go">→</span>
               </p>
             </a>
           </li>
@@ -92,8 +93,8 @@ const [lead, ...rest] = client;
             Every project has a write-up: what it is, how it works, and the part I
             played in it.
           </p>
-          <p class="mt-auto pt-6 font-medium text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors">
-            All work →
+          <p class="mt-auto pt-6 font-medium text-[var(--ink)]">
+            <span class="hover-line">All work</span> <span aria-hidden="true" class="go">→</span>
           </p>
         </a>
       </li>

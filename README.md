@@ -125,6 +125,13 @@ from the sculpture hero, in Geist with Instrument Serif italic for emphasis
 ink. Light is the base; `html[data-theme="dark"]` overrides only what changes. The toggle writes to `localStorage`, and an inline
 script in `Layout.astro` applies the theme before first paint so there is no flash.
 
+With no colour accent, a hover can't rely on a colour change. Text links
+underline (`.hover-line`), arrows step forward (`.go`, `.go-back`), cards shade,
+and buttons change fill. Give anything new that is clickable one of these.
+
+The page column (`.shell`) runs as wide as the screen up to `--shell-max`, with a
+side margin (`--gutter`) that grows with it. Prose keeps its own `max-w-[42rem]`.
+
 Base element resets live inside `@layer base` on purpose. Unlayered CSS beats
 layered CSS in the cascade, so an unlayered `p { margin: 0 }` would silently
 override every Tailwind margin utility.

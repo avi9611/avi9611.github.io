@@ -61,7 +61,7 @@ const categoryLabel = {
           href="/projects"
           class="inline-flex items-center gap-2 label hover:text-[var(--ink)] transition-colors mb-8"
         >
-          <span aria-hidden="true">←</span> All work
+          <span aria-hidden="true" class="go-back">←</span> <span class="hover-line">All work</span>
         </a>
 
         <p class="label mb-4">{categoryLabel} · {project.period}</p>
@@ -236,7 +236,7 @@ const categoryLabel = {
 
       <section class="band">
         <div class="shell py-12 flex flex-wrap items-center justify-between gap-4">
-          <a href="/projects" class="btn btn-ghost">← All work</a>
+          <a href="/projects" class="btn btn-ghost"><span aria-hidden="true" class="go-back">←</span> All work</a>
           <a href="/#contact" class="btn">Get in touch</a>
         </div>
       </section>

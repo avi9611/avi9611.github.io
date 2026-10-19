@@ -21,7 +21,7 @@ const { Content } = await render(post);
     <article>
       <header class="shell pt-12 pb-10 md:pt-16 md:pb-12">
         <a href="/blog" class="inline-flex items-center gap-2 label hover:text-[var(--ink)] transition-colors mb-8">
-          <span aria-hidden="true">←</span> Blog
+          <span aria-hidden="true" class="go-back">←</span> <span class="hover-line">Blog</span>
         </a>
 
         <p class="label mb-4">
@@ -43,7 +43,7 @@ const { Content } = await render(post);
 
       <section class="band">
         <div class="shell py-12 flex flex-wrap items-center justify-between gap-4">
-          <a href="/blog" class="btn btn-ghost">← All posts</a>
+          <a href="/blog" class="btn btn-ghost"><span aria-hidden="true" class="go-back">←</span> All posts</a>
           <a href="/#contact" class="btn">Get in touch</a>
         </div>
       </section>
