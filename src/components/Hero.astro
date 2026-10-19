@@ -3,8 +3,10 @@ import personal from "../data/personal.json";
 import HomeHero from "./HomeHero";
 import { tenure } from "../lib/duration";
 
-// The sculpture is drawn from the same year of contributions the activity
-// strip shows further down. Regenerate it with `node scripts/make-sculpture.mjs`.
+// The sculpture images ship with the hero (see README). They sit on a flat
+// background, which the hero keys out by colour and repaints in the page's,
+// so `background` and `darkBackground` must be real colours equal to --bg in
+// global.css, not var(--bg).
 const sculpture = (name: string) => `/images/sculpture/${name}.webp`;
 
 const since = personal.currentSinceISO;
@@ -20,7 +22,7 @@ const surname = rest.join(" ");
     darkSrc={sculpture("wide-dark")}
     mobileSrc={sculpture("tall-light")}
     mobileDarkSrc={sculpture("tall-dark")}
-    imageAlt="A sculpture of gold ribbon drawn from a year of my GitHub contributions. It swells in the busy weeks and narrows in the quiet ones."
+    imageAlt="A sculpture of pale silk ribbon and sand, looping around an empty centre"
     showNav={false}
     themeToggle={false}
     loadFonts={false}
@@ -35,8 +37,8 @@ const surname = rest.join(" ");
     secondaryCta={{ label: "Read the CV", href: personal.resume }}
     hint="Run your cursor through it"
     hintTouch="Drag a finger through it"
-    background="var(--bg)"
-    darkBackground="var(--bg)"
+    background="#ebe9e5"
+    darkBackground="#111110"
     textColor="var(--ink)"
     accentColor="var(--ink)"
     headingFont="var(--font-sans)"
@@ -44,6 +46,7 @@ const surname = rest.join(" ");
     bodyFont="var(--font-sans)"
     height="calc(100svh - var(--nav-h))"
     sculptureScale={0.86}
+    mobileSculptureScale={0.84}
     backdropText={first.toLowerCase()}
     className="home-hero"
   />

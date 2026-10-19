@@ -23,8 +23,6 @@ src/
   pages/             home, /projects, /projects/[id], /blog, /activity
   styles/global.css  design tokens for light and dark, plus shared classes
 public/              images, the link-preview card (images/og.png) and the built CV
-scripts/
-  make-sculpture.mjs draws the home page sculpture from the contribution feed
 ```
 
 Content is in `src/data/`. To change what the site says, edit the JSON, not the
@@ -104,17 +102,12 @@ Edit it as little as possible; `src/components/HomeHero.tsx` wraps it instead, t
 follow the site's theme switch and keep the tenure current. The footer credits
 the author.
 
-The image is not stock. `scripts/make-sculpture.mjs` draws it from the same
-contribution feed as `/activity`: seven ribbons of fine champagne-gold strands
-twisting through the last 53 weeks and coming apart into grains at both ends, the
-whole form swelling in the busy weeks and narrowing in the quiet ones. It writes a wide and a tall
-(phone) version for each theme to `public/images/sculpture/`. The deploy redraws
-it from that day's feed before building, and ships the committed images if the
-feed is down. To redraw it locally:
-
-```bash
-node scripts/make-sculpture.mjs
-```
+The sculpture images are the component's own, a wide and a tall (phone) version
+for each theme, in `public/images/sculpture/`. They are served from this site
+rather than the 21st.dev CDN. Each sits on a flat background that the hero keys
+out by colour, so the `background` and `darkBackground` passed in `Hero.astro`
+must stay equal to `--bg` in `global.css`. Replacement images need a flat
+background in that colour too, or a transparent one.
 
 ## The site is dated
 

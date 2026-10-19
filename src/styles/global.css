@@ -30,6 +30,7 @@
 }
 
 :root {
+  /* Hero.astro repeats both --bg values as plain colours for the sculpture; change them together. */
   --bg:        #ebe9e5;
   --surface:   #e4e2dd;
   --raised:    #f4f3f0;
