@@ -6,6 +6,16 @@
 <style>
   @page { size: A4; margin: 11mm 12mm 9mm 12mm; }
 
+  /* The site's typeface, from the Fontsource packages in node_modules, so the
+     PDF comes out the same on any machine with no system fonts involved.
+     Static weights rather than the variable font: Chrome embeds those as plain
+     TrueType, which every PDF reader and applicant tracking system can parse. */
+  @font-face { font-family: "Geist"; font-weight: 400; src: url("../node_modules/@fontsource/geist/files/geist-latin-400-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Geist"; font-weight: 500; src: url("../node_modules/@fontsource/geist/files/geist-latin-500-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Geist"; font-weight: 600; src: url("../node_modules/@fontsource/geist/files/geist-latin-600-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Geist Mono"; font-weight: 400; src: url("../node_modules/@fontsource/geist-mono/files/geist-mono-latin-400-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Geist Mono"; font-weight: 700; src: url("../node_modules/@fontsource/geist-mono/files/geist-mono-latin-700-normal.woff2") format("woff2"); }
+
   :root {
     --ink:      #111418;
     --ink-mid:  #3d444d;
@@ -18,7 +28,7 @@
   html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
   body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Geist", "Helvetica Neue", Arial, sans-serif;
     font-size: 8.75pt;
     line-height: 1.35;
     color: var(--ink-mid);
@@ -27,7 +37,7 @@
   }
 
   .mono {
-    font-family: "SF Mono", "Menlo", "Consolas", monospace;
+    font-family: "Geist Mono", Menlo, Consolas, monospace;
     font-size: 7.1pt;
     letter-spacing: 0.05em;
   }
@@ -70,7 +80,7 @@
   section { margin-top: 8.5pt; }
 
   h2 {
-    font-family: "SF Mono", "Menlo", "Consolas", monospace;
+    font-family: "Geist Mono", Menlo, Consolas, monospace;
     font-size: 7.1pt;
     font-weight: 700;
     letter-spacing: 0.14em;
@@ -139,7 +149,7 @@
   .skills { display: grid; grid-template-columns: 68pt 1fr; gap: 2.8pt 8pt; }
 
   .skills dt {
-    font-family: "SF Mono", "Menlo", "Consolas", monospace;
+    font-family: "Geist Mono", Menlo, Consolas, monospace;
     font-size: 6.9pt;
     letter-spacing: 0.05em;
     text-transform: uppercase;
