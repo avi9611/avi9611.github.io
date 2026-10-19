@@ -24,9 +24,10 @@
   --color-accent-mid:#000000;
   --color-accent-dim: #d1d0cc;
 
-  --font-sans: "Geist", "Helvetica Neue", Arial, sans-serif;
-  --font-serif: "Instrument Serif", "Times New Roman", serif;
-  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  /* Self-hosted through astro.config.mjs; each variable carries its fallbacks. */
+  --font-sans: var(--font-geist);
+  --font-serif: var(--font-instrument-serif);
+  --font-mono: var(--font-geist-mono);
 }
 
 :root {
@@ -367,10 +368,6 @@ a:hover .go-back { transform: translateX(-4px); }
    Home hero
    ============================================================ */
 
-/* The server-rendered hero shows the light-theme sculpture. On the dark theme
-   keep it hidden until the island has picked the dark one. */
-html[data-theme="dark"] .home-hero:not(.is-live) .sh-fallback { opacity: 0; }
-
 /* The sculpture runs edge to edge; the copy sits on the same column as the
    header and every section below it. */
 .home-hero .sh-content {
@@ -384,6 +381,29 @@ html[data-theme="dark"] .home-hero:not(.is-live) .sh-fallback { opacity: 0; }
    link's underline darkens. */
 .home-hero .sh-btn:hover { background: color-mix(in srgb, var(--ink) 78%, var(--bg)); }
 .home-hero .sh-txt:hover { border-bottom-color: currentColor; }
+
+/* ============================================================
+   Arrival
+   The first page of a visit settles in instead of appearing at
+   once: the header fades in, then the page, or on the home page
+   the hero's lines one after another. The sculpture follows on
+   its own once it is drawn. Later pages only cross-fade.
+   ============================================================ */
+
+@keyframes arrive { from { opacity: 0; } }
+@keyframes arrive-up { from { opacity: 0; transform: translateY(14px); } }
+
+@media (prefers-reduced-motion: no-preference) {
+  html[data-arrival] #site-header { animation: arrive 0.8s ease backwards; }
+  html[data-arrival] main:not(:has(.home-hero)) {
+    animation: arrive-up 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.08s backwards;
+  }
+  html[data-arrival] .home-hero :is(.sh-eyebrow, .sh-h1, .sh-aside) {
+    animation: arrive-up 1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.08s backwards;
+  }
+  html[data-arrival] .home-hero .sh-h1 { animation-delay: 0.16s; }
+  html[data-arrival] .home-hero .sh-aside { animation-delay: 0.28s; }
+}
 
 /* ============================================================
    Print

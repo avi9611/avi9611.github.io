@@ -13,23 +13,23 @@ interface Props extends SculptureHeroProps {
 const readTheme = (): "light" | "dark" =>
   document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light"
 
+const watchTheme = (onChange: () => void) => {
+  const observer = new MutationObserver(onChange)
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] })
+  return () => observer.disconnect()
+}
+
 // The vendored hero keeps its own light/dark state. This drives it from the
 // site's switch instead, and keeps the tenure current between deploys the way
-// Duration.astro does for the rest of the page. Both change only after
-// hydration, so the server-rendered markup always matches the first render.
-export default function HomeHero({ body: builtBody, bodyTemplate, since, className, ...props }: Props) {
-  const [theme, setTheme] = React.useState<"light" | "dark">("light")
-  const [live, setLive] = React.useState(false)
+// Duration.astro does for the rest of the page. The server renders the light
+// theme and React moves to the visitor's as it hydrates, before the hero picks
+// its sculpture, so the light one is never fetched on a dark page.
+export default function HomeHero({ body: builtBody, bodyTemplate, since, style, ...props }: Props) {
+  const theme = React.useSyncExternalStore(watchTheme, readTheme, () => "light" as const)
   const [body, setBody] = React.useState(builtBody)
 
   React.useEffect(() => {
-    setTheme(readTheme())
-    setLive(true)
     setBody(bodyTemplate.replace("{duration}", tenure(since, "long")))
-
-    const observer = new MutationObserver(() => setTheme(readTheme()))
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] })
-    return () => observer.disconnect()
   }, [bodyTemplate, since])
 
   return (
@@ -37,7 +37,9 @@ export default function HomeHero({ body: builtBody, bodyTemplate, since, classNa
       {...props}
       body={body}
       theme={theme}
-      className={[className, live && "is-live"].filter(Boolean).join(" ")}
+      // The page's own background, so the hero is right from the first paint in
+      // either theme. The hex props still drive the sculpture's shader.
+      style={{ "--sh-bg": "var(--bg)", ...style } as React.CSSProperties}
     />
   )
 }

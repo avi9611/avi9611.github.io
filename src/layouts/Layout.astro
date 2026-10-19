@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import personal from "../data/personal.json";
 import { ClientRouter } from "astro:transitions";
+import { Font } from "astro:assets";
 import { tenure } from "../lib/duration";
 
 interface Props {
@@ -11,7 +12,7 @@ interface Props {
 
 const {
   title = "Avinash Neralakatte — Full-Stack Engineer | FastAPI, Next.js, PostgreSQL",
-  description = `Avinash Neralakatte is a full-stack engineer in Kochi building production CRM and ERP systems on FastAPI and Next.js. Eight client products shipped in ${tenure(personal.currentSinceISO, "long").toLowerCase()}, plus the internal frontend template and backend conventions his team builds on.`,
+  description = `Avinash Neralakatte is a full-stack engineer in Kochi building production CRM and ERP systems on FastAPI and Next.js. Eight client products shipped with his team in ${tenure(personal.currentSinceISO, "long").toLowerCase()}, and the frontend template and backend conventions they now build on.`,
 } = Astro.props;
 
 // One 1200x630 card for every page, so link previews are consistent and the
@@ -119,19 +120,21 @@ const breadcrumbSchema = {
     <meta name="geo.region" content="IN-KL" />
     <meta name="geo.placename" content="Kochi" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Served from the site (see astro.config.mjs). The two faces the hero's
+         headline is set in are preloaded, so it paints in them on a first visit. -->
+    <Font cssVariable="--font-geist" preload />
+    <Font cssVariable="--font-instrument-serif" preload={[{ style: "italic" }]} />
+    <Font cssVariable="--font-geist-mono" />
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 
-    <!-- Set theme before first paint so there is no flash. -->
+    <!-- Set theme before first paint so there is no flash. data-arrival marks the
+         first page of a visit for its entrance in global.css; the router drops it
+         on the next page, since that page's <html> does not carry it. -->
     <script is:inline>
       (function () {
+        document.documentElement.setAttribute("data-arrival", "");
         function apply() {
           var saved = null;
           try { saved = localStorage.getItem("theme"); } catch (e) {}

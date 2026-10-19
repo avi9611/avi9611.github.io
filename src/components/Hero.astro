@@ -15,6 +15,24 @@ const [first, ...rest] = personal.fullName.split(" ");
 const surname = rest.join(" ");
 ---
 
+<!-- Start the sculpture this visitor will see (wide or tall, light or dark)
+     downloading while the page is still parsing, so it is ready by the time
+     the hero wakes. The hero itself picks the same file: tall below 640px. -->
+<script is:inline>
+  (function () {
+    var root = document.documentElement;
+    var link = document.createElement("link");
+    link.rel = "preload";
+    link.as = "image";
+    link.crossOrigin = "anonymous";
+    link.href =
+      "/images/sculpture/" +
+      (root.clientWidth < 640 ? "tall" : "wide") + "-" +
+      (root.getAttribute("data-theme") === "dark" ? "dark" : "light") + ".webp";
+    document.head.appendChild(link);
+  })();
+</script>
+
 <div id="home">
   <HomeHero
     client:load

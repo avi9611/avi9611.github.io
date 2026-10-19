@@ -10,7 +10,7 @@
     "highlights": [
       "Lead developer on a lead-to-cash CRM for a UAE medical-equipment calibration laboratory: 18 business modules covering sales, work orders, instruments, inventory, procurement, HRM, certificates and audit, built to contractual SLA and performance targets.",
       "Designed the multi-branch tenancy model so every purchase order, work log and quotation carries its issuing branch's identity, backed by an append-only audit trail and a snapshot that freezes counterparty details onto issued documents.",
-      "Built the company's Next.js frontend template on my own: BFF cookie authentication, RBAC, TanStack Query, a Vitest and Playwright suite, and 17 rule guides that document why each decision was made. Co-designed the FastAPI backend template alongside it.",
+      "Built the company's Next.js frontend template: BFF cookie authentication, RBAC, TanStack Query, a Vitest and Playwright suite, and 17 rule guides that document why each decision was made. Helped design the FastAPI backend template alongside it.",
       "Wrote the backend conventions kit new projects now start from, covering permissions, migrations, caching, tenancy, timezones, money handling and state machines, with a checker that fails the commit when documentation drifts from the code."
     ],
     "tags": [

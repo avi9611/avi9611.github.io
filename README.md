@@ -109,6 +109,11 @@ out by colour, so the `background` and `darkBackground` passed in `Hero.astro`
 must stay equal to `--bg` in `global.css`. Replacement images need a flat
 background in that colour too, or a transparent one.
 
+On a first visit nothing in the hero jumps. The server sends the copy but no
+sculpture: an inline script in `Hero.astro` starts the right file downloading
+(tall below 640px, light or dark) while the page parses, and the hero fades the
+sculpture in only once it is drawn in place.
+
 ## The site is dated
 
 The footer carries the site's revision number and the date of the last commit,
@@ -124,6 +129,15 @@ from the sculpture hero, in Geist with Instrument Serif italic for emphasis
 (`<em>` inside a `.section-title`). There is no colour accent; `--accent` is the
 ink. Light is the base; `html[data-theme="dark"]` overrides only what changes. The toggle writes to `localStorage`, and an inline
 script in `Layout.astro` applies the theme before first paint so there is no flash.
+
+The fonts are self-hosted from the Fontsource packages through the `fonts`
+setting in `astro.config.mjs`, so a first visit makes no request to Google. The
+headline's two faces are preloaded, and Astro sizes the fallbacks to match, so
+the text does not reflow when they arrive.
+
+The first page of a visit settles in: the header fades in, then the page, or on
+the home page the hero's lines one after another (the Arrival block in
+`global.css`). Pages reached through the site's own links only cross-fade.
 
 With no colour accent, a hover can't rely on a colour change. Text links
 underline (`.hover-line`), arrows step forward (`.go`, `.go-back`), cards shade,

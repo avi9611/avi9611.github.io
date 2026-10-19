@@ -2,7 +2,7 @@
   "name": "Avinash N",
   "fullName": "Avinash Neralakatte",
   "role": "Full-Stack Engineer",
-  "tagline": "{duration} at a delivery consultancy in Kochi. In that time I have shipped eight systems that companies run their operations on, among them a calibration lab's lead-to-cash platform and two hospital deployments, and written the two standards our new projects start from.",
+  "tagline": "{duration} at a delivery consultancy in Kochi, building the systems our clients run their operations on. As a team we have shipped eight so far, including a calibration lab's lead-to-cash platform and two hospital deployments. Along the way I put together two of the standards our new projects start from.",
   "location": "Kochi, India",
   "email": "avinashpoojary651@gmail.com",
   "phone": "+91 9611670779",
@@ -12,7 +12,7 @@
   "currentRole": "Full-Stack Engineer",
   "currentSince": "Dec 2025",
   "primaryStack": "FastAPI · Next.js · PostgreSQL · Redis · Celery · Docker",
-  "bio": "I am a full-stack engineer at Hybrid Interactive Consultancy in Kochi. Most of my work is line-of-business software: CRM, ERP, hospital and HR systems that a company's daily operations depend on. That means the hard parts are rarely the framework. They are the tenancy model, the audit trail, the state machine that decides what a document can become next, and whether the person after me can still read the code.\n\nI work mostly in FastAPI and Next.js, on a modular monolith pattern with async SQLAlchemy, PostgreSQL, Redis and Celery behind it. Alongside the client work I wrote the two internal standards our new projects start from: the Next.js frontend template, and a backend conventions kit that collects the rules we learned the expensive way.",
+  "bio": "I am a full-stack engineer at Hybrid Interactive Consultancy in Kochi. Most of my work is line-of-business software: CRM, ERP, hospital and HR systems that a company's daily operations depend on. That means the hard parts are rarely the framework. They are the tenancy model, the audit trail, the state machine that decides what a document can become next, and whether the person after me can still read the code.\n\nI work mostly in FastAPI and Next.js, on a modular monolith pattern with async SQLAlchemy, PostgreSQL, Redis and Celery behind it. Alongside the client work I put together two of the standards our new projects start from: a Next.js frontend template, and a backend conventions kit that collects the rules we learned the expensive way.",
   "principles": [
     "Write for the person debugging this at 2am, not for the person reading it today.",
     "A document that lies is worse than no document. Date it, or delete it.",
