@@ -8,7 +8,7 @@
     "confidential": true,
     "featured": true,
     "description": "A multi-branch platform covering the full lead-to-cash lifecycle for a UAE laboratory that calibrates medical equipment. Sales, operations, procurement, finance and compliance in one system, with traceability across every approval and financial edit.",
-    "role": "Lead developer. Author of 98% of both the backend and frontend repositories.",
+    "role": "Lead developer, across both the backend and the frontend.",
     "roleShort": "Lead developer",
     "outcome": "The largest system I have worked on, and the one that taught me the most. Delivered against a signed scope of work with contractual SLA and performance targets.",
     "highlights": [
@@ -43,8 +43,8 @@
         "label": "business modules in one system"
       },
       {
-        "value": "98%",
-        "label": "of both repositories written by me"
+        "value": "1",
+        "label": "transaction from won proposal to client and work order"
       },
       {
         "value": "9",
@@ -114,7 +114,7 @@
     "confidential": true,
     "featured": true,
     "description": "Two hospital management platforms built and deployed for separate healthcare clients, sharing a common modular backend so improvements to auth, audit and permissions landed in both.",
-    "role": "Joint lead with one colleague across backend and frontend. Primary author on both frontends.",
+    "role": "Shared the lead with a colleague across backend and frontend, and took on most of the frontend work for both.",
     "roleShort": "Joint lead",
     "outcome": "Both are live. Building two products off one core showed me exactly which abstractions survive a second client and which were wishful thinking.",
     "highlights": [
@@ -147,13 +147,13 @@
     "period": "2025 — 2026",
     "confidential": true,
     "featured": true,
-    "description": "A marketplace where service providers, customers, employers and job seekers meet, with booking, referrals and provider management. This was the organisation's first real FastAPI project and the one where the house architecture was worked out.",
+    "description": "A marketplace where service providers, customers, employers and job seekers meet, with booking, referrals and provider management. This was the organisation's first FastAPI project and the one where the house architecture was worked out.",
     "role": "Full-stack contributor across backend and frontend, alongside two colleagues. My first project at the company.",
     "roleShort": "Full-stack contributor",
     "outcome": "The project I learned the house patterns on, and the reason the conventions kit exists. Several rules in it were written because of bugs that shipped here first.",
     "highlights": [
       "Booking and service-provider modules carrying the bulk of the domain logic, plus customer, employer, job seeker and referral flows.",
-      "Worked through the architectural iteration honestly: different modules landed on different patterns as the team learned, and the current best practice was written down rather than left implicit.",
+      "Different modules landed on different patterns as the team learned, and the practice we settled on was written down rather than left implicit.",
       "Live on its own domain with Celery workers and Flower monitoring in production."
     ],
     "stack": [
@@ -180,9 +180,9 @@
     "confidential": true,
     "featured": false,
     "description": "A CRM for running construction projects: clients, projects, operations tracking and the document trail around them, on the standard modular backend.",
-    "role": "Full-stack contributor. Primary author on the frontend.",
-    "roleShort": "Primary frontend author",
-    "outcome": "A straightforward brief delivered on the house stack, which is what the templates are for.",
+    "role": "Full-stack contributor, working mostly on the frontend.",
+    "roleShort": "Frontend developer",
+    "outcome": "Delivered on the house stack, the kind of project the templates were made for.",
     "highlights": [
       "JWT auth with refresh tokens and RBAC, Celery background tasks with Flower monitoring, and S3-compatible object storage on DigitalOcean Spaces.",
       "Prometheus metrics and rotating structured logs wired in from the start rather than added after the first incident.",
@@ -211,11 +211,11 @@
     "confidential": true,
     "featured": false,
     "description": "A sales CRM covering pipeline, customers and the reporting around them, scaffolded from the in-house CLI and finished on the standard stack.",
-    "role": "Primary author on the frontend, contributor on the backend.",
-    "roleShort": "Primary frontend author",
+    "role": "Frontend developer, with some work on the backend.",
+    "roleShort": "Frontend developer",
     "outcome": "The first project generated from the internal CLI, which surfaced what the scaffolding was missing.",
     "highlights": [
-      "Frontend built and owned end to end.",
+      "Built the frontend end to end.",
       "Backend generated from the in-house FastAPI scaffolding and extended with the domain modules."
     ],
     "stack": [
@@ -240,9 +240,9 @@
     "confidential": true,
     "featured": false,
     "description": "A human resource management platform covering employees, attendance, leave, salary, departments, designations, shifts, teams and holidays.",
-    "role": "Sole developer. 29 of 29 backend commits and 51 of 53 frontend commits.",
+    "role": "Sole developer, on both the backend and the frontend.",
     "roleShort": "Sole developer",
-    "outcome": "Built end to end on my own inside a tight window, which is the clearest test of whether the templates actually save time. They did.",
+    "outcome": "Built end to end inside a tight window, which made it a fair test of whether the team's templates save time. They did.",
     "highlights": [
       "Full HRM domain: employees, attendance, leave, salary, departments, designations, shifts, teams and holidays.",
       "PDF generation with ReportLab, spreadsheet import and export via Pandas and openpyxl, and image processing with Pillow.",
@@ -273,8 +273,8 @@
     "period": "2026",
     "confidential": false,
     "featured": true,
-    "description": "An opinionated production template that new client frontends start from. I built and documented it on my own. It is not a starter kit, it is the argument for how we build frontends, written down so it survives me.",
-    "role": "Sole author. 18 of 18 commits.",
+    "description": "An opinionated production template that new client frontends start from. Less a starter kit than a written record of how we build frontends, so each new project begins from the same decisions instead of rediscovering them.",
+    "role": "Author and maintainer.",
     "outcome": "Now the default starting point for new projects. Writing the rules down forced me to justify each one, and several did not survive the writing.",
     "highlights": [
       "143 files across app routes, a data-view component layer, shared UI, permissions, forms and a typed API client.",
@@ -313,8 +313,8 @@
     "confidential": false,
     "featured": true,
     "description": "A portable folder you copy into a new backend on day one. Every rule in it was paid for once already, by a bug that shipped. The point of copying it is that you do not pay for them again.",
-    "role": "Sole author.",
-    "outcome": "The clearest thing I have written. It is what I would hand a new engineer before they open the code.",
+    "role": "Author and maintainer.",
+    "outcome": "Written for whoever joins next: it is what I would hand a new engineer before they open the code.",
     "highlights": [
       "30 concern guides, one per cross-cutting topic: permissions, migrations, caching, tenancy and scoping, dates and timezones, money and quantities, state machines, background jobs, audit logging, pagination, rate limiting, seeding, notifications, import and export, analytics, testing and the frontend contract.",
       "A day-one checklist of roughly twenty decisions that are cheap now and very expensive in month six.",
@@ -344,7 +344,7 @@
     "featured": true,
     "description": "A live platform combining career guidance content, job discovery, contact workflows and a secure admin dashboard for a real business.",
     "role": "Built solo, end to end.",
-    "outcome": "A real business runs on it, which is a different bar from a side project nobody depends on.",
+    "outcome": "A real business runs on it, which asks more of the work than a side project does.",
     "highlights": [
       "Next.js 16 and React 19 on the App Router with TypeScript, Tailwind v4, Framer Motion and Radix UI.",
       "Firebase Firestore, Authentication and Storage powering blogs, jobs, contact submissions and the admin dashboard.",
@@ -378,7 +378,7 @@
     "period": "2025",
     "confidential": false,
     "featured": false,
-    "description": "A live hiring platform built during my internship at GRID R & D, where candidates record video answers and the system scores their technical responses to give employers a structured first screen.",
+    "description": "A live hiring platform I worked on during my internship at GRID R & D, where candidates record video answers and the system scores their technical responses to give employers a structured first screen.",
     "role": "Built the AI video-interview flow and worked across the MERN stack, MySQL, Prisma and AWS S3.",
     "outcome": "My first experience shipping something that strangers use without anyone explaining it to them first.",
     "highlights": [

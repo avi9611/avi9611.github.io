@@ -1,6 +1,6 @@
 ---
 title: "The twenty decisions that get expensive in month six"
-description: "Tenancy, audit and money are cheap to decide before the first module and painful to change once there is data. What I learned shipping eight production systems in a year."
+description: "Tenancy, audit and money are cheap to decide before the first module and painful to change once there is data. What I learned working on eight production systems in a year."
 date: 2026-08-26
 category: "Backend Architecture"
 draft: false
