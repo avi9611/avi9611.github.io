@@ -15,26 +15,29 @@ const links = [
 ];
 ---
 
+<!-- The rule under the header only appears once the page has scrolled, so at the
+     top it sits on the hero the way the sculpture hero's own nav does. -->
 <header
-  class="no-print sticky top-0 z-40 border-b border-[var(--rule)] bg-[var(--bg)]/85 backdrop-blur-md"
+  id="site-header"
+  class="no-print sticky top-0 z-40 border-b border-transparent bg-[var(--bg)]/85 backdrop-blur-md transition-colors duration-300 data-[scrolled]:border-[var(--rule)]"
 >
   <nav aria-label="Main">
     <div class="shell flex items-center justify-between h-14">
       <a
         href="/"
-        class="text-[0.875rem] font-medium tracking-[-0.01em] text-[var(--ink)] hover:text-[var(--accent)] transition-colors"
+        class="text-[1.0625rem] font-semibold tracking-[-0.02em] text-[var(--ink)]"
       >
-        Avinash <span class="text-[var(--ink-faint)]">Neralakatte</span>
+        Avinash
       </a>
 
-      <div class="flex items-center gap-1 sm:gap-2">
-        <ul class="hidden sm:flex items-center gap-1">
+      <div class="flex items-center gap-2 sm:gap-3">
+        <ul class="hidden sm:flex items-center gap-1 md:gap-2">
           {
             links.map((l) => (
               <li>
                 <a
                   href={l.href}
-                  class="px-2.5 py-1.5 text-[0.8125rem] text-[var(--ink-soft)] hover:text-[var(--ink)] transition-colors"
+                  class="px-2 py-1.5 text-[0.84375rem] tracking-[-0.005em] text-[var(--ink-soft)] hover:text-[var(--ink)] transition-colors"
                 >
                   {l.label}
                 </a>
@@ -43,19 +46,11 @@ const links = [
           }
         </ul>
 
-        <a
-          href={personal.resume}
-          download
-          class="px-2.5 py-1.5 text-[0.8125rem] text-[var(--ink-soft)] hover:text-[var(--ink)] transition-colors"
-        >
-          CV
-        </a>
-
         <button
           id="theme-toggle"
           type="button"
           aria-label="Switch between light and dark"
-          class="ml-1 grid place-items-center w-8 h-8 rounded border border-[var(--rule)] text-[var(--ink-soft)] hover:text-[var(--ink)] hover:border-[var(--ink-faint)] transition-colors"
+          class="grid place-items-center w-[34px] h-[34px] rounded-full border border-[color-mix(in_srgb,var(--ink)_22%,transparent)] text-[var(--ink)] hover:bg-[var(--ink)] hover:text-[var(--bg)] transition-colors duration-200"
         >
           <svg
             class="w-[15px] h-[15px] hidden dark-show"
@@ -82,6 +77,14 @@ const links = [
             <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
           </svg>
         </button>
+
+        <a
+          href={personal.resume}
+          download
+          class="px-3.5 py-2 rounded-full border border-[color-mix(in_srgb,var(--ink)_22%,transparent)] text-[0.84375rem] text-[var(--ink)] hover:bg-[var(--ink)] hover:text-[var(--bg)] transition-colors duration-200"
+        >
+          CV
+        </a>
       </div>
     </div>
 
@@ -127,4 +130,14 @@ const links = [
 
   bindThemeToggle();
   document.addEventListener("astro:page-load", bindThemeToggle);
+
+  // Show the header's rule once the page has moved off the top.
+  function trackScroll() {
+    const header = document.getElementById("site-header");
+    if (!header) return;
+    header.toggleAttribute("data-scrolled", window.scrollY > 8);
+  }
+
+  window.addEventListener("scroll", trackScroll, { passive: true });
+  document.addEventListener("astro:page-load", trackScroll);
 </script>

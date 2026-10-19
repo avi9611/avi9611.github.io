@@ -1,46 +1,49 @@
 ---
 import personal from "../data/personal.json";
-import Duration from "./Duration.astro";
-import ActivityStrip from "./ActivityStrip.astro";
+import HomeHero from "./HomeHero";
+import { tenure } from "../lib/duration";
+
+// The sculpture is drawn from the same year of contributions the activity
+// strip shows further down. Regenerate it with `node scripts/make-sculpture.mjs`.
+const sculpture = (name: string) => `/images/sculpture/${name}.webp`;
 
 const since = personal.currentSinceISO;
-const [taglineBefore, taglineAfter] = personal.tagline.split("{duration}");
+const body = personal.tagline.replace("{duration}", tenure(since, "long"));
+const [first, ...rest] = personal.fullName.split(" ");
+const surname = rest.join(" ");
 ---
 
-<section id="home" class="shell pt-14 pb-16 md:pt-20 md:pb-20">
-  <p class="label mb-5">
-    {personal.role} · {personal.currentCompanyShort} · {personal.location}
-  </p>
-
-  <h1 class="text-[clamp(2.5rem,7vw,4.25rem)] font-semibold leading-[1.02] tracking-[-0.035em]">
-    {personal.fullName}
-  </h1>
-
-  <p class="lede mt-6">
-    {taglineBefore}<Duration since={since} style="long" />{taglineAfter}
-  </p>
-
-  <div class="mt-9 flex flex-wrap items-center gap-3">
-    <a href="#work" class="btn">
-      See the work
-      <svg
-        class="w-3.5 h-3.5"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        aria-hidden="true"
-      >
-        <path d="M5 12h14M13 6l6 6-6 6"></path>
-      </svg>
-    </a>
-    <a href={personal.resume} download class="btn btn-ghost">Download CV</a>
-  </div>
-
-  <!-- The year of work behind it. -->
-  <div class="mt-14 pt-9 border-t border-[var(--rule)]">
-    <ActivityStrip />
-  </div>
-</section>
+<div id="home">
+  <HomeHero
+    client:load
+    src={sculpture("wide-light")}
+    darkSrc={sculpture("wide-dark")}
+    mobileSrc={sculpture("tall-light")}
+    mobileDarkSrc={sculpture("tall-dark")}
+    imageAlt="A sculpture of wire drawn from a year of my GitHub contributions. It swells in the busy weeks and narrows in the quiet ones."
+    showNav={false}
+    themeToggle={false}
+    loadFonts={false}
+    showCredit={false}
+    eyebrow={`${personal.role} · ${personal.location}`}
+    headline={`${first}\n${surname}`}
+    headlineAccent={surname}
+    body={body}
+    bodyTemplate={personal.tagline}
+    since={since}
+    primaryCta={{ label: "See the work", href: "#work" }}
+    secondaryCta={{ label: "Read the CV", href: personal.resume }}
+    hint="Run your cursor through it"
+    hintTouch="Drag a finger through it"
+    background="var(--bg)"
+    darkBackground="var(--bg)"
+    textColor="var(--ink)"
+    accentColor="var(--ink)"
+    headingFont="var(--font-sans)"
+    accentFont="var(--font-serif)"
+    bodyFont="var(--font-sans)"
+    height="calc(100svh - var(--nav-h))"
+    backdropText={first.toLowerCase()}
+    className="home-hero"
+  />
+</div>
