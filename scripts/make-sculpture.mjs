@@ -1,9 +1,9 @@
 // Draws the home page sculpture from a year of GitHub contributions.
 //
-// Seven bundles of wire twist through each other across the year, in two
-// families turning opposite ways. Where a week was busy the form swells; quiet
-// weeks pinch it in. The result is a transparent image the hero rebuilds out
-// of particles.
+// Seven ribbons of fine gold strands twist through each other across the year,
+// in two families turning opposite ways, and come apart into grains at both
+// ends. Where a week was busy the form swells; quiet weeks pinch it in. The
+// result is a transparent image the hero rebuilds out of particles.
 //
 //   node scripts/make-sculpture.mjs            # fetch the live feed
 //   node scripts/make-sculpture.mjs days.json  # or use a saved copy
@@ -79,93 +79,165 @@ function rng(seed) {
   };
 }
 
-// Tones per theme. Far wire fades toward the page and near wire stands out
-// from it: darker on the light page, brighter on the dark one.
+// Champagne gold, from bronze shadow to pale highlight, as in the original
+// sculpture. Each theme uses the part of the ramp that reads against its page:
+// the light page needs the bronze, the dark page the highlights.
+const RAMP = [
+  [0, [31, 25, 18]],
+  [0.3, [90, 74, 55]],
+  [0.55, [156, 133, 101]],
+  [0.75, [201, 181, 147]],
+  [0.9, [230, 217, 191]],
+  [1, [251, 245, 234]],
+];
 const TONES = {
-  light: { near: 0.13, far: 0.7, glint: 0.3 },
-  dark: { near: 0.9, far: 0.3, glint: 0.12 },
+  light: { lo: 0, hi: 0.92 },
+  dark: { lo: 0.2, hi: 1 },
 };
+
+function gold(t) {
+  const x = Math.min(1, Math.max(0, t));
+  for (let i = 1; i < RAMP.length; i++) {
+    const [b, cb] = RAMP[i];
+    const [a, ca] = RAMP[i - 1];
+    if (x <= b) {
+      const k = (x - a) / (b - a);
+      return ca.map((c, j) => Math.round(c + (cb[j] - c) * k));
+    }
+  }
+  return RAMP[RAMP.length - 1][1];
+}
+
+const rgb = ([r, g, b]) => `rgb(${r},${g},${b})`;
 
 function draw({ length, breadth, tall, theme }) {
   const rand = rng(9611);
   const tone = TONES[theme];
+  const shade = (t) => gold(tone.lo + (tone.hi - tone.lo) * t);
   const segments = [];
-  const PER_DAY = 20;
-  const STEPS = 280;
-  const reach = breadth * (tall ? 0.46 : 0.4);
+  const RIBBONS = 7;
+  const HAIRS = 46;
+  const STEPS = 260;
+  const reach = breadth * (tall ? 0.4 : 0.33);
 
   // Lay the form out along its length, then turn it upright for the tall image.
   const place = (along, across) => (tall ? [across, along] : [along, across]);
   // On phones the tall form runs down behind the name, so its lower end fades out.
   const fade = (u) => (tall ? 1 - smoothstep(0.5, 0.86, u) : 1);
+  // Towards both ends the ribbon comes apart into grains.
+  const loose = (u) => 1 - smoothstep(0.04, 0.24, Math.min(u, 1 - u));
+  const spineAt = (u) => breadth / 2 + breadth * 0.05 * Math.sin(Math.PI * 2 * 0.85 * u + 0.6);
+  const swellAt = (u) => 0.22 + 0.78 * activityAt(u);
+  const taperAt = (u) => Math.pow(Math.sin(Math.PI * u), 0.85);
 
-  for (let day = 0; day < 7; day++) {
-    for (let k = 0; k < PER_DAY; k++) {
-      const dir = (day + k) % 2 === 0 ? 1 : -1;
-      const phase = (day / 7) * Math.PI * 2 + (k / PER_DAY) * 0.9 + rand() * 0.25;
-      const radius = 0.45 + rand() * 0.55;
-      const turns = 1.35 + rand() * 0.35;
-      const width = 1.6 + rand() * 1.9;
+  // Where each ribbon's centre sits at u, and how it is turned.
+  const ribbons = Array.from({ length: RIBBONS }, (_, i) => ({
+    dir: i % 2 === 0 ? 1 : -1,
+    phase: (i / RIBBONS) * Math.PI * 2 + rand() * 0.4,
+    radius: 0.5 + rand() * 0.5,
+    turns: 1.2 + rand() * 0.4,
+    twist0: rand() * Math.PI * 2,
+    twists: 1.5 + rand() * 1.5,
+    band: 0.7 + rand() * 0.6,
+  }));
+
+  const centre = (r, u) => {
+    const theta = r.phase + r.dir * Math.PI * 2 * r.turns * u;
+    const scale = reach * taperAt(u) * swellAt(u) * r.radius;
+    return { theta, z: r.radius * Math.cos(theta), across: spineAt(u) + scale * Math.sin(theta) };
+  };
+
+  for (const r of ribbons) {
+    for (let h = 0; h < HAIRS; h++) {
+      const offset = h / (HAIRS - 1) - 0.5 + (rand() - 0.5) * 0.04;
+      const hairTone = (rand() - 0.5) * 0.18;
+      const width = 0.7 + rand() * 0.8;
+      const drift = rand() * Math.PI * 2;
       let prev = null;
       for (let s = 0; s <= STEPS; s++) {
         const u = s / STEPS;
-        const taper = Math.pow(Math.sin(Math.PI * u), 0.85);
-        const swell = 0.22 + 0.78 * activityAt(u);
-        const theta = phase + dir * Math.PI * 2 * turns * u;
-        const spine = breadth / 2 + breadth * 0.05 * Math.sin(Math.PI * 2 * 0.85 * u + 0.6);
-        const z = radius * Math.cos(theta);
+        const c = centre(r, u);
+        // The ribbon turns about its own length, so it shows its face, then its edge.
+        const psi = r.twist0 + Math.PI * 2 * r.twists * u;
+        const bandWidth = breadth * (tall ? 0.08 : 0.11) * r.band * (0.45 + swellAt(u)) * (0.3 + 0.7 * taperAt(u));
+        const spread = 1 + loose(u) * 2.5;
+        const o = offset * bandWidth * spread;
+        const wander = loose(u) * breadth * 0.03 * Math.sin(drift + u * 40);
+        const z = c.z + (Math.sin(psi) * o) / reach;
         const along = length * (0.05 + 0.9 * u) + z * length * 0.008;
-        const across = spine + reach * taper * swell * radius * Math.sin(theta);
-        const point = { along, across, z, u, theta };
-        if (prev) segments.push({ a: prev, b: point, width, radius });
+        const across = c.across + Math.cos(psi) * o + wander;
+        // Silk sheen: bright where the ribbon's face turns to the light, dark on its edge.
+        const facing = Math.abs(Math.cos(psi - 0.5));
+        const point = { along, across, z, u, facing };
+        if (prev) segments.push({ a: prev, b: point, width, hairTone });
         prev = point;
       }
     }
   }
 
-  // Back to front, so nearer wire crosses over farther wire.
+  // Back to front, so nearer ribbon crosses over farther ribbon.
   segments.sort((p, q) => p.a.z + p.b.z - (q.a.z + q.b.z));
 
-  const lines = segments.map(({ a, b, width, radius }) => {
+  const lines = segments.map(({ a, b, width, hairTone }) => {
     const z = (a.z + b.z) / 2;
-    const near = (z / radius + 1) / 2;
+    const near = Math.min(1, Math.max(0, (z + 1) / 2));
     const u = (a.u + b.u) / 2;
-    const end = Math.sqrt(Math.sin(Math.PI * u));
-    const glint = Math.pow(Math.max(0, Math.sin(a.theta + 0.9)), 16);
-    const lum = Math.min(1, tone.far + (tone.near - tone.far) * near + tone.glint * glint * near);
-    const r = Math.round(255 * lum * 0.985);
-    const g = Math.round(255 * lum * 0.99);
-    const bl = Math.round(255 * Math.min(1, lum * 1.01));
-    const alpha = (0.3 + 0.66 * near) * (0.35 + 0.65 * end) * fade(u);
-    if (alpha < 0.02) return "";
-    const w = width * (0.65 + 0.7 * near) * (0.4 + 0.6 * end);
+    const facing = (a.facing + b.facing) / 2;
+    const sheen = Math.pow(facing, 2.2) * 0.6 + Math.pow(facing, 24) * 0.35;
+    const t = 0.04 + 0.32 * near + sheen + hairTone;
+    const alpha = (0.35 + 0.6 * near) * (1 - 0.85 * loose(u)) * fade(u);
+    if (alpha < 0.03) return "";
+    const w = width * (0.7 + 0.6 * near);
     const [x1, y1] = place(a.along, a.across);
     const [x2, y2] = place(b.along, b.across);
-    return `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="rgb(${r},${g},${bl})" stroke-opacity="${alpha.toFixed(2)}" stroke-width="${w.toFixed(2)}"/>`;
+    return `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${rgb(shade(t))}" stroke-opacity="${alpha.toFixed(2)}" stroke-width="${w.toFixed(2)}"/>`;
   });
 
-  // Loose filings around the form, denser where the year was busier.
-  const dust = [];
-  for (let i = 0; i < 2600; i++) {
-    const u = 0.03 + rand() * 0.94;
-    const taper = Math.pow(Math.sin(Math.PI * u), 0.85);
-    const swell = 0.22 + 0.78 * activityAt(u);
-    if (rand() > 0.35 + 0.65 * swell) continue;
-    const gauss = (rand() + rand() + rand() - 1.5) / 1.5;
-    const spine = breadth / 2 + breadth * 0.05 * Math.sin(Math.PI * 2 * 0.85 * u + 0.6);
-    const along = length * (0.05 + 0.9 * u) + (rand() - 0.5) * length * 0.02;
-    const across = spine + reach * taper * swell * gauss * 1.25;
-    const lum = tone.far + (tone.near - tone.far) * rand();
-    const v = Math.round(255 * lum);
-    if (fade(u) < 0.5) continue;
+  // Grains: lit beads clustered on the ribbons, thickest where they come apart.
+  const LEVELS = 6;
+  const defs = Array.from({ length: LEVELS }, (_, i) => {
+    const t = 0.15 + (0.8 * i) / (LEVELS - 1);
+    return `<radialGradient id="g${i}" cx="0.5" cy="0.5" r="0.5" fx="0.34" fy="0.3"><stop offset="0" stop-color="${rgb(shade(Math.min(1, t + 0.3)))}"/><stop offset="0.55" stop-color="${rgb(shade(t))}"/><stop offset="1" stop-color="${rgb(shade(Math.max(0, t - 0.25)))}"/></radialGradient>`;
+  });
+  const grains = [];
+  for (let i = 0; i < 15000; i++) {
+    const u = rand();
+    const looseness = loose(u);
+    // Most grains sit near the ends, where the form dissolves; some cling to the body.
+    if (rand() > 0.28 + 0.72 * looseness) continue;
+    if (fade(u) < 0.4) continue;
+    const r = ribbons[Math.floor(rand() * RIBBONS)];
+    const c = centre(r, u);
+    const scatter = breadth * (0.012 + 0.09 * looseness * looseness);
+    const gauss = () => (rand() + rand() + rand() - 1.5) / 1.5;
+    const along = length * (0.05 + 0.9 * u) + gauss() * scatter * 1.6;
+    const across = c.across + gauss() * scatter;
+    const big = rand() < 0.035;
+    const radius = big ? 3 + rand() * 4.5 : 0.7 + Math.pow(rand(), 2) * 2.6;
+    const near = (c.z + 1) / 2;
+    const level = Math.min(LEVELS - 1, Math.max(0, Math.floor((0.25 + 0.6 * near + (rand() - 0.5) * 0.5) * LEVELS)));
     const [x, y] = place(along, across);
-    dust.push(
-      `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(0.9 + rand() * 1.8).toFixed(2)}" fill="rgb(${v},${v},${Math.min(255, v + 3)})" fill-opacity="${(0.25 + rand() * 0.55).toFixed(2)}"/>`
+    grains.push(
+      `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${radius.toFixed(2)}" fill="url(#g${level})" fill-opacity="${(0.55 + 0.45 * rand()).toFixed(2)}"/>`
+    );
+  }
+
+  // A fine spray off both tips.
+  for (let i = 0; i < 2600; i++) {
+    const side = rand() < 0.5 ? 0 : 1;
+    const u = side ? 0.9 + rand() * 0.12 : -0.02 + rand() * 0.12;
+    if (fade(Math.min(1, Math.max(0, u))) < 0.4) continue;
+    const spread = breadth * 0.1 * (0.4 + Math.abs(u - 0.5) * 1.2);
+    const along = length * (0.05 + 0.9 * u) + (rand() - 0.5) * length * 0.03;
+    const across = spineAt(Math.min(1, Math.max(0, u))) + ((rand() + rand() + rand() - 1.5) / 1.5) * spread;
+    const [x, y] = place(along, across);
+    grains.push(
+      `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(0.45 + rand() * 0.9).toFixed(2)}" fill="${rgb(shade(0.2 + rand() * 0.6))}" fill-opacity="${(0.4 + 0.5 * rand()).toFixed(2)}"/>`
     );
   }
 
   const [w, h] = tall ? [breadth, length] : [length, breadth];
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><g stroke-linecap="round">${lines.join("")}</g>${dust.join("")}</svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><defs>${defs.join("")}</defs><g stroke-linecap="round">${lines.join("")}</g>${grains.join("")}</svg>`;
 }
 
 await mkdir(OUT, { recursive: true });

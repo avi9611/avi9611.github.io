@@ -105,8 +105,9 @@ follow the site's theme switch and keep the tenure current. The footer credits
 the author.
 
 The image is not stock. `scripts/make-sculpture.mjs` draws it from the same
-contribution feed as `/activity`: seven bundles of wire twisting through the last
-53 weeks, the whole form swelling in the busy weeks and narrowing in the quiet ones. It writes a wide and a tall
+contribution feed as `/activity`: seven ribbons of fine champagne-gold strands
+twisting through the last 53 weeks and coming apart into grains at both ends, the
+whole form swelling in the busy weeks and narrowing in the quiet ones. It writes a wide and a tall
 (phone) version for each theme to `public/images/sculpture/`. The deploy redraws
 it from that day's feed before building, and ships the committed images if the
 feed is down. To redraw it locally:
