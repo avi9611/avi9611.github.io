@@ -58,7 +58,17 @@ const socials = [
     </div>
 
     <div class="mono !normal-case !tracking-[0.03em] text-[var(--ink-faint)] mt-8 pt-6 border-t border-[var(--rule-soft)] flex flex-wrap justify-between gap-x-6 gap-y-2">
-      <p>© {year} {personal.fullName}. Built with Astro.</p>
+      <p>
+        © {year} {personal.fullName}. Built with Astro. Particle hero by{" "}
+        <a
+          href="https://guglielmogiannattasio.it"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="underline decoration-[var(--rule)] underline-offset-[0.2em] hover:text-[var(--ink)] hover:decoration-current"
+        >
+          Guglielmo Giannattasio
+        </a>.
+      </p>
       {
         rev && (
           <p>

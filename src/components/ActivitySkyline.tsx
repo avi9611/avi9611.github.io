@@ -13,6 +13,12 @@ const THEME_VARS = {
   "--color-muted-foreground": "var(--ink-soft)",
 } as React.CSSProperties
 
+// Ink on paper, the same ramp as the home page's heat map, instead of GitHub green.
+const PALETTE = {
+  light: ["#c0bfbb", "#91908d", "#62615f", "#333331"],
+  dark: ["#424240", "#6f6e6c", "#a09f9c", "#d6d4d0"],
+}
+
 type State =
   | { status: "loading" }
   | { status: "ready"; days: ContributionDay[] }
@@ -65,7 +71,7 @@ export default function ActivitySkyline() {
   }
   return (
     <div style={THEME_VARS}>
-      <ContributionSkyline data={state.days} />
+      <ContributionSkyline data={state.days} palette={PALETTE} />
     </div>
   )
 }

@@ -2,59 +2,71 @@
 
 /* ============================================================
    Design tokens
+   Warm paper and near-black ink, taken from the sculpture hero.
+   The accent is the ink itself: emphasis comes from the italic
+   serif and from weight, not from a colour.
    Light is the base. Dark overrides only what changes.
    Every ink colour is text somewhere, so each one clears WCAG AA
    (4.5:1) on bg, surface and raised, in both themes.
    ============================================================ */
 
 @theme {
-  --color-bg:        #fcfcfb;
-  --color-surface:   #f4f4f2;
-  --color-raised:    #ffffff;
-  --color-ink:       #14171a;
-  --color-ink-mid:   #444b52;
-  --color-ink-soft:  #5f666d;
-  --color-ink-faint: #687077;
-  --color-rule:      #e2e3e1;
-  --color-rule-soft: #ededec;
-  --color-accent:    #0d6e60;
-  --color-accent-mid:#0a5a4e;
-  --color-accent-dim: #e3f1ee;
+  --color-bg:        #ebe9e5;
+  --color-surface:   #e4e2dd;
+  --color-raised:    #f4f3f0;
+  --color-ink:       #151514;
+  --color-ink-mid:   #373735;
+  --color-ink-soft:  #51504f;
+  --color-ink-faint: #62615f;
+  --color-rule:      #cbc9c6;
+  --color-rule-soft: #d8d6d2;
+  --color-accent:    #151514;
+  --color-accent-mid:#000000;
+  --color-accent-dim: #d1d0cc;
 
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-sans: "Geist", "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Instrument Serif", "Times New Roman", serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
 }
 
 :root {
-  --bg:        #fcfcfb;
-  --surface:   #f4f4f2;
-  --raised:    #ffffff;
-  --ink:       #14171a;
-  --ink-mid:   #444b52;
-  --ink-soft:  #5f666d;
-  --ink-faint: #687077;
-  --rule:      #e2e3e1;
-  --rule-soft: #ededec;
-  --accent:    #0d6e60;
-  --accent-mid:#0a5a4e;
-  --accent-dim:#e3f1ee;
-  --shadow: 0 1px 2px rgb(20 23 26 / 0.04), 0 4px 16px rgb(20 23 26 / 0.04);
+  /* Hero.astro repeats both --bg values as plain colours for the sculpture; change them together. */
+  --bg:        #ebe9e5;
+  --surface:   #e4e2dd;
+  --raised:    #f4f3f0;
+  --ink:       #151514;
+  --ink-mid:   #373735;
+  --ink-soft:  #51504f;
+  --ink-faint: #62615f;
+  --rule:      #cbc9c6;
+  --rule-soft: #d8d6d2;
+  --accent:    #151514;
+  --accent-mid:#000000;
+  --accent-dim:#d1d0cc;
+  --shadow: 0 1px 2px rgb(21 21 20 / 0.04), 0 4px 16px rgb(21 21 20 / 0.05);
+  /* Height of the sticky header, so the hero can fill exactly what is left of the screen.
+     Below sm the header carries a second row of links. */
+  --nav-h: calc(6rem + 1px);
   color-scheme: light;
 }
 
+@media (min-width: 40rem) {
+  :root { --nav-h: calc(3.5rem + 1px); }
+}
+
 html[data-theme="dark"] {
-  --bg:        #0c0e10;
-  --surface:   #141719;
-  --raised:    #171a1d;
-  --ink:       #eceeef;
-  --ink-mid:   #b3b9bd;
-  --ink-soft:  #9aa1a7;
-  --ink-faint: #80878d;
-  --rule:      #24282b;
-  --rule-soft: #1c1f22;
-  --accent:    #4fd0ba;
-  --accent-mid:#6fdcc9;
-  --accent-dim:#12312c;
+  --bg:        #111110;
+  --surface:   #181817;
+  --raised:    #1d1d1b;
+  --ink:       #f1efea;
+  --ink-mid:   #cdcbc7;
+  --ink-soft:  #a9a8a4;
+  --ink-faint: #8e8d8a;
+  --rule:      #333231;
+  --rule-soft: #252524;
+  --accent:    #f1efea;
+  --accent-mid:#ffffff;
+  --accent-dim:#393937;
   --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 4px 20px rgb(0 0 0 / 0.3);
   color-scheme: dark;
 }
@@ -93,15 +105,15 @@ html[data-theme="dark"] {
     font-family: var(--font-sans);
     font-size: 0.9375rem;
     line-height: 1.65;
+    letter-spacing: -0.005em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-feature-settings: "cv02" 1, "cv03" 1, "cv04" 1;
   }
 
   h1, h2, h3, h4 {
     color: var(--ink);
-    font-weight: 600;
-    letter-spacing: -0.021em;
+    font-weight: 500;
+    letter-spacing: -0.025em;
     line-height: 1.18;
     margin: 0;
     text-wrap: balance;
@@ -154,18 +166,31 @@ html[data-theme="dark"] {
 }
 
 .label {
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.13em;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 400;
   color: var(--ink-faint);
 }
 
 .section-title {
-  font-size: clamp(1.5rem, 3.2vw, 2rem);
-  font-weight: 600;
+  font-size: clamp(1.875rem, 4.4vw, 2.875rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.04em;
   color: var(--ink);
+}
+
+.section-head > .label { white-space: nowrap; }
+
+/* The italic serif that carries emphasis, as in the hero's headline. */
+.section-title em,
+.serif-accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.015em;
 }
 
 .lede {
@@ -180,9 +205,11 @@ html[data-theme="dark"] {
 /* Section header: mono label above a rule, title below */
 .section-head {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
-  gap: 1.5rem;
+  column-gap: 1.5rem;
+  row-gap: 0.5rem;
   padding-bottom: 0.75rem;
   border-bottom: 1px solid var(--ink);
   margin-bottom: 2.5rem;
@@ -201,44 +228,47 @@ html[data-theme="dark"] {
   transition: text-decoration-color 0.18s ease, color 0.18s ease;
 }
 
-.link-underline:hover { text-decoration-color: var(--accent); color: var(--accent); }
+.link-underline:hover { text-decoration-color: currentColor; }
 
+/* Pill buttons, as in the hero: solid ink for the main action, an outline for the rest. */
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.625rem 1.125rem;
-  font-size: 0.875rem;
+  gap: 0.625rem;
+  height: 2.875rem;
+  padding: 0 1.375rem;
+  font-size: 0.90625rem;
   font-weight: 500;
+  letter-spacing: -0.01em;
   border: 1px solid var(--ink);
   background: var(--ink);
   color: var(--bg);
-  border-radius: 3px;
-  transition: opacity 0.18s ease, transform 0.18s ease;
+  border-radius: 999px;
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), background-color 0.25s ease, color 0.25s ease;
 }
 
-.btn:hover { opacity: 0.86; }
-.btn:active { transform: translateY(1px); }
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
 
 .btn-ghost {
   background: transparent;
   color: var(--ink);
-  border-color: var(--rule);
+  border-color: color-mix(in srgb, var(--ink) 22%, transparent);
 }
 
-.btn-ghost:hover { border-color: var(--ink); opacity: 1; }
+.btn-ghost:hover { background: var(--ink); color: var(--bg); }
 
 .chip {
   display: inline-flex;
   align-items: center;
-  padding: 0.1875rem 0.5rem;
+  padding: 0.1875rem 0.625rem;
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   letter-spacing: 0.02em;
   color: var(--ink-soft);
-  background: var(--surface);
-  border: 1px solid var(--rule-soft);
-  border-radius: 3px;
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
   white-space: nowrap;
 }
 
@@ -289,6 +319,25 @@ html[data-theme="dark"] {
   line-height: 1;
   font-variant-numeric: tabular-nums;
 }
+
+/* ============================================================
+   Home hero
+   ============================================================ */
+
+/* The server-rendered hero shows the light-theme sculpture. On the dark theme
+   keep it hidden until the island has picked the dark one. */
+html[data-theme="dark"] .home-hero:not(.is-live) .sh-fallback { opacity: 0; }
+
+/* The sculpture runs edge to edge; the copy sits on the same column as the
+   header and every section below it. */
+.home-hero .sh-content {
+  width: 100%;
+  max-width: 68rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 768px) { .home-hero .sh-content { padding-inline: 2.5rem; } }
 
 /* ============================================================
    Print

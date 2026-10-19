@@ -19,6 +19,7 @@ resume/
 src/
   data/*.json        all content lives here, not in components
   components/*.astro one section each
+  components/ui/     vendored React components, kept as close to upstream as possible
   pages/             home, /projects, /projects/[id], /blog, /activity
   styles/global.css  design tokens for light and dark, plus shared classes
 public/              images, the link-preview card (images/og.png) and the built CV
@@ -27,9 +28,10 @@ public/              images, the link-preview card (images/og.png) and the built
 Content is in `src/data/`. To change what the site says, edit the JSON, not the
 components.
 
-The home page opens with a point of view rather than a job title. The headline
-and tagline are in `personal.json`. Straight after them, "Decided on day one"
-lists four decisions from the essay, kept in `decisions.json`.
+The home page opens with the sculpture hero (see below): the name, and the
+tagline from `personal.json`. Straight after it, "Decided on day one" lists four
+decisions from the essay, kept in `decisions.json`. The year of contributions
+sits further down, after Experience.
 
 The first client project in `projects.json` is the case study on the home page.
 Its `metrics` and `architecture` fields fill the numbers and the flow diagram, on
@@ -83,6 +85,29 @@ date, `currentSinceISO` in `src/data/personal.json`.
   after the last deploy.
 - The workflow also rebuilds on the 1st of each month, which keeps the served HTML
   fresh even with no pushes.
+- The hero is React, so `HomeHero.tsx` does the same re-check for its copy after
+  hydration.
+- `resume/resume.html` has no tenure in it, so the PDF never goes stale on its own.
+  Rebuild it whenever its text changes.
+
+Write `{duration}` inside a string in `personal.json` or `experience.json` and it
+gets replaced at render.
+
+## The sculpture hero
+
+The hero is `liquid-sculpture-hero` by Guglielmo Giannattasio, from 21st.dev,
+vendored in `src/components/ui/`. It rebuilds an image out of GPU particles that
+turn liquid under the cursor, and shows the plain image where WebGL2 is missing.
+Edit it as little as possible; `src/components/HomeHero.tsx` wraps it instead, to
+follow the site's theme switch and keep the tenure current. The footer credits
+the author.
+
+The sculpture images are the component's own, a wide and a tall (phone) version
+for each theme, in `public/images/sculpture/`. They are served from this site
+rather than the 21st.dev CDN. Each sits on a flat background that the hero keys
+out by colour, so the `background` and `darkBackground` passed in `Hero.astro`
+must stay equal to `--bg` in `global.css`. Replacement images need a flat
+background in that colour too, or a transparent one.
 
 ## The site is dated
 
@@ -91,16 +116,13 @@ with a link to the change log on GitHub. Both come from git at build time
 (`src/lib/revision.ts`), which is why the workflow checks out the full history
 (`fetch-depth: 0`). In a shallow clone the count would be wrong, so the line is
 left out instead.
-- `resume/resume.html` has no tenure in it, so the PDF never goes stale on its own.
-  Rebuild it whenever its text changes.
-
-Write `{duration}` inside a string in `personal.json` or `experience.json` and it
-gets replaced at render.
 
 ## Theme
 
-`src/styles/global.css` holds the tokens. Light is the base; `html[data-theme="dark"]`
-overrides only what changes. The toggle writes to `localStorage`, and an inline
+`src/styles/global.css` holds the tokens: warm paper and near-black ink, taken
+from the sculpture hero, in Geist with Instrument Serif italic for emphasis
+(`<em>` inside a `.section-title`). There is no colour accent; `--accent` is the
+ink. Light is the base; `html[data-theme="dark"]` overrides only what changes. The toggle writes to `localStorage`, and an inline
 script in `Layout.astro` applies the theme before first paint so there is no flash.
 
 Base element resets live inside `@layer base` on purpose. Unlayered CSS beats

@@ -1,5 +1,5 @@
 ---
-// A year of GitHub contributions as a compact heat map in the site's accent.
+// A year of GitHub contributions as a compact heat map in the site's ink.
 // The empty grid is rendered here so its space is reserved before the data
 // arrives; the script fills in each day from the same feed /activity uses.
 // No React, so the home page stays light.
@@ -58,10 +58,11 @@ const cells = Array.from({ length: WEEKS * 7 });
 
   .swatch { width: 10px; height: 10px; display: inline-block; }
 
-  .heat > [data-l="1"], .swatch[data-l="1"] { background: color-mix(in srgb, var(--accent) 28%, var(--bg)); }
-  .heat > [data-l="2"], .swatch[data-l="2"] { background: color-mix(in srgb, var(--accent) 52%, var(--bg)); }
-  .heat > [data-l="3"], .swatch[data-l="3"] { background: color-mix(in srgb, var(--accent) 76%, var(--bg)); }
-  .heat > [data-l="4"], .swatch[data-l="4"] { background: var(--accent); }
+  /* Stops short of full ink, so a busy month reads as tone rather than a black slab. */
+  .heat > [data-l="1"], .swatch[data-l="1"] { background: color-mix(in srgb, var(--accent) 20%, var(--bg)); }
+  .heat > [data-l="2"], .swatch[data-l="2"] { background: color-mix(in srgb, var(--accent) 42%, var(--bg)); }
+  .heat > [data-l="3"], .swatch[data-l="3"] { background: color-mix(in srgb, var(--accent) 64%, var(--bg)); }
+  .heat > [data-l="4"], .swatch[data-l="4"] { background: color-mix(in srgb, var(--accent) 86%, var(--bg)); }
 
   /* Days after the latest one in the feed. */
   .heat > [data-l="none"] { visibility: hidden; }
